@@ -6,14 +6,26 @@ class Database
     const DB_USER = 'root';
     const DB_PASS = 'root';
 
-    public function getConnection()
+    private $connection;
+
+    private function checkConnection()
+    {
+        if ($this->connection === null)
+        {
+            return $this->getConnection();
+        }
+
+        return $this->connection;
+    }
+
+    private function getConnection()
     {
         try 
         {
-            $connect = new PDO(self::DB_HOST, self::DB_USER, self::DB_PASS);
-            $connect->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $connection = new PDO(self::DB_HOST, self::DB_USER, self::DB_PASS);
+            $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-            return 'OK';
+            return $this->connection;
         }
         catch (Exception $e)
         {
@@ -21,19 +33,3 @@ class Database
         }
     }
 }
-?>
-<!DOCTYPE html>
-<html lang="fr">
-    <head>
-        <meta charset="utf-8">
-        <title>Test</title>
-    </head>
-    <body>
-        <div>
-        <?php
-        $db = new Database();
-        echo $db->getConnection();
-        ?>
-        </div>
-    </body>
-</html>
