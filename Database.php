@@ -32,4 +32,16 @@ class Database
             die('Connection error: ' .$e->getMessage());
         }
     }
+
+    public function createQuery($sql, $parameters = null)
+    {
+        if ($parameters)
+        {
+            $result = $this->checkConnection()->prepare($sql);
+            $result->execute($parameters);
+            return $result;
+        }
+        $result = $this->checkConnection()->query($sql);
+        return $result;
+    }
 }
