@@ -7,11 +7,6 @@ $FramLoader->register();
 
 abstract class Application
 {
-    // 3 caratctéristiques : le nom, la requête http et sa réponse
-    // 1 fonctionnalité : s'exéctuer
-
-    // construction: cf UML
-
     protected $httpRequest;
     protected $httpResponse;
     protected $name;

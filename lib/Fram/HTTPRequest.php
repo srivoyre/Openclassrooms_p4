@@ -3,10 +3,6 @@ namespace Fram;
 
 class HTTPRequest
 {
-    // Représentation de la requête du client
-    // contient des méthodes pour obtenir une variable GET, POST, un cookie, la méthode employée pour envoyer la requête (GET ou POST) et l'url d'entrée
-
-    // construction: cf UML
     public function cookieData($key)
     {
         return isset($_COOKIE[$key]) ? $_COOKIE[$key] : null;

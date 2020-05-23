@@ -3,19 +3,6 @@ namespace Fram;
 
 class HTTPResponse
 {
-    /* 
-    Représente la réponse envoyée au client
-    Dans cette classe on va :
-    - assigner une page à la réponse
-    - envoyer la réponse en générant la page
-    - rediriger l'utilisateur vers cette page
-    - rediriger l'utilisateur vers une erreur 404 le cas échéant
-    - ajouter un cookie
-    - ajouter un header spécifique
-    */
-
-    // construction: cf UML
-
     protected $page;
 
     public function addHeader($header)
