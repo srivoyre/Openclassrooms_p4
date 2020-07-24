@@ -3,6 +3,7 @@
 // on inclut ici le fichier dont on a besoin (ici à la racine de notre site)
 
 require 'Database.php';
+require 'Post.php';
 
 ?>
 
@@ -19,13 +20,32 @@ require 'Database.php';
             <p>En construction</p>
             <?php
 
-            // on crée un nouvel objet $db, qui est une instance de la classe Database
+            $post = new Post();
+            $posts = $post->getPosts();
+            while($post = $posts->fetch())
+            {
+                ?>
+                <div>
+                    <h2>
+                        <a href="single.php?postId=<?=htmlspecialchars($post->id);?>">
+                            <?= htmlspecialchars($post->title);?>
+                        </a>
+                    </h2>
+                    <p>
+                        <?= htmlspecialchars($post->content);?>
+                    </p>
+                    <p>
+                        <?= htmlspecialchars($post->author); ?>
+                    </p>
+                    <p>
+                        Créé le : <?= htmlspecialchars($post->createdAt);?>
+                    </p>
+                </div>
+                <br />
+            <?php
+            }
 
-            $db = new Database();
-
-            // on fait appel à notre méthode getConnection()
-
-            echo $db->getConnection();
+            $posts->closeCursor();
             ?>
         </div>
     </body>
