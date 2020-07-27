@@ -6,19 +6,24 @@ use App\src\DAO\CommentDAO;
 
 class FrontController
 {
+    private $postDAO;
+    private $commentDAO;
+
+    public function __construct()
+    {
+        $this->postDAO = new PostDAO();
+        $this->commentDAO = new CommentDAO();
+    }
     public function home()
     {
-        $post = new PostDAO();
-        $posts = $post->getPosts();
+        $posts = $this->postDAO->getPosts();
         require '../templates/home.php';
     }
 
     public function post($postId)
     {
-        $post = new PostDAO();
-        $posts = $post->getPost($postId);
-        $comment = new CommentDAO();
-        $comments = $comment->getCommentsFromPost($postId);
+        $posts = $this->postDAO->getPost($postId);
+        $comments = $this->commentDAO->getCommentsFromPost($postId);
         require '../templates/single.php';
     }
 }

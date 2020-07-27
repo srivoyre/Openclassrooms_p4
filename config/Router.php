@@ -1,11 +1,20 @@
 <?php
 
 namespace App\config;
+use App\src\controller\ErrorController;
 use App\src\controller\FrontController;
 use Exception;
 
 class Router
 {
+    private $frontController;
+    private $errorController;
+
+    public function __construct()
+    {
+        $this->frontController = new FrontController();
+        $this->errorController = new ErrorController();
+    }
     public function run()
     {
         try
@@ -14,23 +23,21 @@ class Router
             {
                 if($_GET['route'] === 'post')
                 {
-                    $frontController = new FrontController();
-                    $frontController->post($_GET['postId']);
+                    $this->frontController->post($_GET['postId']);
                 }
-                else
+            else
                 {
-                    echo 'page inconnue';
+                    $this->errorController->errorNotFound();
                 }
             }
             else
             {
-                $frontController = new FrontController();
-                $frontController->home();
+                $this->frontController->home();
             }
         }
         catch (Exception $ex)
         {
-            echo 'Erreur';
+           $this->errorController->errorServer();
         }
     }
 }
