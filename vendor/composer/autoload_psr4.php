@@ -7,4 +7,6 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'Symfony\\Polyfill\\Mbstring\\' => array($vendorDir . '/symfony/polyfill-mbstring'),
+    'App\\src\\' => array($baseDir . '/src'),
+    'App\\config\\' => array($baseDir . '/config'),
 );
