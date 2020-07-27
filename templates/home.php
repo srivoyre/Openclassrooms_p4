@@ -1,9 +1,7 @@
 <?php
 
-// on inclut ici le fichier dont on a besoin (ici à la racine de notre site)
-
-require 'Database.php';
-require 'Post.php';
+require '../src/DAO/DAO.php';
+require '../src/DAO/PostDAO.php';
 
 ?>
 
@@ -20,7 +18,7 @@ require 'Post.php';
             <p>En construction</p>
             <?php
 
-            $post = new Post();
+            $post = new PostDAO();
             $posts = $post->getPosts();
             while($post = $posts->fetch())
             {
