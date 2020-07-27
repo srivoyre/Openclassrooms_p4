@@ -10,30 +10,28 @@
             <h1>Mon blog</h1>
             <p>En construction</p>
             <?php
-            while($post = $posts->fetch())
+            foreach ($posts as $post)
             {
-                ?>
-                <div>
-                    <h2>
-                        <a href="../public/index.php?route=post&postId=<?=htmlspecialchars($post->id);?>">
-                            <?= htmlspecialchars($post->title);?>
-                        </a>
-                    </h2>
-                    <p>
-                        <?= htmlspecialchars($post->content);?>
-                    </p>
-                    <p>
-                        <?= htmlspecialchars($post->author); ?>
-                    </p>
-                    <p>
-                        Créé le : <?= htmlspecialchars($post->createdAt);?>
-                    </p>
-                </div>
-                <br />
+            ?>
+            <div>
+                <h2>
+                    <a href="../public/index.php?route=post&postId=<?=htmlspecialchars($post->getId());?>">
+                        <?= htmlspecialchars($post->getTitle());?>
+                    </a>
+                </h2>
+                <p>
+                    <?= htmlspecialchars($post->getContent());?>
+                </p>
+                <p>
+                    <?= htmlspecialchars($post->getAuthor()); ?>
+                </p>
+                <p>
+                    Créé le : <?= htmlspecialchars($post->getCreatedAt());?>
+                </p>
+            </div>
+            <br />
             <?php
             }
-
-            $posts->closeCursor();
             ?>
         </div>
     </body>

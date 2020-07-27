@@ -9,30 +9,25 @@
         <div>
             <h1>Mon blog</h1>
             <p>En construction</p>
-
-            <?php
-            $post = $posts->fetch()
-            ?>
             <div>
                 <h2>
-                    <?= htmlspecialchars($post->title);?>
+                    <?= htmlspecialchars($post->getTitle());?>
                 </h2>
                 <p>
-                    <?= htmlspecialchars($post->content);?>
+                    <?= htmlspecialchars($post->getContent());?>
                 </p>
                 <p>
-                    <?= htmlspecialchars($post->author);?>
+                    <?= htmlspecialchars($post->getAuthor());?>
                 </p>
                 <p>
-                    Crée le : <?= htmlspecialchars($post->createdAt);?>
+                    Crée le : <?= htmlspecialchars($post->getCreatedAt());?>
                 </p>
             </div>
+
             <br />
 
-            <?php
-            $posts->closeCursor();
-            ?>
             <a href="../public/index.php">retour à l'accueil</a>
+
             <div id="comments" class="text-left" style="margin-left: 50px;">
                 <h3>Commentaires</h3>
                 <?php
