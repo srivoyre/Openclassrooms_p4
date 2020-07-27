@@ -4,6 +4,8 @@ require '../src/DAO/DAO.php';
 require '../src/DAO/PostDAO.php';
 require '../src/DAO/CommentDAO.php';
 
+use App\src\DAO\PostDAO;
+use App\src\DAO\CommentDAO;
 ?>
 
 <!DOCTYPE html>

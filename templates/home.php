@@ -3,6 +3,7 @@
 require '../src/DAO/DAO.php';
 require '../src/DAO/PostDAO.php';
 
+use App\src\DAO\PostDAO;
 ?>
 
 <!DOCTYPE html>

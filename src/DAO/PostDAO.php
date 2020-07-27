@@ -1,5 +1,7 @@
 <?php
 
+namespace App\src\DAO;
+
 class PostDAO extends DAO
 {
     public function getPosts()
