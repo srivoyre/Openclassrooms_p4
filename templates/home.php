@@ -1,7 +1,5 @@
 <?php
 
-require '../vendor/autoload.php';
-
 use App\src\DAO\PostDAO;
 ?>
 
@@ -25,7 +23,7 @@ use App\src\DAO\PostDAO;
                 ?>
                 <div>
                     <h2>
-                        <a href="single.php?postId=<?=htmlspecialchars($post->id);?>">
+                        <a href="../public/index.php?route=post&postId=<?=htmlspecialchars($post->id);?>">
                             <?= htmlspecialchars($post->title);?>
                         </a>
                     </h2>
