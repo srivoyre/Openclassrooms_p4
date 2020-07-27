@@ -1,8 +1,13 @@
 <?php
 
-require '../src/DAO/DAO.php';
-require '../src/DAO/PostDAO.php';
+require '../config/Autoloader.php';
 
+use \App\config\Autoloader;
+
+Autoloader::register();
+//require '../src/DAO/DAO.php';
+//require '../src/DAO/PostDAO.php';
+//
 use App\src\DAO\PostDAO;
 ?>
 
