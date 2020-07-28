@@ -22,7 +22,6 @@ class Router
     }
     public function run()
     {
-        var_dump($this->request->getPost());
         $route = $this->request->getGet()->get('route');
         try
         {
@@ -36,7 +35,7 @@ class Router
                 // routes to post creation
                 elseif($route === 'addPost')
                 {
-                    $this->backController->addPost($_POST);
+                    $this->backController->addPost($this->request->getPost());
                 }
                  //no route specified / can't find route
                 else

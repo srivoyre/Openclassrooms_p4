@@ -14,7 +14,7 @@ class Request
     public function __construct()
     {
         $this->get = new Parameter($_GET);
-        $this->post = $_POST;
+        $this->post = new Parameter($_POST);
         $this->session = $_SESSION;
     }
 
@@ -27,7 +27,7 @@ class Request
     }
 
     /**
-     * @return mixed
+     * @return Parameter
      */
     public function getPost()
     {
