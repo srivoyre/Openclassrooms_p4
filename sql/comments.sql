@@ -3,10 +3,10 @@ CREATE TABLE `comment`(
     `pseudo` varchar(100)NOT NULL,
     `content` text NOT NULL,
     `createdAt` datetime NOT NULL,
-    `post_id` int(11)NOT NULL
+    `article_id` int(11)NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-INSERT INTO `comment`(`id`, `pseudo`, `content`, `createdAt`, `post_id`)VALUES
+INSERT INTO `comment`(`id`, `pseudo`, `content`, `createdAt`, `article_id`)VALUES
 (1, 'Jean', 'Génial, hâte de voir ce que ça donne !', '2019-03-16 21:02:24', 1),
 (2, 'Nina', 'Trop cool ! depuis le temps', '2019-03-17 17:34:35', 1),
 (3, 'Rodrigo', 'Great ! ', '2019-03-17 17:42:04', 1),
@@ -19,10 +19,10 @@ INSERT INTO `comment`(`id`, `pseudo`, `content`, `createdAt`, `post_id`)VALUES
 
 ALTER TABLE `comment`
     ADD PRIMARY KEY (`id`),
-    ADD KEY `fk_post_id`(`post_id`);
+    ADD KEY `fk_article_id`(`article_id`);
 
 ALTER TABLE `comment`
     MODIFY `id` int(11)NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 ALTER TABLE `comment`
-    ADD CONSTRAINT  `fk_post_id` FOREIGN KEY (`post_id`) REFERENCES `post(`id`)`;
+    ADD CONSTRAINT  `fk_article_id` FOREIGN KEY (`article_id`) REFERENCES `article(`id`)`;

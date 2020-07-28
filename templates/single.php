@@ -1,18 +1,18 @@
-<?php $this->title = "Post"; ?>
+<?php $this->title = "Article"; ?>
 <h1>Mon blog</h1>
 <p>En construction</p>
 <div>
     <h2>
-        <?= htmlspecialchars($post->getTitle());?>
+        <?= htmlspecialchars($article->getTitle());?>
     </h2>
     <p>
-        <?= htmlspecialchars($post->getContent());?>
+        <?= htmlspecialchars($article->getContent());?>
     </p>
     <p>
-        <?= htmlspecialchars($post->getAuthor());?>
+        <?= htmlspecialchars($article->getAuthor());?>
     </p>
     <p>
-        Crée le : <?= htmlspecialchars($post->getCreatedAt());?>
+        Crée le : <?= htmlspecialchars($article->getCreatedAt());?>
     </p>
 </div>
 

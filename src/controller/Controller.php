@@ -3,13 +3,13 @@
 namespace App\src\controller;
 
 use App\config\Request;
-use App\src\DAO\PostDAO;
+use App\src\DAO\ArticleDAO;
 use App\src\DAO\CommentDAO;
 use App\src\model\View;
 
 abstract class Controller
 {
-    protected $postDAO;
+    protected $articletDAO;
     protected $commentDAO;
     protected $view;
     private $request;
@@ -22,7 +22,7 @@ abstract class Controller
      */
     public function __construct()
     {
-        $this->postDAO = new PostDAO();
+        $this->articleDAO = new ArticleDAO();
         $this->commentDAO = new CommentDAO();
         $this->view = new View();
         $this->request = new Request();

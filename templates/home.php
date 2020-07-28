@@ -2,26 +2,26 @@
 
 <h1>Mon blog</h1>
 <p>En construction</p>
-<?= $this->session->show('add_post'); ?>
-<a href="../public/index.php?route=addPost">Nouvel article</a>
+<?= $this->session->show('add_article'); ?>
+<a href="../public/index.php?route=addArticle">Nouvel article</a>
 <?php
-foreach ($posts as $post)
+foreach ($articles as $article)
 {
     ?>
     <div>
         <h2>
-            <a href="../public/index.php?route=post&postId=<?=htmlspecialchars($post->getId());?>">
-                <?= htmlspecialchars($post->getTitle());?>
+            <a href="../public/index.php?route=article&articleId=<?=htmlspecialchars($article->getId());?>">
+                <?= htmlspecialchars($article->getTitle());?>
             </a>
         </h2>
         <p>
-            <?= htmlspecialchars($post->getContent());?>
+            <?= htmlspecialchars($article->getContent());?>
         </p>
         <p>
-            <?= htmlspecialchars($post->getAuthor()); ?>
+            <?= htmlspecialchars($article->getAuthor()); ?>
         </p>
         <p>
-            Créé le : <?= htmlspecialchars($post->getCreatedAt());?>
+            Créé le : <?= htmlspecialchars($article->getCreatedAt());?>
         </p>
     </div>
     <br />
