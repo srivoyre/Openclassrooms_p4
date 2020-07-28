@@ -31,7 +31,7 @@ class Router
                 // routes to post display
                 if($route === 'post')
                 {
-                    $this->frontController->post($_GET['postId']);
+                    $this->frontController->post($this->request->getGet()->get('postId'));
                 }
                 // routes to post creation
                 elseif($route === 'addPost')
