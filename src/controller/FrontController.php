@@ -1,6 +1,7 @@
 <?php
 
 namespace App\src\controller;
+use App\config\Parameter;
 use App\src\DAO\ArticleDAO;
 use App\src\DAO\CommentDAO;
 use App\src\model\View;
@@ -25,5 +26,15 @@ class FrontController extends Controller
             'comments' => $comments
         ]);
         //require '../templates/single.php';
+    }
+
+    public function addComment(Parameter $post, $articleId)
+    {
+        if($post->get('submit'))
+        {
+            $this->commentDAO->addComment($post, $articleId);
+            $this->session->set('add_comment', 'Le nouveau commentaire a bien été ajouté');
+            header('Location: ../public/index.php?route=article&articleId='.$articleId);
+        }
     }
 }
