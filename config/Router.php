@@ -8,29 +8,33 @@ use Exception;
 
 class Router
 {
+    private $request;
     private $frontController;
     private $backController;
     private $errorController;
 
     public function __construct()
     {
+        $this->request = new Request();
         $this->frontController = new FrontController();
         $this->backController = new BackController();
         $this->errorController = new ErrorController();
     }
     public function run()
     {
+        var_dump($this->request->getPost());
+        $route = $this->request->getGet()->get('route');
         try
         {
-            if(isset($_GET['route']))
+            if(isset($route))
             {
                 // routes to post display
-                if($_GET['route'] === 'post')
+                if($route === 'post')
                 {
                     $this->frontController->post($_GET['postId']);
                 }
                 // routes to post creation
-                elseif($_GET['route'] == 'addPost')
+                elseif($route === 'addPost')
                 {
                     $this->backController->addPost($_POST);
                 }
