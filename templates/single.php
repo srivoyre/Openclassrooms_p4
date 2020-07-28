@@ -20,6 +20,7 @@
 
 <div class="actions">
     <a href="../public/index.php?route=editArticle&articleId=<?= $article->getId(); ?>">Modifier</a>
+    <a href="../public/index.php?route=deleteArticle&articleId=<?= $article->getId(); ?>">Supprimer</a>
 </div>
 <br />
 <a href="../public/index.php">retour à l'accueil</a>
