@@ -2,6 +2,7 @@
 
 <h1>Mon blog</h1>
 <p>En construction</p>
+<?= $this->session->show('add_post'); ?>
 <a href="../public/index.php?route=addPost">Nouvel article</a>
 <?php
 foreach ($posts as $post)
