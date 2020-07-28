@@ -4,18 +4,8 @@ namespace App\src\controller;
 use App\src\DAO\PostDAO;
 use App\src\model\View;
 
-class BackController
+class BackController extends Controller
 {
-    private $view;
-
-    /**
-     * BackController constructor.
-     */
-    public function __construct()
-    {
-        $this->view = new View();
-    }
-
     public function addPost($post)
     {
         if(isset($post['submit']))
