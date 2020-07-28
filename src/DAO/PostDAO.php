@@ -2,6 +2,7 @@
 
 namespace App\src\DAO;
 
+use App\config\Parameter;
 use App\src\model\Post;
 
 class PostDAO extends DAO
@@ -42,10 +43,9 @@ class PostDAO extends DAO
         return $this->buildObject($post);
     }
 
-    public function addPost($post)
+    public function addPost(Parameter $post)
     {
-        extract($post);
         $sql = 'INSERT INTO post (title, content, author, createdAt) VALUES(?,?,?, NOW())';
-        $this->createQuery($sql, [$title, $content, $author]);
+        $this->createQuery($sql, [$post->get('title'), $post->get('content'), $post->get('author')]);
     }
 }
