@@ -30,12 +30,12 @@ class Router
                     $this->frontController->post($_GET['postId']);
                 }
                 // routes to post creation
-                elseif($_GET['route'] === 'addPost')
+                elseif($_GET['route'] == 'addPost')
                 {
                     $this->backController->addPost($_POST);
                 }
-                // no route specified / can't find route
-                 else
+                 //no route specified / can't find route
+                else
                 {
                     $this->errorController->errorNotFound();
                 }
@@ -47,7 +47,7 @@ class Router
         }
         catch (Exception $ex)
         {
-           $this->errorController->errorServer();
+            $this->errorController->errorServer();
         }
     }
 }
