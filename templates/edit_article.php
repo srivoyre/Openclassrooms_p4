@@ -2,7 +2,7 @@
 <h1>Mon blog</h1>
 <p>En construction</p>
 <div>
-    <form method="post" action="../public/index.php?route=editArticle&articleId=<?= htmlspecialchars($article->getId()); ?>)">
+    <form method="post" action="../public/index.php?route=editArticle&articleId=<?= htmlspecialchars($article->getId()); ?>">
         <label for="title">Titre</label>
         <br />
         <input type="text" id="title" name="title" value="<?= htmlspecialchars($article->getTitle());?>">
