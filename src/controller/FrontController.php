@@ -1,7 +1,7 @@
 <?php
 
 namespace App\src\controller;
-use App\src\DAO\PostDAO;
+use App\src\DAO\ArticleDAO;
 use App\src\DAO\CommentDAO;
 use App\src\model\View;
 
@@ -9,19 +9,19 @@ class FrontController extends Controller
 {
     public function home()
     {
-        $posts = $this->postDAO->getPosts();
+        $articles = $this->articleDAO->getArticles();
         return $this->view->render('home', [
-            'posts' => $posts
+            'articles' => $articles
         ]);
         //require '../templates/home.php';
     }
 
-    public function post($postId)
+    public function article($articleId)
     {
-        $post = $this->postDAO->getPost($postId);
-        $comments = $this->commentDAO->getCommentsFromPost($postId);
+        $article = $this->articleDAO->getArticle($articleId);
+        $comments = $this->commentDAO->getCommentsFromArticle($articleId);
         return $this->view->render('single', [
-            'post' => $post,
+            'article' => $article,
             'comments' => $comments
         ]);
         //require '../templates/single.php';

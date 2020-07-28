@@ -1,6 +1,7 @@
 <?php
 
 namespace App\config;
+
 use App\src\controller\FrontController;
 use App\src\controller\BackController;
 use App\src\controller\ErrorController;
@@ -27,15 +28,15 @@ class Router
         {
             if(isset($route))
             {
-                // routes to post display
-                if($route === 'post')
+                // routes to article display
+                if($route === 'article')
                 {
-                    $this->frontController->post($this->request->getGet()->get('postId'));
+                    $this->frontController->article($this->request->getGet()->get('articleId'));
                 }
-                // routes to post creation
-                elseif($route === 'addPost')
+                // routes to article creation
+                elseif($route === 'addArticle')
                 {
-                    $this->backController->addPost($this->request->getPost());
+                    $this->backController->addArticle($this->request->getPost());
                 }
                  //no route specified / can't find route
                 else
