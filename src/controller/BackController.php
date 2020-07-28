@@ -18,4 +18,14 @@ class BackController extends Controller
             'post' => $post
         ]);
     }
+
+    public function editArticle(Parameter $post, $articleId)
+    {
+    $article = $this->articleDAO->getArticle($articleId);
+    
+
+    return $this->view->render('edit_article', [
+        'article' => $article
+    ]);
+    }
 }
