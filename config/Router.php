@@ -38,6 +38,10 @@ class Router
                 {
                     $this->backController->addArticle($this->request->getPost());
                 }
+                elseif($route === 'editArticle')
+                {
+                    $this->backController->editArticle($this->request->getPost(),$this->request->getGet()->get('articleId'));
+                }
                  //no route specified / can't find route
                 else
                 {
