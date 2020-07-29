@@ -28,12 +28,10 @@ class Router
         {
             if(isset($route))
             {
-                // routes to article display
                 if($route === 'article')
                 {
                     $this->frontController->article($this->request->getGet()->get('articleId'));
                 }
-                // routes to article creation
                 elseif($route === 'addArticle')
                 {
                     $this->backController->addArticle($this->request->getPost());
@@ -62,7 +60,23 @@ class Router
                 {
                     $this->frontController->register($this->request->getPost());
                 }
-                 //no route specified / can't find route
+                elseif($route === 'login')
+                {
+                    $this->frontController->login($this->request->getPost());
+                }
+                elseif($route === 'profile')
+                {
+                    $this->backController->profile();
+                }
+                elseif ($route === 'updatePassword')
+                {
+                    $this->backController->updatePassword($this->request->getPost());
+                }
+                elseif($route === 'logout')
+                {
+                    $this->backController->logout();
+                }
+                 // can't find route
                 else
                 {
                     $this->errorController->errorNotFound();
