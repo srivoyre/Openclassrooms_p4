@@ -54,6 +54,10 @@ class Router
                 {
                     $this->frontController->flagComment($this->request->getGet()->get('commentId'));
                 }
+                elseif($route === 'deleteComment')
+                {
+                    $this->backController->deleteComment($this->request->getGet()->get('commentId'));
+                }
                  //no route specified / can't find route
                 else
                 {
