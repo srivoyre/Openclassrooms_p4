@@ -11,12 +11,12 @@
 <a href="../public/index.php?route=addArticle">Nouvel article</a>
 <table>
     <thead>
-        <td>Id</td>
-        <td>Titre</td>
-        <td>Contenu</td>
-        <td>Auteur</td>
-        <td>Date</td>
-        <td>Actions</td>
+        <th>Id</th>
+        <th>Titre</th>
+        <th>Contenu</th>
+        <th>Auteur</th>
+        <th>Date</th>
+        <th>Actions</th>
     </thead>
     <?php
     foreach ($articles as $article)
@@ -55,5 +55,44 @@
 </table>
 
 <h2>Commentaires signalés</h2>
+<table>
+    <thead>
+        <th>Id</th>
+        <th>Pseudo</th>
+        <th>Message</th>
+        <th>Date</th>
+        <th>Actions</th>
+    </thead>
+    <?php
+    foreach($comments as $comment)
+    {
+        ?>
+        <tr>
+            <td>
+                <?= htmlspecialchars($comment->getId()); ?>
+            </td>
+            <td>
+                <?= htmlspecialchars($comment->getPseudo()); ?>
+            </td>
+            <td>
+                <?= substr(htmlspecialchars($comment->getContent()), 0, 150); ?>
+            </td>
+            <td>
+                Crée le : <?= htmlspecialchars($comment->getCreatedAt()); ?>
+            </td>
+            <td>
+                <a href="../public/index.php?route=unflagComment&commentId=<?= $comment->getId(); ?>">
+                    Désignaler le commentaire
+                </a>
+                <a href="../public/index.php?route=deleteComment&commentId=<?= $comment->getId(); ?>">
+                    Supprimer le commentaire
+                </a>
+            </td>
+        </tr>
+    <?php
+    }
+    ?>
+</table>
+
 
 <h2>Utilisateurs</h2>
