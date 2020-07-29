@@ -46,6 +46,10 @@ class Router
                 {
                     $this->backController->deleteArticle($this->request->getGet()->get('articleId'));
                 }
+                elseif($route === 'addComment')
+                {
+                    $this->frontController->addComment($this->request->getPost(), $this->request->getGet()->get('articleId'));
+                }
                  //no route specified / can't find route
                 else
                 {
