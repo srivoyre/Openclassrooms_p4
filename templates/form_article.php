@@ -14,7 +14,9 @@ $submit = $route === 'addArticle' ? 'Envoyer' : 'Mettre à jour';
     <br>
     <label for="content">Contenu</label>
     <br>
-    <textarea id="content" name="content" value="<?= isset($post) ? htmlspecialchars($post->get('content')) : ''; ?>"></textarea>
+    <textarea id="content" name="content">
+        <?= isset($post) ? htmlspecialchars($post->get('content')) : ''; ?>
+    </textarea>
     <?= isset($errors['content']) ? $errors['content'] : ''; ?>
     <br>
     <label for="author">Auteur</label>
