@@ -76,6 +76,10 @@ class Router
                 {
                     $this->backController->logout();
                 }
+                elseif($route === 'deleteAccount')
+                {
+                    $this->backController->deleteAccount();
+                }
                  // can't find route
                 else
                 {
