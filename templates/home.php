@@ -10,6 +10,7 @@
 <?= $this->session->show('flag_comment'); ?>
 <?= $this->session->show('delete_comment'); ?>
 <?= $this->session->show('register'); ?>
+<?= $this->session->show('login'); ?>
 
 <a href="../public/index.php?route=register">Inscription</a>
 <a href="../public/index.php?route=login">Connexion</a>
