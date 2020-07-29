@@ -12,6 +12,7 @@
 <?= $this->session->show('register'); ?>
 <?= $this->session->show('login'); ?>
 <?= $this->session->show('logout'); ?>
+<?= $this->session->show('delete_account'); ?>
 
 <?php
 if($this->session->get('pseudo'))
