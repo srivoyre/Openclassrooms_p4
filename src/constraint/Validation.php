@@ -18,5 +18,11 @@ class Validation
             $errors = $commentValidation->check($data);
             return $errors;
         }
+        elseif($name === 'User')
+        {
+            $userValidation = new UserValidation();
+            $errors = $userValidation->check($data);
+            return $errors;
+        }
     }
 }
