@@ -50,6 +50,10 @@ class Router
                 {
                     $this->frontController->addComment($this->request->getPost(), $this->request->getGet()->get('articleId'));
                 }
+                elseif($route === 'flagComment')
+                {
+                    $this->frontController->flagComment($this->request->getGet()->get('commentId'));
+                }
                  //no route specified / can't find route
                 else
                 {
