@@ -80,6 +80,10 @@ class Router
                 {
                     $this->backController->deleteAccount();
                 }
+                elseif($route === 'administration')
+                {
+                    $this->backController->administration();
+                }
                  // can't find route
                 else
                 {
