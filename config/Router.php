@@ -62,6 +62,10 @@ class Router
                 {
                     $this->frontController->register($this->request->getPost());
                 }
+                elseif($route === 'login')
+                {
+                    $this->frontController->login($this->request->getPost());
+                }
                  //no route specified / can't find route
                 else
                 {
