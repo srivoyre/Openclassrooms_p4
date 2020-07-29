@@ -9,7 +9,7 @@
         <input type="text" id="pseudo" name="pseudo">
         <br />
         <?= isset($errors['pseudo']) ? $errors['pseudo'] : ''; ?>
-        <label for="password">Mot de pass</label>
+        <label for="password">Mot de passe</label>
         <br />
         <input type="password" id="password" name="password">
         <br />

@@ -63,6 +63,10 @@ class FrontController extends Controller
         if($post->get('submit'))
         {
             $errors = $this->validation->validate($post, 'User');
+            if($this->userDAO->checkUser($post))
+            {
+                $errors['pseudo'] = $this->userDAO->checkUser($post);
+            }
             if(!$errors)
             {
                 $this->userDAO->register($post);
@@ -72,7 +76,7 @@ class FrontController extends Controller
 
             return $this->view->render('register', [
                 'post' => $post,
-                'errrors' => $errors
+                'errors' => $errors
             ]);
         }
         return $this->view->render('register');
