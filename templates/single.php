@@ -26,6 +26,7 @@
 <a href="../public/index.php">Retour à l'accueil</a>
 
 <div id="comments" class="text-left" style="margin-left: 50px;">
+    <h3>Ajouter un commentaire</h3>
     <?php include('form_comment.php'); ?>
     <h3>Commentaires</h3>
     <?php
@@ -41,6 +42,25 @@
         <p>
             Posté le <?=htmlspecialchars($comment->getCreatedAt());?>
         </p>
+        <?php
+        if($comment->isFlag())
+        {
+        ?>
+            <p>
+                Ce commentaire a déjà été signalé
+            </p>
+        <?php
+        } else
+        {
+        ?>
+            <p>
+                <a href="../public/index.php?route=flagComment&commentId=<?= $comment->getId(); ?>">
+                    Signaler le commentaire
+                </a>
+            </p>
+        <?php
+        }
+        ?>
         <?php
    }
    ?>
