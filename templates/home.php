@@ -22,9 +22,7 @@ if($this->session->get('pseudo'))
     <a href="../public/index.php?route=profile">Profil</a>
     <?php if($this->session->get('role') === 'admin') { ?>
         <a href="../public/index.php?route=administration">Administration</a>
-    <?php } ?>
-    <a href="../public/index.php?route=addArticle">Nouvel article</a>
-    <?php
+    <?php }
 }
 else
 {

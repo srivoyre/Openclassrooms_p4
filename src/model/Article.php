@@ -7,7 +7,7 @@ class Article
     private $id;
     private $title;
     private $content;
-    private $author;
+    private $user_id;
     private $createdAt;
 
     /**
@@ -63,15 +63,15 @@ class Article
      */
     public function getAuthor()
     {
-        return $this->author;
+        return $this->user_id;
     }
 
     /**
-     * @param mixed $author
+     * @param mixed $user_id
      */
-    public function setAuthor($author)
+    public function setAuthor($user_id)
     {
-        $this->author = $author;
+        $this->user_id = $user_id;
     }
 
     /**
