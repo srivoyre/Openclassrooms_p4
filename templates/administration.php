@@ -6,6 +6,9 @@
 <?= $this->session->show('add_article'); ?>
 <?= $this->session->show('edit_article'); ?>
 <?= $this->session->show('delete_article'); ?>
+<?= $this->session->show('unflag_comment'); ?>
+<?= $this->session->show('delete_comment'); ?>
+<?= $this->session->show('delete_user'); ?>
 
 <h2>Articles</h2>
 <a href="../public/index.php?route=addArticle">Nouvel article</a>
@@ -96,3 +99,51 @@
 
 
 <h2>Utilisateurs</h2>
+<table>
+    <thead>
+        <th>Id</th>
+        <th>Pseudo</th>
+        <th>Date</th>
+        <th>Rôle</th>
+        <th>Actions</th>
+    </thead>
+    <?php
+    foreach($users as $user)
+    {
+        ?>
+        <tr>
+            <td>
+                <?= htmlspecialchars($user->getId()); ?>
+            </td>
+            <td>
+            <?= htmlspecialchars($user->getPseudo()); ?>
+            </td>
+            <td>
+                Crée le : <?= htmlspecialchars($user->getCreatedAt()); ?>
+            </td>
+            <td>
+                <?= htmlspecialchars($user->getRole()); ?>
+            </td>
+            <td>
+                <?php
+                if($user->getRole() != 'admin')
+                {
+                    ?>
+                    <a href="../public/index.php?route=deleteUser&userId=<?= $user->getId(); ?>">
+                        Supprimer
+                    </a>
+                    <?php
+                }
+                else
+                {
+                    ?>
+                    Suppression impossible
+                    <?php
+                }
+                ?>
+            </td>
+        </tr>
+        <?php
+    }
+    ?>
+</table>

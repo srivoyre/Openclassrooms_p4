@@ -8,6 +8,7 @@ class User
     private $pseudo;
     private $password;
     private $createdAt;
+    private $role;
 
     /**
      * @return int
@@ -71,5 +72,21 @@ class User
     public function setCreatedAt($createdAt)
     {
         $this->createdAt = $createdAt;
+    }
+
+    /**
+     * @return string
+     */
+    public function getRole()
+    {
+        return $this->role;
+    }
+
+    /**
+     * @param string $role
+     */
+    public function setRole($role)
+    {
+        $this->role = $role;
     }
 }
