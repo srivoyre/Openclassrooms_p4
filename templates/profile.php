@@ -3,6 +3,7 @@
 <p>En construction</p>
 
 <?= $this->session->show('update_password'); ?>
+<?= $this->session->show('not_admin'); ?>
 
 <div>
     <h2><?= $this->session->get('pseudo'); ?></h2>
