@@ -57,4 +57,5 @@ $submit = $route === 'addArticle' ? 'Envoyer' : 'Mettre à jour';
     <?= isset($errors['content']) ? $errors['content'] : ''; ?>
 
     <input type="submit" value="<?= $submit; ?>" id="submit" name="submit">
+    <input type="submit" value="<?= $submit; ?>" id="submit" name="submitandleave">
 </form>
