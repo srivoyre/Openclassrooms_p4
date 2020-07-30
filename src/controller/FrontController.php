@@ -35,10 +35,9 @@ class FrontController extends Controller
             {
                 $this->commentDAO->addComment($post, $articleId);
                 $this->session->set('add_comment', 'Le nouveau commentaire a bien été ajouté');
-                // Stay on this page
-                //header('Location: ../public/index.php?route=article&articleId='.$articleId);
-                // redirects to home page
-                header('Location: ../public/index.php');
+                header('Location: ../public/index.php?route=article&articleId='.$articleId);
+                //header('Location: ../public/index.php?');
+
             }
             $article = $this->articleDAO->getArticle($articleId);
             $comments = $this->commentDAO->getCommentsFromArticle($articleId);
@@ -55,7 +54,6 @@ class FrontController extends Controller
     {
         $this->commentDAO->flagComment($commentId);
         $this->session->set('flag_comment', 'Le commentaire a bien été signalé');
-        header('Location: ../public/index.php');
     }
 
     public function register(Parameter $post)

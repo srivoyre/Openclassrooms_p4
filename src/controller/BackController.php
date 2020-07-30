@@ -24,8 +24,8 @@ class BackController extends Controller
         $this->checkLoggedIn();
         if(!($this->session->get('role') === 'admin'))
         {
-            $this->session->set('not_admin', 'Vous n\'avez pas le droit d\'accéder à cette page');
-            header('Location: ../public/index.php?route=profile');
+            $this->session->set('not_admin', 'Vous ne disposez pas des autorisations suffisantes pour accéder à cette page');
+            header('Location: ../public/index.php?route=errorPermission');
         }
         else
         {
@@ -89,7 +89,7 @@ class BackController extends Controller
                     'errors' => $errors
                 ]);
             }
-            elseif($post->get('submitandleave'))
+            elseif($post->get('submitAndLeave'))
             {
                 $errors = $this->validation->validate($post, 'Article');
                 if(!$errors)

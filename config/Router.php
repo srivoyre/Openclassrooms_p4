@@ -92,6 +92,10 @@ class Router
                 {
                     $this->backController->administration();
                 }
+                elseif ($route === 'errorPermission')
+                {
+                    $this->errorController->errorPermission();
+                }
                  // can't find route
                 else
                 {

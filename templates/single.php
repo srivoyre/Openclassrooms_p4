@@ -3,7 +3,9 @@
 <h1>Mon blog</h1>
 <p>En construction</p>
 
-<a href="../public/index.php"><< Retour à l'accueil</a>
+<?= $this->session->show('add_comment'); ?>
+<?= $this->session->show('flag_comment'); ?>
+<?= $this->session->show('unflag_comment'); ?>
 
 <div>
     <h2>
@@ -21,11 +23,19 @@
 </div>
 
 <br />
+<?php
+    if(($this->session->get('role') === 'admin'))
+    {
+        ?>
+        <div class="actions">
+            <a href="../public/index.php?route=editArticle&articleId=<?= $article->getId(); ?>">Modifier</a>
+            <a href="../public/index.php?route=deleteArticle&articleId=<?= $article->getId(); ?>">Supprimer</a>
+        </div>
+        <?php
+    }
+?>
 
-<div class="actions">
-    <a href="../public/index.php?route=editArticle&articleId=<?= $article->getId(); ?>">Modifier</a>
-    <a href="../public/index.php?route=deleteArticle&articleId=<?= $article->getId(); ?>">Supprimer</a>
-</div>
+
 <br />
 
 <div id="comments" class="text-left" style="margin-left: 50px;">

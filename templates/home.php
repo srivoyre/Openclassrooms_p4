@@ -3,12 +3,10 @@
 <h1>Mon blog</h1>
 <p>En construction</p>
 
-<?= $this->session->show('add_comment'); ?>
-<?= $this->session->show('flag_comment'); ?>
-<?= $this->session->show('delete_comment'); ?>
 <?= $this->session->show('register'); ?>
 <?= $this->session->show('login'); ?>
 <?= $this->session->show('logout'); ?>
+<?= $this->session->show('delete_user'); ?>
 <?= $this->session->show('delete_account'); ?>
 
 <?php

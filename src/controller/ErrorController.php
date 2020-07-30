@@ -15,4 +15,9 @@ class ErrorController extends Controller
         return $this->view->render('error_500');
         //require '../templates/error_500.php';
     }
+
+    public function errorPermission()
+    {
+        return $this->view->render('error_permission');
+    }
 }
