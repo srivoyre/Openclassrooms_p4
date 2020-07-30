@@ -4,6 +4,7 @@
 <p>En construction</p>
 
 <?= $this->session->show('add_comment'); ?>
+<?= $this->session->show('delete_comment'); ?>
 <?= $this->session->show('flag_comment'); ?>
 <?= $this->session->show('unflag_comment'); ?>
 
@@ -73,13 +74,16 @@
             </p>
         <?php
         }
+        if($this->session->get('pseudo') == $comment->getPseudo())
+        {
         ?>
         <p>
-            <a href="../public/index.php?route=deleteComment&commentId=<?= $comment->getId(); ?>">
-                Supprimer le commentaire
+            <a href="../public/index.php?route=deleteComment&commentId=<?= $comment->getId(); ?>&pseudo=<?= $comment->getPseudo(); ?>">
+                Supprimer mon commentaire
             </a>
         </p>
         <?php
+        }
    }
    ?>
 </div>
