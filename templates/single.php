@@ -6,7 +6,7 @@
         <?= htmlspecialchars($article->getTitle());?>
     </h2>
     <p>
-        <?= strip_tags($article->getContent());?>
+        <?= $article->getContent();?>
     </p>
     <p>
         <?= htmlspecialchars($article->getAuthor());?>
