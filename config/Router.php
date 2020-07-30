@@ -50,7 +50,7 @@ class Router
                 }
                 elseif($route === 'flagComment')
                 {
-                    $this->frontController->flagComment($this->request->getGet()->get('commentId'));
+                    $this->frontController->flagComment($this->request->getGet()->get('commentId'), $this->request->getGet()->get('articleId'));
                 }
                 elseif($route === 'unflagComment')
                 {

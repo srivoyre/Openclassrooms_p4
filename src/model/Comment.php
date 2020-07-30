@@ -9,6 +9,7 @@ class Comment
     private $content;
     private $createdAt;
     private $flag;
+    private $articleId;
 
     /**
      * @return mixed
@@ -82,6 +83,22 @@ class Comment
     public function setFlag($flag)
     {
         $this->flag = $flag;
+    }
+
+    /**
+     * @return string
+     */
+    public function getArticleId()
+    {
+        return $this->articleId;
+    }
+
+    /**
+     * @param string $articleId
+     */
+    public function setArticleId($articleId)
+    {
+        $this->articleId = $articleId;
     }
 
 }

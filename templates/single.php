@@ -67,7 +67,7 @@
         {
         ?>
             <p>
-                <a href="../public/index.php?route=flagComment&commentId=<?= $comment->getId(); ?>">
+                <a href="../public/index.php?route=flagComment&commentId=<?= $comment->getId(); ?>&articleId=<?= $comment->getArticleId(); ?>">
                     Signaler le commentaire
                 </a>
             </p>
