@@ -5,6 +5,7 @@
         <title>
             <?= $title ?>
         </title>
+        <script <?= $script ?> ></script>
     </head>
 
     <body>
