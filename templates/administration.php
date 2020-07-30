@@ -10,6 +10,8 @@
 <?= $this->session->show('delete_comment'); ?>
 <?= $this->session->show('delete_user'); ?>
 
+<a href="../public/index.php">Retour à l'accueil</a>
+
 <h2>Articles</h2>
 <a href="../public/index.php?route=addArticle">Nouvel article</a>
 <table>
