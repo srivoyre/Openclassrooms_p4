@@ -35,7 +35,7 @@
                 </a>
             </td>
             <td>
-                <?= substr(htmlspecialchars($article->getContent()), 0, 150); ?>
+                <?= substr(strip_tags($article->getContent()), 0, 150); ?>
             </td>
             <td>
                 <?= htmlspecialchars($article->getAuthor()); ?>

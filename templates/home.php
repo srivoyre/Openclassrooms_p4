@@ -41,7 +41,7 @@ foreach ($articles as $article)
             </a>
         </h2>
         <p>
-            <?= htmlspecialchars($article->getContent());?>
+            <?= $article->getContent();?>
         </p>
         <p>
             <?= htmlspecialchars($article->getAuthor()); ?>
