@@ -41,7 +41,7 @@ foreach ($articles as $article)
             </a>
         </h2>
         <p>
-            <?= htmlspecialchars($article->getContent());?>
+            <?= strip_tags($article->getContent());?>
         </p>
         <p>
             <?= htmlspecialchars($article->getAuthor()); ?>
