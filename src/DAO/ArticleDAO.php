@@ -8,7 +8,7 @@ use function Sodium\add;
 
 class ArticleDAO extends DAO
 {
-    private function buildObject($row, $getSurroundings)
+    private function buildObject($row, $getSurroundingArticles)
     {
         $article = new Article();
         $article->setId($row['id']);
@@ -17,7 +17,7 @@ class ArticleDAO extends DAO
         $article->setAuthor($row['pseudo']);
         $article->setCreatedAt($row['createdAt']);
         $article->setOrderNum($row['order_num']);
-        if($getSurroundings === true)
+        if($getSurroundingArticles === true)
         {
             $article->setNextArticle($this->getSurroundingArticle($article->getOrderNum(), 'next'));
             $article->setPreviousArticle($this->getSurroundingArticle($article->getOrderNum(), 'previous'));
