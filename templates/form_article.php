@@ -1,6 +1,6 @@
 <?php
 $route = isset($post) && $post->get('id') ? 'editArticle&articleId='.$post->get('id') : 'addArticle';
-$submit = $route === 'addArticle' ? 'Envoyer' : 'Mettre à jour';
+$submit = $route === 'addArticle' ? 'Créer' : 'Mettre à jour';
 ?>
 
 <form method="post" action="../public/index.php?route=<?= $route; ?>">
@@ -56,5 +56,15 @@ $submit = $route === 'addArticle' ? 'Envoyer' : 'Mettre à jour';
 
     <?= isset($errors['content']) ? $errors['content'] : ''; ?>
 
-    <input type="submit" value="<?= $submit; ?>" id="submit" name="submit">
+    <!--<input type="submit" value="<?= $submit; ?>" id="submit" name="submit">
+    <input type="submit" value="<?= $submit; ?> et quitter" id="submit" name="submitandleave">-->
+    <input type="submit" value="Enregistrer" id="submit" name="submit">
+    <?php
+        if($route !== 'addArticle')
+        {
+        ?>
+            <input type="submit" value="Enregistrer et quitter" id="submit" name="submitAndLeave">
+        <?php
+        }
+    ?>
 </form>

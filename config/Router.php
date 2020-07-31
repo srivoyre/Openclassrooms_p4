@@ -50,7 +50,7 @@ class Router
                 }
                 elseif($route === 'flagComment')
                 {
-                    $this->frontController->flagComment($this->request->getGet()->get('commentId'));
+                    $this->frontController->flagComment($this->request->getGet()->get('commentId'), $this->request->getGet()->get('articleId'));
                 }
                 elseif($route === 'unflagComment')
                 {
@@ -58,7 +58,7 @@ class Router
                 }
                 elseif($route === 'deleteComment')
                 {
-                    $this->backController->deleteComment($this->request->getGet()->get('commentId'));
+                    $this->backController->deleteComment($this->request->getGet()->get('commentId'),$this->request->getGet()->get('pseudo'));
                 }
                 elseif($route === 'register')
                 {
@@ -91,6 +91,10 @@ class Router
                 elseif($route === 'administration')
                 {
                     $this->backController->administration();
+                }
+                elseif ($route === 'errorPermission')
+                {
+                    $this->errorController->errorPermission();
                 }
                  // can't find route
                 else

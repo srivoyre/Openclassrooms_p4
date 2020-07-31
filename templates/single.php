@@ -1,6 +1,17 @@
 <?php $this->title = "Article"; ?>
+
 <h1>Mon blog</h1>
 <p>En construction</p>
+
+<?= $this->session->show('add_comment'); ?>
+<?= $this->session->show('delete_comment'); ?>
+<?= $this->session->show('flag_comment'); ?>
+<?= $this->session->show('unflag_comment'); ?>
+
+<a href="../public/index.php"><< Retour à l'accueil</a>
+<a href="../public/index.php?route=article&articleId=">Chapitre précédent</a>
+<a href="../public/index.php?route=article&articleId=">Chapitre suivant</a>
+
 <div>
     <h2>
         <?= htmlspecialchars($article->getTitle());?>
@@ -17,13 +28,20 @@
 </div>
 
 <br />
+<?php
+    if(($this->session->get('role') === 'admin'))
+    {
+        ?>
+        <div class="actions">
+            <a href="../public/index.php?route=editArticle&articleId=<?= $article->getId(); ?>">Modifier</a>
+            <a href="../public/index.php?route=deleteArticle&articleId=<?= $article->getId(); ?>">Supprimer</a>
+        </div>
+        <?php
+    }
+?>
 
-<div class="actions">
-    <a href="../public/index.php?route=editArticle&articleId=<?= $article->getId(); ?>">Modifier</a>
-    <a href="../public/index.php?route=deleteArticle&articleId=<?= $article->getId(); ?>">Supprimer</a>
-</div>
+
 <br />
-<a href="../public/index.php">Retour à l'accueil</a>
 
 <div id="comments" class="text-left" style="margin-left: 50px;">
     <h3>Ajouter un commentaire</h3>
@@ -47,26 +65,29 @@
         {
         ?>
             <p>
-                Ce commentaire a déjà été signalé
+                Ce commentaire a été signalé
             </p>
         <?php
         } else
         {
         ?>
             <p>
-                <a href="../public/index.php?route=flagComment&commentId=<?= $comment->getId(); ?>">
+                <a href="../public/index.php?route=flagComment&commentId=<?= $comment->getId(); ?>&articleId=<?= $comment->getArticleId(); ?>">
                     Signaler le commentaire
                 </a>
             </p>
         <?php
         }
+        if($this->session->get('pseudo') == $comment->getPseudo())
+        {
         ?>
         <p>
-            <a href="../public/index.php?route=deleteComment&commentId=<?= $comment->getId(); ?>">
-                Supprimer le commentaire
+            <a href="../public/index.php?route=deleteComment&commentId=<?= $comment->getId(); ?>&pseudo=<?= $comment->getPseudo(); ?>">
+                Supprimer mon commentaire
             </a>
         </p>
         <?php
+        }
    }
    ?>
 </div>

@@ -24,8 +24,8 @@ class BackController extends Controller
         $this->checkLoggedIn();
         if(!($this->session->get('role') === 'admin'))
         {
-            $this->session->set('not_admin', 'Vous n\'avez pas le droit d\'accéder à cette page');
-            header('Location: ../public/index.php?route=profile');
+            $this->session->set('not_admin', 'Vous ne disposez pas des autorisations suffisantes pour accéder à cette page');
+            header('Location: ../public/index.php?route=errorPermission');
         }
         else
         {
@@ -82,12 +82,27 @@ class BackController extends Controller
                 {
                     $this->articleDAO->editArticle($post, $articleId, $this->session->get('id'));
                     $this->session->set('edit_article', 'L\'article a bien été modifié');
+                    //header('Location: ../public/index.php?route=administration');
+                }
+                return $this->view->render('edit_article', [
+                    'post' => $post,
+                    'errors' => $errors
+                ]);
+            }
+            elseif($post->get('submitAndLeave'))
+            {
+                $errors = $this->validation->validate($post, 'Article');
+                if(!$errors)
+                {
+                    $this->articleDAO->editArticle($post, $articleId, $this->session->get('id'));
+                    $this->session->set('edit_article', 'L\'article a bien été modifié');
                     header('Location: ../public/index.php?route=administration');
                 }
                 return $this->view->render('edit_article', [
                     'post' => $post,
                     'errors' => $errors
                 ]);
+
             }
             $post->set('id', $article->getId());
             $post->set('title', $article->getTitle());
@@ -120,9 +135,15 @@ class BackController extends Controller
         }
     }
 
-    public function deleteComment($commentId)
+    public function deleteComment($commentId, $pseudo)
     {
-        if($this->checkAdmin())
+        if($this->checkLoggedIn() && $this->session->get('pseudo') == $pseudo)
+        {
+            $this->commentDAO->deleteComment($commentId);
+            $this->session->set('delete_comment', 'Le commentaire a bien été supprimé');
+            header('Location: ../public/index.php?');
+        }
+        elseif($this->checkAdmin())
         {
             $this->commentDAO->deleteComment($commentId);
             $this->session->set('delete_comment', 'Le commentaire a bien été supprimé');
