@@ -98,3 +98,7 @@ ALTER TABLE `article`
 
 ALTER TABLE `article`
     ADD `published` TINYINT(1) NOT NULL DEFAULT '0';
+
+ALTER TABLE `article`
+    ADD `lastPublishedDate` DATETIME NOT NULL;
+

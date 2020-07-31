@@ -30,10 +30,10 @@ if(empty($article->getNextArticle()) == false)
         <?= $article->getContent();?>
     </p>
     <p>
-        <?= htmlspecialchars($article->getAuthor());?>
+        Auteur : <?= htmlspecialchars($article->getAuthor());?>
     </p>
     <p>
-        Crée le : <?= htmlspecialchars($article->getCreatedAt());?>
+        Publié le : <?= htmlspecialchars($article->getLastPublishedDate());?>
     </p>
 </div>
 

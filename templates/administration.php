@@ -18,7 +18,7 @@
         <th>Contenu</th>
         <th>Auteur</th>
         <th>Date de création</th>
-        <th>Date de dernière publication</th>
+        <th>Publié le</th>
         <th>Actions</th>
     </thead>
     <?php
@@ -43,7 +43,9 @@
             <td>
                 <?= htmlspecialchars($article->getCreatedAt()); ?>
             </td>
-            <td></td>
+            <td>
+                <?= htmlspecialchars($article->getLastPublishedDate()); ?>
+            </td>
             <td>
                 <a href="../public/index.php?route=editArticle&articleId=<?= $article->getId(); ?>">
                     Modifier

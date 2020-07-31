@@ -20,10 +20,7 @@ foreach ($articles as $article)
             <?= $article->getContent();?>
         </p>
         <p>
-            <?= htmlspecialchars($article->getAuthor()); ?>
-        </p>
-        <p>
-            Créé le : <?= htmlspecialchars($article->getCreatedAt());?>
+            Publié le : <?= htmlspecialchars($article->getLastPublishedDate());?>
         </p>
     </div>
     <br />

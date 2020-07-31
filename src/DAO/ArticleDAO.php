@@ -23,6 +23,7 @@ class ArticleDAO extends DAO
             $article->setPreviousArticle($this->getSurroundingArticle($article->getOrderNum(), 'previous'));
         }
         $article->setIsPublished($row['published']);
+        $article->setLastPublishedDate($row['lastPublishedDate']);
 
         return $article;
     } 
@@ -31,11 +32,11 @@ class ArticleDAO extends DAO
     {
         if($published === true)
         {
-            $sql = 'SELECT article.id, article.title, article.content, article.order_num, article.createdAt, article.published, user.pseudo FROM article INNER JOIN user ON article.user_id = user.id WHERE article.published = 1 ORDER BY article.order_num DESC';
+            $sql = 'SELECT article.id, article.title, article.content, article.order_num, article.createdAt, article.published, article.lastPublishedDate, user.pseudo FROM article INNER JOIN user ON article.user_id = user.id WHERE article.published = 1 ORDER BY article.order_num DESC, article.createdAt DESC';
         }
         elseif($published === false)
         {
-            $sql = 'SELECT article.id, article.title, article.content, article.order_num, article.createdAt, article.published, user.pseudo FROM article INNER JOIN user ON article.user_id = user.id ORDER BY article.order_num DESC';
+            $sql = 'SELECT article.id, article.title, article.content, article.order_num, article.createdAt, article.published, article.lastPublishedDate, user.pseudo FROM article INNER JOIN user ON article.user_id = user.id ORDER BY article.order_num DESC, article.createdAt DESC';
         }
         $result = $this->createQuery($sql);
         $articles = [];
@@ -53,11 +54,11 @@ class ArticleDAO extends DAO
     {
         if($published === true)
         {
-            $sql = 'SELECT article.id, article.title, article.content, article.order_num, article.createdAt, article.published, user.pseudo FROM article INNER JOIN user ON article.user_id WHERE article.published = 1 AND article.id = ?';
+            $sql = 'SELECT article.id, article.title, article.content, article.order_num, article.createdAt, article.published, article.lastPublishedDate, user.pseudo FROM article INNER JOIN user ON article.user_id WHERE article.published = 1 AND article.id = ?';
         }
         elseif($published === false)
         {
-            $sql = 'SELECT article.id, article.title, article.content, article.order_num, article.createdAt, article.published, user.pseudo FROM article INNER JOIN user ON article.user_id WHERE article.id = ?';
+            $sql = 'SELECT article.id, article.title, article.content, article.order_num, article.createdAt, article.published, article.lastPublishedDate, user.pseudo FROM article INNER JOIN user ON article.user_id WHERE article.id = ?';
         }
         $result = $this->createQuery($sql, [$articleId]);
         $article = $result->fetch();
@@ -70,11 +71,11 @@ class ArticleDAO extends DAO
         $sql ='';
         if($place === 'next')
         {
-            $sql = 'SELECT article.id, article.title, article.content, article.order_num, article.createdAt, article.published, user.pseudo FROM article INNER JOIN user ON article.user_id WHERE article.order_num > ? AND article.published = 1 ORDER BY article.order_num ASC LIMIT 1';
+            $sql = 'SELECT article.id, article.title, article.content, article.order_num, article.createdAt, article.published,  article.lastPublishedDate, user.pseudo FROM article INNER JOIN user ON article.user_id WHERE article.order_num > ? AND article.published = 1 ORDER BY article.order_num ASC LIMIT 1';
         }
         elseif($place === 'previous')
         {
-            $sql = 'SELECT article.id, article.title, article.content, article.order_num, article.createdAt, article.published, user.pseudo FROM article INNER JOIN user ON article.user_id WHERE article.order_num < ? AND article.published = 1 ORDER BY article.order_num DESC LIMIT 1';
+            $sql = 'SELECT article.id, article.title, article.content, article.order_num, article.createdAt, article.published, article.lastPublishedDate, user.pseudo FROM article INNER JOIN user ON article.user_id WHERE article.order_num < ? AND article.published = 1 ORDER BY article.order_num DESC LIMIT 1';
         }
         $result = $this->createQuery($sql, [$articleOrderNum]);
         $articles = [];
@@ -100,7 +101,6 @@ class ArticleDAO extends DAO
             'title' => $post->get('title'),
             'content' => $post->get('content'),
             'order_num' => $post->get('order_num'),
-            //'published' => $post->get('published'),
             'user_id' => $userId,
             'articleId' => $articleId
         ]);
@@ -108,7 +108,15 @@ class ArticleDAO extends DAO
 
     public function editPublicationStatus($status, $articleId)
     {
-        $sql = 'UPDATE article SET published=:published WHERE id=:articleId';
+        $sql = '';
+        if($status == 1)
+        {
+            $sql = 'UPDATE article SET published=:published, lastPublishedDate= NOW() WHERE id=:articleId';
+        }
+        elseif($status == 0)
+        {
+            $sql = 'UPDATE article SET published=:published WHERE id=:articleId';
+        }
         $this->createQuery($sql, [
             'published' => $status,
             'articleId' => $articleId

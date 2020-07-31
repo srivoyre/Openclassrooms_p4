@@ -13,6 +13,7 @@ class Article
     private $nextArticle;
     private $previousArticle;
     private $is_published;
+    private $lastPublishedDate;
 
     /**
      * @return mixed
@@ -156,6 +157,22 @@ class Article
     public function setIsPublished($is_published)
     {
         $this->is_published = $is_published;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getLastPublishedDate()
+    {
+        return $this->lastPublishedDate;
+    }
+
+    /**
+     * @param mixed $lastPublishedDate
+     */
+    public function setLastPublishedDate($lastPublishedDate)
+    {
+        $this->lastPublishedDate = $lastPublishedDate;
     }
 
 }
