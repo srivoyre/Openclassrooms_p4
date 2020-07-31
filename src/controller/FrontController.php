@@ -19,6 +19,10 @@ class FrontController extends Controller
     {
         $article = $this->articleDAO->getArticle($articleId, true);
         $comments = $this->commentDAO->getCommentsFromArticle($articleId);
+        if(empty($article->getId()))
+        {
+            return $this->view->render('error_404');
+        }
         return $this->view->render('single', [
             'article' => $article,
             'comments' => $comments
