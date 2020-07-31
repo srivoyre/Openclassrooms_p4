@@ -27,4 +27,13 @@ class Constraint
             return '<p>Le champ '.$name.' doit contenir au maximum '.$maxSize.' caractères</p>';
         }
     }
+
+    public function isNumber($value)
+    {
+        if(!is_int($value))
+        {
+            return '<p>Veuillez saisir un nombre entier positif </p>';
+        }
+    }
+
 }

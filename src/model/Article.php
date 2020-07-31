@@ -9,7 +9,7 @@ class Article
     private $content;
     private $user_id;
     private $createdAt;
-    private $order;
+    private $order_num;
     private $nextArticleId;
     private $previousArticleId;
 
@@ -96,17 +96,17 @@ class Article
     /**
      * @return mixed
      */
-    public function getOrder()
+    public function getOrderNum()
     {
-        return $this->order;
+        return $this->order_num;
     }
 
     /**
-     * @param mixed $order
+     * @param mixed $order_num
      */
-    public function setOrder($order)
+    public function setOrderNum($order_num)
     {
-        $this->order = $order;
+        $this->order_num = $order_num;
     }
 
     /**

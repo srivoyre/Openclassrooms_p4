@@ -31,7 +31,12 @@ class ArticleValidation extends Validation
             $error = $this->checkTitle($name, $value);
             $this->addError($name, $error);
         }
-        elseif($name === 'content')
+        if($name === 'order_num')
+        {
+            $error = $this->checkOrderNum($name, $value);
+            $this->addError($name, $error);
+        }
+        if($name === 'content')
         {
             $error = $this->checkContent($name, $value);
             $this->addError($name, $error);
@@ -77,6 +82,25 @@ class ArticleValidation extends Validation
         {
             return $this->constraint->minLength('contenu', $value, 2);
         }
+    }
+
+    private function checkOrderNum($name, $value)
+    {
+        if($this->constraint->notBlank($name, $value))
+        {
+            return $this->constraint->notBlank('numéro du chapitre', $value);
+        }
+
+        if($this->constraint->isNumber($value))
+        {
+            return $this->constraint->isNumber( $value);
+        }
+
+        if($this->constraint->maxLength($name, $value, 3))
+        {
+            return $this->constraint->maxLength('numéro du chapitre', $value, 3);
+        }
+
     }
 
 }

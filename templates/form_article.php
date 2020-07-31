@@ -13,11 +13,13 @@ $submit = $route === 'addArticle' ? 'Créer' : 'Mettre à jour';
     <br />
     <input type="number" id="order_num" name="order_num" value="<?= isset($post) ? htmlspecialchars($post->get('order_num')) : ''; ?>">
     <br />
+    <?= isset($errors['order_num']) ? $errors['order_num'] : ''; ?>
     <label for="content">Contenu</label>
     <br />
     <textarea id="content" name="content">
         <?= isset($post) ? htmlspecialchars($post->get('content')) : ''; ?>
     </textarea>
+    <?= isset($errors['content']) ? $errors['content'] : ''; ?>
     <script>
         tinymce.init({
             selector: 'textarea',
@@ -57,8 +59,6 @@ $submit = $route === 'addArticle' ? 'Créer' : 'Mettre à jour';
         });
     </script>
     <br />
-
-    <?= isset($errors['content']) ? $errors['content'] : ''; ?>
 
     <!--<input type="submit" value="<?= $submit; ?>" id="submit" name="submit">
     <input type="submit" value="<?= $submit; ?> et quitter" id="submit" name="submitandleave">-->

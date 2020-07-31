@@ -15,9 +15,9 @@ class ArticleDAO extends DAO
         $article->setContent($row['content']);
         $article->setAuthor($row['pseudo']);
         $article->setCreatedAt($row['createdAt']);
-        $article->setOrder($row['order_num']);
-        $article->setNextArticleId($this->getNextArticle($article->getOrder()));
-        $article->setPreviousArticleId($this->getPreviousArticle($article->getOrder()));
+        $article->setOrderNum($row['order_num']);
+        $article->setNextArticleId($this->getNextArticle($article->getOrderNum()));
+        $article->setPreviousArticleId($this->getPreviousArticle($article->getOrderNum()));
 
         return $article;
     } 
@@ -54,7 +54,6 @@ class ArticleDAO extends DAO
         foreach ($result as $row)
         {
             $articleId = $row['id'];
-            var_dump($articleId);
         }
         $result->closeCursor();
 
@@ -69,7 +68,6 @@ class ArticleDAO extends DAO
         foreach ($result as $row)
         {
             $articleId = $row['id'];
-            var_dump($articleId);
         }
         $result->closeCursor();
 
