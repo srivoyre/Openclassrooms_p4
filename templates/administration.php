@@ -14,11 +14,12 @@
 <table>
     <thead>
         <th>Numéro du chapitre</th>
+        <th>Statut</th>
         <th>Titre</th>
         <th>Contenu</th>
         <th>Auteur</th>
         <th>Date de création</th>
-        <th>Publié le</th>
+        <th>Dernière publication</th>
         <th>Actions</th>
     </thead>
     <?php
@@ -28,6 +29,22 @@
         <tr>
             <td>
                 <?= htmlspecialchars($article->getOrderNum()); ?>
+            </td>
+            <td>
+                <?php
+                if($article->getIsPublished() == 0)
+                {
+                    ?>
+                    Brouillon
+                    <?php
+                }
+                elseif ($article->getIsPublished() == 1)
+                {
+                    ?>
+                    Publié
+                    <?php
+                }
+                ?>
             </td>
             <td>
                 <a href="../public/index.php?route=article&articleId=<?= htmlspecialchars($article->getId()); ?>">

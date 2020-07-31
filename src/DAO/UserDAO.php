@@ -32,6 +32,15 @@ class UserDAO extends DAO
         return $users;
     }
 
+    public function getUser($pseudo)
+    {
+        $sql = 'SELECT user.id, user.pseudo, user.createdAt, role.name FROM user INNER JOIN role ON user.role_id WHERE user.pseudo = ? ORDER BY user.id DESC';
+        $result = $this->createQuery($sql, [$pseudo]);
+        $user = $result->fetch();
+        $result->closeCursor();
+        return $this->buildObject($user);
+    }
+
     public function register(Parameter $post)
     {
         $sql = 'INSERT INTO user (pseudo, password, createdAt, role_id) VALUES (?,?,NOW(), ?)';

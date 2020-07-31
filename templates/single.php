@@ -11,13 +11,19 @@
 if(empty($article->getPreviousArticle())== false)
 {
     ?>
-    <a href="../public/index.php?route=viewArticle&articleId=<?= $article->getPreviousArticle()->getId(); ?>">Chapitre précédent</a>
+    <a href="../public/index.php?route=viewArticle&articleId=<?= $article->getPreviousArticle()->getId(); ?>">
+        <
+    </a>
+    Chapitre <?= $article->getPreviousArticle()->getOrderNum(); ?>
     <?php
 }
 if(empty($article->getNextArticle()) == false)
 {
     ?>
-    <a href="../public/index.php?route=viewArticle&articleId=<?= $article->getNextArticle()->getId(); ?>">Chapitre suivant</a>
+    Chapitre <?= $article->getNextArticle()->getOrderNum(); ?>
+    <a href="../public/index.php?route=viewArticle&articleId=<?= $article->getNextArticle()->getId(); ?>">
+        >
+    </a>
     <?php
 }
 ?>

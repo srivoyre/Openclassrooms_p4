@@ -84,7 +84,7 @@ class Article
      */
     public function getCreatedAt()
     {
-        return $this->createdAt;
+        return date('d/m/Y H:i:s', strtotime($this->createdAt));
     }
 
     /**
@@ -164,7 +164,7 @@ class Article
      */
     public function getLastPublishedDate()
     {
-        return $this->lastPublishedDate;
+        return date('d/m/Y', strtotime($this->lastPublishedDate));
     }
 
     /**

@@ -188,7 +188,10 @@ class BackController extends Controller
     {
         if($this->checkLoggedIn())
         {
-            return $this->view->render('profile');
+            $user = $this->userDAO->getUser($this->session->get('pseudo'));
+            return $this->view->render('profile', [
+                'user' => $user
+            ]);
         }
     }
 
