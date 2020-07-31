@@ -8,6 +8,10 @@
 <?= $this->session->show('flag_comment'); ?>
 <?= $this->session->show('unflag_comment'); ?>
 
+<a href="../public/index.php"><< Retour à l'accueil</a>
+<a href="../public/index.php?route=article&articleId=">Chapitre précédent</a>
+<a href="../public/index.php?route=article&articleId=">Chapitre suivant</a>
+
 <div>
     <h2>
         <?= htmlspecialchars($article->getTitle());?>
@@ -61,7 +65,7 @@
         {
         ?>
             <p>
-                Ce commentaire a déjà été signalé
+                Ce commentaire a été signalé
             </p>
         <?php
         } else

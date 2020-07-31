@@ -43,7 +43,6 @@
             <?php
             //$previouspagehome = substr($_SERVER['HTTP_REFERER'], -9, 9) === 'index.php';
             //$previouspagehome = substr($_SERVER['HTTP_REFERER'], -9, 9) === 'administration';
-            var_dump($this->session->get('pseudo'));
             ?>
 
             <?= $this->session->show('add_article'); ?>

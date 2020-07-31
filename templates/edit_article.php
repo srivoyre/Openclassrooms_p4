@@ -6,6 +6,9 @@
 
 <?= $this->session->show('edit_article'); ?>
 
+<a href="../public/index.php"><< Retour à l'accueil</a>
+<a href="../public/index.php?route=administration"><< Retour à l'administration</a>
+
 <div>
     <?php include('form_article.php'); ?>
 </div>
