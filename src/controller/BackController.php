@@ -37,7 +37,7 @@ class BackController extends Controller
     {
         if($this->checkAdmin())
         {
-            $articles = $this->articleDAO->getArticles();
+            $articles = $this->articleDAO->getArticles(false);
             $comments = $this->commentDAO->getFlaggedComments();
             $users = $this->userDAO->getUsers();
 
@@ -53,7 +53,7 @@ class BackController extends Controller
     {
         if($this->checkAdmin())
         {
-            $article = $this->articleDAO->getArticle($articleId);
+            $article = $this->articleDAO->getArticle($articleId, false);
             $comments = $this->commentDAO->getCommentsFromArticle($articleId);
             return $this->view->render('single', [
                 'article' => $article,

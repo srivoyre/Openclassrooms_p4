@@ -10,8 +10,8 @@ class Article
     private $user_id;
     private $createdAt;
     private $order_num;
-    private $nextArticleId;
-    private $previousArticleId;
+    private $nextArticle;
+    private $previousArticle;
     private $is_published;
 
     /**
@@ -113,33 +113,33 @@ class Article
     /**
      * @return mixed
      */
-    public function getPreviousArticleId()
+    public function getPreviousArticle()
     {
-        return $this->previousArticleId;
+        return $this->previousArticle;
     }
 
     /**
-     * @param mixed $previousArticleId
+     * @param mixed $previousArticle
      */
-    public function setPreviousArticleId($previousArticleId)
+    public function setPreviousArticle($previousArticle)
     {
-        $this->previousArticleId = $previousArticleId;
+        $this->previousArticle = $previousArticle;
     }
 
     /**
      * @return mixed
      */
-    public function getNextArticleId()
+    public function getNextArticle()
     {
-        return $this->nextArticleId;
+        return $this->nextArticle;
     }
 
     /**
-     * @param mixed $nextArticleId
+     * @param mixed $nextArticle
      */
-    public function setNextArticleId($nextArticleId)
+    public function setNextArticle($nextArticle)
     {
-        $this->nextArticleId = $nextArticleId;
+        $this->nextArticle = $nextArticle;
     }
 
     /**
@@ -147,14 +147,15 @@ class Article
      */
     public function getIsPublished()
     {
-        return $this->published;
+        return $this->is_published;
     }
 
     /**
-     * @param mixed $published
+     * @param mixed $is_published
      */
-    public function setIsPublished($published)
+    public function setIsPublished($is_published)
     {
-        $this->published = $published;
+        $this->is_published = $is_published;
     }
+
 }

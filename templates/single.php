@@ -6,19 +6,20 @@
 <?= $this->session->show('unflag_comment'); ?>
 
 <a href="../public/index.php"><< Retour à l'accueil</a>
+
 <?php
-    if(empty($article->getPreviousArticleId()) === false)
-    {
-        ?>
-        <a href="../public/index.php?route=viewArticle&articleId=<?= $article->getPreviousArticleId(); ?>">Chapitre précédent</a>
-        <?php
-    }
-    if(empty($article->getNextArticleId()) === false)
-    {
-        ?>
-        <a href="../public/index.php?route=viewArticle&articleId=<?= $article->getNextArticleId(); ?>">Chapitre suivant</a>
-        <?php
-    }
+if(empty($article->getPreviousArticle())== false)
+{
+    ?>
+    <a href="../public/index.php?route=viewArticle&articleId=<?= $article->getPreviousArticle()->getId(); ?>">Chapitre précédent</a>
+    <?php
+}
+if(empty($article->getNextArticle()) == false)
+{
+    ?>
+    <a href="../public/index.php?route=viewArticle&articleId=<?= $article->getNextArticle()->getId(); ?>">Chapitre suivant</a>
+    <?php
+}
 ?>
 
 <div>
