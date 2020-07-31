@@ -8,16 +8,16 @@ class FrontController extends Controller
 {
     public function home()
     {
-        $articles = $this->articleDAO->getArticles();
+        $articles = $this->articleDAO->getPublishedArticles();
         return $this->view->render('home', [
             'articles' => $articles
         ]);
         //require '../templates/home.php';
     }
 
-    public function article($articleId)
+    public function getPublishedArticle($articleId)
     {
-        $article = $this->articleDAO->getArticle($articleId);
+        $article = $this->articleDAO->getPublishedArticle($articleId);
         $comments = $this->commentDAO->getCommentsFromArticle($articleId);
         return $this->view->render('single', [
             'article' => $article,

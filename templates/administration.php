@@ -50,6 +50,24 @@
                 <a href="../public/index.php?route=deleteArticle&articleId=<?= $article->getId(); ?>">
                     Supprimer
                 </a>
+                <?php
+                if($article->getIsPublished() == 0)
+                {
+                    ?>
+                    <a href="../public/index.php?route=publishArticle&articleId=<?= $article->getId(); ?>">
+                        Publier
+                    </a>
+                    <?php
+                }
+                elseif ($article->getIsPublished() == 1)
+                {
+                    ?>
+                    <a href="../public/index.php?route=unpublishArticle&articleId=<?= $article->getId(); ?>">
+                        Dépublier
+                    </a>
+                    <?php
+                }
+                ?>
             </td>
         </tr>
         <?php

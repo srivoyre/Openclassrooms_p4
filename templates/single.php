@@ -1,7 +1,4 @@
-<?php $this->title = "Article"; ?>
-
-<h1>Mon blog</h1>
-<p>En construction</p>
+<?php $this->title = $article->getTitle(); ?>
 
 <?= $this->session->show('add_comment'); ?>
 <?= $this->session->show('delete_comment'); ?>
@@ -13,13 +10,13 @@
     if(empty($article->getPreviousArticleId()) === false)
     {
         ?>
-        <a href="../public/index.php?route=article&articleId=<?= $article->getPreviousArticleId(); ?>">Chapitre précédent</a>
+        <a href="../public/index.php?route=viewArticle&articleId=<?= $article->getPreviousArticleId(); ?>">Chapitre précédent</a>
         <?php
     }
     if(empty($article->getNextArticleId()) === false)
     {
         ?>
-        <a href="../public/index.php?route=article&articleId=<?= $article->getNextArticleId(); ?>">Chapitre suivant</a>
+        <a href="../public/index.php?route=viewArticle&articleId=<?= $article->getNextArticleId(); ?>">Chapitre suivant</a>
         <?php
     }
 ?>

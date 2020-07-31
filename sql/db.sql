@@ -95,3 +95,6 @@ ALTER TABLE `user`
 
 ALTER TABLE `article`
     ADD COLUMN `order` int(11) NOT NULL;
+
+ALTER TABLE `article`
+    ADD `published` TINYINT(1) NOT NULL DEFAULT '0';

@@ -12,6 +12,7 @@ class Article
     private $order_num;
     private $nextArticleId;
     private $previousArticleId;
+    private $is_published;
 
     /**
      * @return mixed
@@ -141,4 +142,19 @@ class Article
         $this->nextArticleId = $nextArticleId;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getIsPublished()
+    {
+        return $this->published;
+    }
+
+    /**
+     * @param mixed $published
+     */
+    public function setIsPublished($published)
+    {
+        $this->published = $published;
+    }
 }

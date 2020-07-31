@@ -15,7 +15,7 @@ foreach ($articles as $article)
     ?>
     <div>
         <h2>
-            <a href="../public/index.php?route=article&articleId=<?=htmlspecialchars($article->getId());?>">
+            <a href="../public/index.php?route=viewArticle&articleId=<?=htmlspecialchars($article->getId());?>">
                 <?= htmlspecialchars($article->getTitle());?>
             </a>
         </h2>
