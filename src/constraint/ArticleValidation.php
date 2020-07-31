@@ -91,9 +91,9 @@ class ArticleValidation extends Validation
             return $this->constraint->notBlank('numéro du chapitre', $value);
         }
 
-        if($this->constraint->isNumber($value))
+        if($this->constraint->isPositiveInteger($value))
         {
-            return $this->constraint->isNumber( $value);
+            return $this->constraint->isPositiveInteger( $value);
         }
 
         if($this->constraint->maxLength($name, $value, 3))

@@ -28,9 +28,9 @@ class Constraint
         }
     }
 
-    public function isNumber($value)
+    public function isPositiveInteger($value)
     {
-        if(!is_int($value + 0))
+        if(!is_int($value + 0) || ($value +0) < 0)
         {
             return '<p>Veuillez saisir un nombre entier positif </p>';
         }
