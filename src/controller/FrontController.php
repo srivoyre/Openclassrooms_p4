@@ -8,17 +8,21 @@ class FrontController extends Controller
 {
     public function home()
     {
-        $articles = $this->articleDAO->getArticles();
+        $articles = $this->articleDAO->getArticles(true);
         return $this->view->render('home', [
             'articles' => $articles
         ]);
         //require '../templates/home.php';
     }
 
-    public function article($articleId)
+    public function getPublishedArticle($articleId)
     {
-        $article = $this->articleDAO->getArticle($articleId);
+        $article = $this->articleDAO->getArticle($articleId, true);
         $comments = $this->commentDAO->getCommentsFromArticle($articleId);
+        if(empty($article->getId()))
+        {
+            return $this->view->render('error_404');
+        }
         return $this->view->render('single', [
             'article' => $article,
             'comments' => $comments

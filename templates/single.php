@@ -1,7 +1,4 @@
-<?php $this->title = "Article"; ?>
-
-<h1>Mon blog</h1>
-<p>En construction</p>
+<?php $this->title = $article->getTitle(); ?>
 
 <?= $this->session->show('add_comment'); ?>
 <?= $this->session->show('delete_comment'); ?>
@@ -9,8 +6,27 @@
 <?= $this->session->show('unflag_comment'); ?>
 
 <a href="../public/index.php"><< Retour à l'accueil</a>
-<a href="../public/index.php?route=article&articleId=">Chapitre précédent</a>
-<a href="../public/index.php?route=article&articleId=">Chapitre suivant</a>
+
+<?php
+if(empty($article->getPreviousArticle())== false)
+{
+    ?>
+    <a href="../public/index.php?route=viewArticle&articleId=<?= $article->getPreviousArticle()->getId(); ?>">
+        <
+    </a>
+    Chapitre <?= $article->getPreviousArticle()->getOrderNum(); ?>
+    <?php
+}
+if(empty($article->getNextArticle()) == false)
+{
+    ?>
+    Chapitre <?= $article->getNextArticle()->getOrderNum(); ?>
+    <a href="../public/index.php?route=viewArticle&articleId=<?= $article->getNextArticle()->getId(); ?>">
+        >
+    </a>
+    <?php
+}
+?>
 
 <div>
     <h2>
@@ -20,10 +36,10 @@
         <?= $article->getContent();?>
     </p>
     <p>
-        <?= htmlspecialchars($article->getAuthor());?>
+        Auteur : <?= htmlspecialchars($article->getAuthor());?>
     </p>
     <p>
-        Crée le : <?= htmlspecialchars($article->getCreatedAt());?>
+        Publié le : <?= htmlspecialchars($article->getLastPublishedDate());?>
     </p>
 </div>
 

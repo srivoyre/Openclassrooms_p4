@@ -28,13 +28,25 @@ class Router
         {
             if(isset($route))
             {
-                if($route === 'article')
+                if($route === 'viewArticle')
                 {
-                    $this->frontController->article($this->request->getGet()->get('articleId'));
+                    $this->frontController->getPublishedArticle($this->request->getGet()->get('articleId'));
+                }
+                elseif($route === 'article')
+                {
+                    $this->backController->getArticle($this->request->getGet()->get('articleId'));
                 }
                 elseif($route === 'addArticle')
                 {
                     $this->backController->addArticle($this->request->getPost());
+                }
+                elseif($route === 'publishArticle')
+                {
+                    $this->backController->publishArticle($this->request->getGet()->get('articleId'));
+                }
+                elseif($route === 'unpublishArticle')
+                {
+                    $this->backController->unpublishArticle($this->request->getGet()->get('articleId'));
                 }
                 elseif($route === 'editArticle')
                 {

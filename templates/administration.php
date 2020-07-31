@@ -1,11 +1,10 @@
 <?php $this->title = 'Administration'; ?>
 
-<h1>Mon blog</h1>
-<p>En construction</p>
-
 <?= $this->session->show('add_article'); ?>
 <?= $this->session->show('edit_article'); ?>
 <?= $this->session->show('delete_article'); ?>
+<?= $this->session->show('publish_article'); ?>
+<?= $this->session->show('unpublish_article'); ?>
 <?= $this->session->show('unflag_comment'); ?>
 <?= $this->session->show('delete_comment'); ?>
 <?= $this->session->show('delete_user'); ?>
@@ -14,11 +13,13 @@
 <a href="../public/index.php?route=addArticle">Nouvel article</a>
 <table>
     <thead>
-        <th>Id</th>
+        <th>Numéro du chapitre</th>
+        <th>Statut</th>
         <th>Titre</th>
         <th>Contenu</th>
         <th>Auteur</th>
-        <th>Date</th>
+        <th>Date de création</th>
+        <th>Dernière publication</th>
         <th>Actions</th>
     </thead>
     <?php
@@ -27,7 +28,23 @@
         ?>
         <tr>
             <td>
-                <?= htmlspecialchars($article->getId()); ?>
+                <?= htmlspecialchars($article->getOrderNum()); ?>
+            </td>
+            <td>
+                <?php
+                if($article->getIsPublished() == 0)
+                {
+                    ?>
+                    Brouillon
+                    <?php
+                }
+                elseif ($article->getIsPublished() == 1)
+                {
+                    ?>
+                    Publié
+                    <?php
+                }
+                ?>
             </td>
             <td>
                 <a href="../public/index.php?route=article&articleId=<?= htmlspecialchars($article->getId()); ?>">
@@ -44,12 +61,33 @@
                 <?= htmlspecialchars($article->getCreatedAt()); ?>
             </td>
             <td>
+                <?= htmlspecialchars($article->getLastPublishedDate()); ?>
+            </td>
+            <td>
                 <a href="../public/index.php?route=editArticle&articleId=<?= $article->getId(); ?>">
                     Modifier
                 </a>
                 <a href="../public/index.php?route=deleteArticle&articleId=<?= $article->getId(); ?>">
                     Supprimer
                 </a>
+                <?php
+                if($article->getIsPublished() == 0)
+                {
+                    ?>
+                    <a href="../public/index.php?route=publishArticle&articleId=<?= $article->getId(); ?>">
+                        Publier
+                    </a>
+                    <?php
+                }
+                elseif ($article->getIsPublished() == 1)
+                {
+                    ?>
+                    <a href="../public/index.php?route=unpublishArticle&articleId=<?= $article->getId(); ?>">
+                        Dépublier
+                    </a>
+                    <?php
+                }
+                ?>
             </td>
         </tr>
         <?php

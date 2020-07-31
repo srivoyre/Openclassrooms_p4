@@ -9,6 +9,11 @@ class Article
     private $content;
     private $user_id;
     private $createdAt;
+    private $order_num;
+    private $nextArticle;
+    private $previousArticle;
+    private $is_published;
+    private $lastPublishedDate;
 
     /**
      * @return mixed
@@ -79,7 +84,7 @@ class Article
      */
     public function getCreatedAt()
     {
-        return $this->createdAt;
+        return date('d/m/Y H:i:s', strtotime($this->createdAt));
     }
 
     /**
@@ -88,6 +93,86 @@ class Article
     public function setCreatedAt($createdAt)
     {
         $this->createdAt = $createdAt;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getOrderNum()
+    {
+        return $this->order_num;
+    }
+
+    /**
+     * @param mixed $order_num
+     */
+    public function setOrderNum($order_num)
+    {
+        $this->order_num = $order_num;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPreviousArticle()
+    {
+        return $this->previousArticle;
+    }
+
+    /**
+     * @param mixed $previousArticle
+     */
+    public function setPreviousArticle($previousArticle)
+    {
+        $this->previousArticle = $previousArticle;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getNextArticle()
+    {
+        return $this->nextArticle;
+    }
+
+    /**
+     * @param mixed $nextArticle
+     */
+    public function setNextArticle($nextArticle)
+    {
+        $this->nextArticle = $nextArticle;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getIsPublished()
+    {
+        return $this->is_published;
+    }
+
+    /**
+     * @param mixed $is_published
+     */
+    public function setIsPublished($is_published)
+    {
+        $this->is_published = $is_published;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getLastPublishedDate()
+    {
+        return date('d/m/Y', strtotime($this->lastPublishedDate));
+    }
+
+    /**
+     * @param mixed $lastPublishedDate
+     */
+    public function setLastPublishedDate($lastPublishedDate)
+    {
+        $this->lastPublishedDate = $lastPublishedDate;
     }
 
 }

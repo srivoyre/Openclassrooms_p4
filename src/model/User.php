@@ -63,7 +63,7 @@ class User
      */
     public function getCreatedAt()
     {
-        return $this->createdAt;
+        return date('d/m/Y', strtotime($this->createdAt));
     }
 
     /**

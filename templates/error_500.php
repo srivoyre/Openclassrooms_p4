@@ -1,5 +1,5 @@
-<?php $this->title = "500 : Server error"; ?>
+<?php $this->title = "500 Error: Server error"; ?>
 
-<h1>Error 500: Ooops something went wrong. Please try to reload the page</h1>
+<h2>Ooops something went wrong. Please try to reload the page</h2>
 
 <a href="../public/index.php"><< Retour à l'accueil</a>

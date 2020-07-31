@@ -37,7 +37,7 @@ class BackController extends Controller
     {
         if($this->checkAdmin())
         {
-            $articles = $this->articleDAO->getArticles();
+            $articles = $this->articleDAO->getArticles(false);
             $comments = $this->commentDAO->getFlaggedComments();
             $users = $this->userDAO->getUsers();
 
@@ -45,6 +45,19 @@ class BackController extends Controller
                 'articles' => $articles,
                 'comments' => $comments,
                 'users' => $users
+            ]);
+        }
+    }
+
+    public function getArticle($articleId)
+    {
+        if($this->checkAdmin())
+        {
+            $article = $this->articleDAO->getArticle($articleId, false);
+            $comments = $this->commentDAO->getCommentsFromArticle($articleId);
+            return $this->view->render('single', [
+                'article' => $article,
+                'comments' => $comments
             ]);
         }
     }
@@ -74,7 +87,7 @@ class BackController extends Controller
     {
         if($this->checkAdmin())
         {
-            $article = $this->articleDAO->getArticle($articleId);
+            $article = $this->articleDAO->getArticle($articleId, false);
             if($post->get('submit'))
             {
                 $errors = $this->validation->validate($post, 'Article');
@@ -106,12 +119,32 @@ class BackController extends Controller
             }
             $post->set('id', $article->getId());
             $post->set('title', $article->getTitle());
+            $post->set('order_num', $article->getOrderNum());
+            $post->set('published', $article->getIsPublished());
             $post->set('content', $article->getContent());
             $post->set('author', $article->getAuthor());
 
             return $this->view->render('edit_article',[
                 'post' => $post
             ]);
+        }
+    }
+
+    public function publishArticle($articleId)
+    {
+        if ($this->checkAdmin()) {
+            $this->articleDAO->editPublicationStatus(1, $articleId);
+            $this->session->set('publish_article', 'Le chapitre a bien été publié');
+            header('Location: ../public/index.php?route=administration');
+        }
+    }
+
+    public function unpublishArticle($articleId)
+    {
+        if ($this->checkAdmin()) {
+            $this->articleDAO->editPublicationStatus(0, $articleId);
+            $this->session->set('unpublish_article', 'Le chapitre a bien été dépublié');
+            header('Location: ../public/index.php?route=administration');
         }
     }
 
@@ -155,7 +188,10 @@ class BackController extends Controller
     {
         if($this->checkLoggedIn())
         {
-            return $this->view->render('profile');
+            $user = $this->userDAO->getUser($this->session->get('pseudo'));
+            return $this->view->render('profile', [
+                'user' => $user
+            ]);
         }
     }
 
