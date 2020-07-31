@@ -1,6 +1,4 @@
 <?php $this->title = 'Mon profil'; ?>
-<h1>Mon blog</h1>
-<p>En construction</p>
 
 <?= $this->session->show('update_password'); ?>
 <?= $this->session->show('not_admin'); ?>

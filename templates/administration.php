@@ -1,11 +1,10 @@
 <?php $this->title = 'Administration'; ?>
 
-<h1>Mon blog</h1>
-<p>En construction</p>
-
 <?= $this->session->show('add_article'); ?>
 <?= $this->session->show('edit_article'); ?>
 <?= $this->session->show('delete_article'); ?>
+<?= $this->session->show('publish_article'); ?>
+<?= $this->session->show('unpublish_article'); ?>
 <?= $this->session->show('unflag_comment'); ?>
 <?= $this->session->show('delete_comment'); ?>
 <?= $this->session->show('delete_user'); ?>
@@ -18,7 +17,8 @@
         <th>Titre</th>
         <th>Contenu</th>
         <th>Auteur</th>
-        <th>Date</th>
+        <th>Date de création</th>
+        <th>Date de dernière publication</th>
         <th>Actions</th>
     </thead>
     <?php
@@ -43,6 +43,7 @@
             <td>
                 <?= htmlspecialchars($article->getCreatedAt()); ?>
             </td>
+            <td></td>
             <td>
                 <a href="../public/index.php?route=editArticle&articleId=<?= $article->getId(); ?>">
                     Modifier

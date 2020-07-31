@@ -87,7 +87,7 @@ class BackController extends Controller
     {
         if($this->checkAdmin())
         {
-            $article = $this->articleDAO->getArticle($articleId);
+            $article = $this->articleDAO->getArticle($articleId, false);
             if($post->get('submit'))
             {
                 $errors = $this->validation->validate($post, 'Article');

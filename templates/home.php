@@ -1,8 +1,5 @@
 <?php $this->title = "Accueil"; ?>
 
-<h1>Mon blog</h1>
-<p>En construction</p>
-
 <?= $this->session->show('register'); ?>
 <?= $this->session->show('login'); ?>
 <?= $this->session->show('logout'); ?>
