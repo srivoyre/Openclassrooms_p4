@@ -11,7 +11,7 @@ $submit = $route === 'addArticle' ? 'Créer' : 'Mettre à jour';
     <br />
     <label for="order_num">Numéro du chapitre</label>
     <br />
-    <input type="number" id="order_num" name="order_num" value="<?= isset($post) ? htmlspecialchars($post->get('order_num')) : ''; ?>">
+    <input type="number" id="order_num" name="order_num" value="<?= isset($post) ? $post->get('order_num') : ''; ?>">
     <br />
     <?= isset($errors['order_num']) ? $errors['order_num'] : ''; ?>
     <label for="content">Contenu</label>

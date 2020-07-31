@@ -30,7 +30,7 @@ class Constraint
 
     public function isNumber($value)
     {
-        if(!is_int($value))
+        if(!is_int($value + 0))
         {
             return '<p>Veuillez saisir un nombre entier positif </p>';
         }

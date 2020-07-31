@@ -14,7 +14,7 @@
 <a href="../public/index.php?route=addArticle">Nouvel article</a>
 <table>
     <thead>
-        <th>Id</th>
+        <th>Numéro du chapitre</th>
         <th>Titre</th>
         <th>Contenu</th>
         <th>Auteur</th>
@@ -27,7 +27,7 @@
         ?>
         <tr>
             <td>
-                <?= htmlspecialchars($article->getId()); ?>
+                <?= htmlspecialchars($article->getOrderNum()); ?>
             </td>
             <td>
                 <a href="../public/index.php?route=article&articleId=<?= htmlspecialchars($article->getId()); ?>">
