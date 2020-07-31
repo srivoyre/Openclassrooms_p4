@@ -9,6 +9,9 @@ class Article
     private $content;
     private $user_id;
     private $createdAt;
+    private $order;
+    private $nextArticleId;
+    private $previousArticleId;
 
     /**
      * @return mixed
@@ -88,6 +91,54 @@ class Article
     public function setCreatedAt($createdAt)
     {
         $this->createdAt = $createdAt;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getOrder()
+    {
+        return $this->order;
+    }
+
+    /**
+     * @param mixed $order
+     */
+    public function setOrder($order)
+    {
+        $this->order = $order;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPreviousArticleId()
+    {
+        return $this->previousArticleId;
+    }
+
+    /**
+     * @param mixed $previousArticleId
+     */
+    public function setPreviousArticleId($previousArticleId)
+    {
+        $this->previousArticleId = $previousArticleId;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getNextArticleId()
+    {
+        return $this->nextArticleId;
+    }
+
+    /**
+     * @param mixed $nextArticleId
+     */
+    public function setNextArticleId($nextArticleId)
+    {
+        $this->nextArticleId = $nextArticleId;
     }
 
 }

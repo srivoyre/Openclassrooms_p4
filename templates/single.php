@@ -9,8 +9,20 @@
 <?= $this->session->show('unflag_comment'); ?>
 
 <a href="../public/index.php"><< Retour à l'accueil</a>
-<a href="../public/index.php?route=article&articleId=">Chapitre précédent</a>
-<a href="../public/index.php?route=article&articleId=">Chapitre suivant</a>
+<?php
+    if(empty($article->getPreviousArticleId()) === false)
+    {
+        ?>
+        <a href="../public/index.php?route=article&articleId=<?= $article->getPreviousArticleId(); ?>">Chapitre précédent</a>
+        <?php
+    }
+    if(empty($article->getNextArticleId()) === false)
+    {
+        ?>
+        <a href="../public/index.php?route=article&articleId=<?= $article->getNextArticleId(); ?>">Chapitre suivant</a>
+        <?php
+    }
+?>
 
 <div>
     <h2>

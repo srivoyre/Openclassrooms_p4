@@ -92,3 +92,6 @@ ALTER TABLE `user`
 
 ALTER TABLE `user`
     ADD CONSTRAINT `fk_role_id` FOREIGN KEY (`role_id`) REFERENCES `role` (`id`);
+
+ALTER TABLE `article`
+    ADD COLUMN `order` int(11) NOT NULL;

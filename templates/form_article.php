@@ -4,10 +4,14 @@ $submit = $route === 'addArticle' ? 'Créer' : 'Mettre à jour';
 ?>
 
 <form method="post" action="../public/index.php?route=<?= $route; ?>">
-    <label for="title">Titre</label>
+    <label for="title">Titre du chapitre</label>
     <br />
     <input type="text" id="title" name="title" value="<?= isset($post) ? htmlspecialchars($post->get('title')) : ''; ?>">
     <?= isset($errors['title']) ? $errors['title'] : ''; ?>
+    <br />
+    <label for="order_num">Numéro du chapitre</label>
+    <br />
+    <input type="number" id="order_num" name="order_num" value="<?= isset($post) ? htmlspecialchars($post->get('order_num')) : ''; ?>">
     <br />
     <label for="content">Contenu</label>
     <br />
