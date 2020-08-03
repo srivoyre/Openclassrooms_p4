@@ -60,7 +60,17 @@ class BackController extends Controller
                 'comments' => $comments
             ]);
         }
+        elseif($this->checkLoggedIn())
+        {
+            $article = $this->articleDAO->getArticle($articleId, true);
+            $comments = $this->commentDAO->getCommentsFromArticle($articleId);
+            return $this->view->render('single', [
+                'article' => $article,
+                'comments' => $comments
+            ]);
+        }
     }
+
     public function addArticle(Parameter $post)
     {
         if($this->checkAdmin())
@@ -87,7 +97,7 @@ class BackController extends Controller
     {
         if($this->checkAdmin())
         {
-            $article = $this->articleDAO->getArticle($articleId, false);
+            $article = $this->articleDAO->getArticle($articleId);
             if($post->get('submit'))
             {
                 $errors = $this->validation->validate($post, 'Article');
@@ -167,12 +177,10 @@ class BackController extends Controller
                 $errors = $this->validation->validate($post, 'Comment');
                 if(!$errors)
                 {
-                    $this->commentDAO->addComment($post, $articleId);
-                    $this->session->set('add_comment', 'Le nouveau commentaire a bien été ajouté');
-                    header('Location: ../public/index.php?route=article&articleId='.$articleId);
-
+                    $this->commentDAO->addComment($post, $this->session->get('pseudo'), $articleId);
+                    $this->session->set('add_comment', 'Votre nouveau commentaire a bien été ajouté');
                 }
-                $article = $this->articleDAO->getArticle($articleId);
+                $article = $this->articleDAO->getArticle($articleId, true);
                 $comments = $this->commentDAO->getCommentsFromArticle($articleId);
                 return $this->view->render('single', [
                     'article' => $article,
@@ -194,13 +202,13 @@ class BackController extends Controller
         }
     }
 
-    public function deleteComment($commentId, $pseudo)
+    public function deleteComment($commentId, $articleId, $pseudo)
     {
-        if($this->checkLoggedIn() && $this->session->get('pseudo') == $pseudo)
+        if($this->checkLoggedIn() && $this->session->get('pseudo') === $pseudo)
         {
             $this->commentDAO->deleteComment($commentId);
-            $this->session->set('delete_comment', 'Le commentaire a bien été supprimé');
-            header('Location: ../public/index.php?');
+            $this->session->set('delete_comment', 'Votre commentaire a bien été supprimé');
+            header('Location: ../public/index.php?route=viewArticle&articleId='.$articleId);
         }
         elseif($this->checkAdmin())
         {

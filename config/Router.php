@@ -70,7 +70,7 @@ class Router
                 }
                 elseif($route === 'deleteComment')
                 {
-                    $this->backController->deleteComment($this->request->getGet()->get('commentId'),$this->request->getGet()->get('pseudo'));
+                    $this->backController->deleteComment($this->request->getGet()->get('commentId'),$this->request->getGet()->get('articleId'),$this->request->getGet()->get('pseudo'));
                 }
                 elseif($route === 'register')
                 {

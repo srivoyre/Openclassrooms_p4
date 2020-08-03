@@ -101,7 +101,7 @@
         <th>Id</th>
         <th>Pseudo</th>
         <th>Message</th>
-        <th>Date</th>
+        <th>Date de création</th>
         <th>Actions</th>
     </thead>
     <?php
@@ -119,7 +119,7 @@
                 <?= substr(htmlspecialchars($comment->getContent()), 0, 150); ?>
             </td>
             <td>
-                Crée le : <?= htmlspecialchars($comment->getCreatedAt()); ?>
+                <?= htmlspecialchars($comment->getCreatedAt()); ?>
             </td>
             <td>
                 <a href="../public/index.php?route=unflagComment&commentId=<?= $comment->getId(); ?>">
@@ -141,7 +141,8 @@
     <thead>
         <th>Id</th>
         <th>Pseudo</th>
-        <th>Date</th>
+        <th>Email</th>
+        <th>Date de création</th>
         <th>Rôle</th>
         <th>Actions</th>
     </thead>
@@ -154,10 +155,15 @@
                 <?= htmlspecialchars($user->getId()); ?>
             </td>
             <td>
-            <?= htmlspecialchars($user->getPseudo()); ?>
+                <?= htmlspecialchars($user->getPseudo()); ?>
             </td>
             <td>
-                Crée le : <?= htmlspecialchars($user->getCreatedAt()); ?>
+                <a href="mailto:<?= htmlspecialchars($user->getEmail()); ?>">
+                    <?= htmlspecialchars($user->getEmail()); ?>
+                </a>
+            </td>
+            <td>
+                <?= htmlspecialchars($user->getCreatedAt()); ?>
             </td>
             <td>
                 <?= htmlspecialchars($user->getRole()); ?>

@@ -11,7 +11,7 @@ $loggedIn = isset($this->session) && $this->session->get('pseudo');
 <div>
     <h2><?= $this->session->get('pseudo'); ?></h2>
     <p>Membre depuis le <?= $user->getCreatedAt(); ?></p>
-    <p>Nombre de commentaires postés : <?= $user->getNumberOfComments(); ?></p>
+    <p>Nombre de commentaires en ligne : <?= $user->getNumberOfComments(); ?></p>
 
     <form method="post" action="../public/index.php?route=updateEmail">
         <label for="email">E-mail</label>

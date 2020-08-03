@@ -34,14 +34,7 @@ class FrontController extends Controller
     {
         $this->commentDAO->flagComment($commentId);
         $this->session->set('flag_comment', 'Le commentaire a bien été signalé');
-        header('Location: ../public/index.php?route=article&articleId='.$articleId);
-    }
-
-    public function deleteSelfComment($commentId, $pseudo)
-    {
-        $this->commentDAO->deleteComment($commentId);
-        $this->session->set('delete_comment', 'Le commentaire a bien été signalé');
-        header('Location: ../public/index.php?route=article&articleId='.$articleId);
+        header('Location: ../public/index.php?route=viewArticle&articleId='.$articleId);
     }
 
     public function register(Parameter $post)

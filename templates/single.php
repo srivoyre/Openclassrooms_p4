@@ -5,7 +5,9 @@
 <?= $this->session->show('flag_comment'); ?>
 <?= $this->session->show('unflag_comment'); ?>
 
-<a href="../public/index.php"><< Retour à l'accueil</a>
+<p>
+    <a href="../public/index.php"><< Retour à l'accueil</a>
+</p>
 
 <?php
 if(empty($article->getPreviousArticle())== false)
@@ -113,7 +115,7 @@ if(empty($article->getNextArticle()) == false)
         {
         ?>
         <p>
-            <a href="../public/index.php?route=deleteComment&commentId=<?= $comment->getId(); ?>&pseudo=<?= $comment->getPseudo(); ?>">
+            <a href="../public/index.php?route=deleteComment&commentId=<?= $comment->getId(); ?>&articleId=<?= $comment->getArticleId(); ?>&pseudo=<?= $comment->getPseudo(); ?>">
                 Supprimer mon commentaire
             </a>
         </p>
