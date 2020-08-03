@@ -15,6 +15,7 @@ class UserDAO extends DAO
         $user->setCreatedAt($row['createdAt']);
         $user->setRole($row['name']);
         $user->setEmail($row['email']);
+        $user->setNumberOfComments($this->countComments($user->getPseudo()));
 
         return $user;
     }
@@ -105,5 +106,12 @@ class UserDAO extends DAO
     {
         $sql = 'DELETE FROM user WHERE id = ?';
         $this->createQuery($sql, [$userId]);
+    }
+
+    public function countComments($pseudo)
+    {
+        $sql = 'SELECT COUNT(id) FROM comment WHERE pseudo = ?';
+        $result = $this->createQuery($sql, [$pseudo]);
+        return $result->fetchColumn();
     }
 }
