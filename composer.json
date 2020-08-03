@@ -6,6 +6,6 @@
         }
     },
     "require":{
-        "twig/twig":"3.0.4"
+        "twig/twig":"2.0"
     }
 }
