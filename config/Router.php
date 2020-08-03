@@ -84,6 +84,10 @@ class Router
                 {
                     $this->backController->profile();
                 }
+                elseif($route === 'updateEmail')
+                {
+                    $this->backController->updateEmail($this->request->getPost());
+                }
                 elseif ($route === 'updatePassword')
                 {
                     $this->backController->updatePassword($this->request->getPost());

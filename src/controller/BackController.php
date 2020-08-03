@@ -225,13 +225,27 @@ class BackController extends Controller
     {
         if($this->checkLoggedIn())
         {
-            if($post->get('submit'))
+            if($post->get('submitPassword'))
             {
                 $this->userDAO->updatePassword($post, $this->session->get('pseudo'));
-                $this->session->set('update_password', 'Le mot de passe a été mis à jour');
+                $this->session->set('update_password', 'Votre mot de passe a été mis à jour');
                 header('Location: ../public/index.php?route=profile');
             }
-            return $this->view->render('update_password');
+            //return $this->view->render('update_password');
+        }
+    }
+
+    public function updateEmail(Parameter $post)
+    {
+        if($this->checkLoggedIn())
+        {
+            if($post->get('submitEmail'))
+            {
+                $this->userDAO->updateEmail($post, $this->session->get('pseudo'));
+                $this->session->set('update_email', 'Votre adresse e-mail a été mise à jour');
+                header('Location: ../public/index.php?route=profile');
+            }
+            //return $this->view->render('profile');
         }
     }
 

@@ -14,13 +14,14 @@ class UserDAO extends DAO
         $user->setPseudo($row['pseudo']);
         $user->setCreatedAt($row['createdAt']);
         $user->setRole($row['name']);
+        $user->setEmail($row['email']);
 
         return $user;
     }
 
     public function getUsers()
     {
-        $sql = 'SELECT user.id, user.pseudo, user.createdAt, role.name FROM user INNER JOIN role ON user.role_id ORDER BY user.id DESC';
+        $sql = 'SELECT user.id, user.pseudo, user.createdAt, role.name, user.email FROM user INNER JOIN role ON user.role_id ORDER BY user.id DESC';
         $result = $this->createQuery($sql);
         $users = [];
         foreach ($result as $row)
@@ -34,7 +35,7 @@ class UserDAO extends DAO
 
     public function getUser($pseudo)
     {
-        $sql = 'SELECT user.id, user.pseudo, user.createdAt, role.name FROM user INNER JOIN role ON user.role_id WHERE user.pseudo = ? ORDER BY user.id DESC';
+        $sql = 'SELECT user.id, user.pseudo, user.createdAt, role.name, user.email FROM user INNER JOIN role ON user.role_id WHERE user.pseudo = ? ORDER BY user.id DESC';
         $result = $this->createQuery($sql, [$pseudo]);
         $user = $result->fetch();
         $result->closeCursor();
@@ -43,11 +44,11 @@ class UserDAO extends DAO
 
     public function register(Parameter $post)
     {
-        $sql = 'INSERT INTO user (pseudo, password, createdAt, role_id) VALUES (?,?,NOW(), ?)';
-        $this->createQuery($sql, [$post->get('pseudo'), password_hash($post->get('password'), PASSWORD_BCRYPT), 2]);
+        $sql = 'INSERT INTO user (pseudo, password, createdAt, role_id, email) VALUES (?,?,NOW(),?,?)';
+        $this->createQuery($sql, [$post->get('pseudo'), password_hash($post->get('password'), PASSWORD_BCRYPT), 2, $post->get('email')]);
     }
 
-    public function checkUser(Parameter $post)
+    public function checkUserPseudo(Parameter $post)
     {
         $sql = 'SELECT COUNT(pseudo) FROM user WHERE pseudo = ?';
         $result = $this->createQuery($sql, [$post->get('pseudo')]);
@@ -57,10 +58,20 @@ class UserDAO extends DAO
             return '<p>Le pseudo existe déjà</p>';
         }
     }
+    public function checkUserEmail(Parameter $post)
+    {
+        $sql = 'SELECT COUNT(email) FROM user WHERE email = ?';
+        $result = $this->createQuery($sql, [$post->get('email')]);
+        $isUnique = $result->fetchColumn();
+        if($isUnique)
+        {
+            return '<p>Un compte associé à cet e-mail existe déjà ! <a href="../public/index.php?route=login">Je me connecte</a> </p>';
+        }
+    }
 
     public function login(Parameter $post)
     {
-        $sql = 'SELECT user.id, user.role_id, user.password, role.name FROM user INNER JOIN role ON role.id = user.role_id WHERE pseudo = ?';
+        $sql = 'SELECT user.id, user.role_id, user.password, role.name, user.email FROM user INNER JOIN role ON role.id = user.role_id WHERE pseudo = ?';
         $data = $this->createQuery($sql, [$post->get('pseudo')]);
         $result = $data->fetch();
         // works if password is invalid, doesnt work is pseudo does not exist
@@ -76,6 +87,12 @@ class UserDAO extends DAO
     {
         $sql = 'UPDATE user SET password = ? WHERE pseudo = ?';
         $this->createQuery($sql, [password_hash($post->get('password'), PASSWORD_BCRYPT), $pseudo]);
+    }
+
+    public function updateEmail(Parameter $post, $pseudo)
+    {
+        $sql = 'UPDATE user SET email = ? WHERE pseudo = ?';
+        $this->createQuery($sql, [$post->get('email'), $pseudo]);
     }
 
     public function deleteAccount($pseudo)

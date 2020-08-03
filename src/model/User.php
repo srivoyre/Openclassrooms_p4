@@ -9,6 +9,7 @@ class User
     private $password;
     private $createdAt;
     private $role;
+    private $email;
 
     /**
      * @return int
@@ -88,5 +89,21 @@ class User
     public function setRole($role)
     {
         $this->role = $role;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getEmail()
+    {
+        return $this->email;
+    }
+
+    /**
+     * @param mixed $email
+     */
+    public function setEmail($email)
+    {
+        $this->email = $email;
     }
 }

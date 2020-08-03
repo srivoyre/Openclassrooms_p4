@@ -49,9 +49,13 @@ class FrontController extends Controller
         if($post->get('submit'))
         {
             $errors = $this->validation->validate($post, 'User');
-            if($this->userDAO->checkUser($post))
+            if($this->userDAO->checkUserPseudo($post))
             {
-                $errors['pseudo'] = $this->userDAO->checkUser($post);
+                $errors['pseudo'] = $this->userDAO->checkUserPseudo($post);
+            }
+            if($this->userDAO->checkUserEmail($post))
+            {
+                $errors['email'] = $this->userDAO->checkUserEmail($post);
             }
             if(!$errors)
             {
