@@ -40,7 +40,7 @@ class BackController extends Controller
             $articles = $this->articleDAO->getArticles(false);
             $comments = $this->commentDAO->getFlaggedComments();
             $users = $this->userDAO->getUsers();
-            var_dump($users);
+
             return $this->view->render('administration', [
                 'articles' => $articles,
                 'comments' => $comments,

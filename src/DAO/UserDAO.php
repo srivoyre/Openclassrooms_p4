@@ -13,9 +13,10 @@ class UserDAO extends DAO
         $user->setId($row['id']);
         $user->setPseudo($row['pseudo']);
         $user->setCreatedAt($row['createdAt']);
-        $user->setRole($row['role_id']);
+        $roleId = $user->setRole($row['roleId']);
         $user->setEmail($row['email']);
         $user->setNumberOfComments($this->countComments($user->getPseudo()));
+        $user->setIsAdmin($roleId);
 
         return $user;
     }
@@ -23,7 +24,7 @@ class UserDAO extends DAO
     public function getUsers()
     {
         //$sql = 'SELECT user.id, user.pseudo, user.createdAt, role.id, user.email FROM user INNER JOIN role ON user.role_id ORDER BY user.id DESC';
-        $sql = 'SELECT id, pseudo, createdAt, role_id, email FROM user ORDER BY user.id DESC';
+        $sql = 'SELECT id, pseudo, createdAt, role_id AS roleId, email FROM user ORDER BY id DESC';
         $result = $this->createQuery($sql);
         $users = [];
         foreach ($result as $row)
@@ -37,7 +38,7 @@ class UserDAO extends DAO
 
     public function getUser($pseudo)
     {
-        $sql = 'SELECT user.id, user.pseudo, user.createdAt, role.name, user.email FROM user INNER JOIN role ON user.role_id WHERE user.pseudo = ? ORDER BY user.id DESC';
+        $sql = 'SELECT id, pseudo, createdAt, role_id AS roleId, email FROM user WHERE pseudo = ? ORDER BY id DESC';
         $result = $this->createQuery($sql, [$pseudo]);
         $user = $result->fetch();
         $result->closeCursor();
@@ -73,15 +74,17 @@ class UserDAO extends DAO
 
     public function login(Parameter $post)
     {
-        $sql = 'SELECT user.id, user.role_id, user.password, role.name, user.email FROM user INNER JOIN role ON role.id = user.role_id WHERE pseudo = ?';
+        $sql = 'SELECT id, user.role_id, user.password, role.id AS roleId, user.email FROM user INNER JOIN role ON role.id = user.role_id WHERE pseudo = ?';
         $data = $this->createQuery($sql, [$post->get('pseudo')]);
         $result = $data->fetch();
         // works if password is invalid, doesnt work is pseudo does not exist
         $isPasswordValid = password_verify($post->get('password'), $result['password']);
+        $isAdmin = $result['role_id'] === '1';
 
         return [
             'result' => $result,
-            'isPasswordValid' => $isPasswordValid
+            'isPasswordValid' => $isPasswordValid,
+            'user' => $this->buildObject($result)
         ];
     }
 
