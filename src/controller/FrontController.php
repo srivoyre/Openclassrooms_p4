@@ -60,6 +60,7 @@ class FrontController extends Controller
             if(!$errors)
             {
                 $this->userDAO->register($post);
+                $this->login($post);
                 $this->session->set('register', 'Votre inscription a bien été effectuée');
                 header('Location: ../public/index.php');
             }
