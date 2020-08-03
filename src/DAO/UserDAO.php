@@ -13,7 +13,7 @@ class UserDAO extends DAO
         $user->setId($row['id']);
         $user->setPseudo($row['pseudo']);
         $user->setCreatedAt($row['createdAt']);
-        $user->setRole($row['name']);
+        $user->setRole($row['role_id']);
         $user->setEmail($row['email']);
         $user->setNumberOfComments($this->countComments($user->getPseudo()));
 
@@ -22,7 +22,8 @@ class UserDAO extends DAO
 
     public function getUsers()
     {
-        $sql = 'SELECT user.id, user.pseudo, user.createdAt, role.name, user.email FROM user INNER JOIN role ON user.role_id ORDER BY user.id DESC';
+        //$sql = 'SELECT user.id, user.pseudo, user.createdAt, role.id, user.email FROM user INNER JOIN role ON user.role_id ORDER BY user.id DESC';
+        $sql = 'SELECT id, pseudo, createdAt, role_id, email FROM user ORDER BY user.id DESC';
         $result = $this->createQuery($sql);
         $users = [];
         foreach ($result as $row)

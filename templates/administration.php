@@ -170,7 +170,7 @@
             </td>
             <td>
                 <?php
-                if($user->getRole() != 'admin')
+                if($user->getRole() !== '1')
                 {
                     ?>
                     <a href="../public/index.php?route=deleteUser&userId=<?= $user->getId(); ?>">
