@@ -89,3 +89,6 @@ ALTER TABLE `article`
 ALTER TABLE `article`
     ADD `lastPublishedDate` DATETIME NOT NULL;
 
+ALTER TABLE `user`
+    ADD `email` VARCHAR(255) NOT NULL;
+

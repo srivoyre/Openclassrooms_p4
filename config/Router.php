@@ -58,7 +58,7 @@ class Router
                 }
                 elseif($route === 'addComment')
                 {
-                    $this->frontController->addComment($this->request->getPost(), $this->request->getGet()->get('articleId'));
+                    $this->backController->addComment($this->request->getPost(), $this->request->getGet()->get('articleId'));
                 }
                 elseif($route === 'flagComment')
                 {
@@ -70,7 +70,7 @@ class Router
                 }
                 elseif($route === 'deleteComment')
                 {
-                    $this->backController->deleteComment($this->request->getGet()->get('commentId'),$this->request->getGet()->get('pseudo'));
+                    $this->backController->deleteComment($this->request->getGet()->get('commentId'),$this->request->getGet()->get('articleId'),$this->request->getGet()->get('pseudo'));
                 }
                 elseif($route === 'register')
                 {
@@ -83,6 +83,10 @@ class Router
                 elseif($route === 'profile')
                 {
                     $this->backController->profile();
+                }
+                elseif($route === 'updateEmail')
+                {
+                    $this->backController->updateEmail($this->request->getPost());
                 }
                 elseif ($route === 'updatePassword')
                 {

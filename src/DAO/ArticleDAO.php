@@ -50,7 +50,7 @@ class ArticleDAO extends DAO
         return $articles;
     }
 
-    public function getArticle($articleId, $published)
+    public function getArticle($articleId, $published = false)
     {
         if($published === true)
         {

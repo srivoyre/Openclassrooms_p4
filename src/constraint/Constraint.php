@@ -36,4 +36,11 @@ class Constraint
         }
     }
 
+    public function isEmail($value)
+    {
+        if (!filter_var($value, FILTER_VALIDATE_EMAIL)) {
+            return '<p>Veuillez saisir une adresse e-mail valide </p>';
+        }
+    }
+
 }

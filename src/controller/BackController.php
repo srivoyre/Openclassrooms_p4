@@ -60,7 +60,17 @@ class BackController extends Controller
                 'comments' => $comments
             ]);
         }
+        elseif($this->checkLoggedIn())
+        {
+            $article = $this->articleDAO->getArticle($articleId, true);
+            $comments = $this->commentDAO->getCommentsFromArticle($articleId);
+            return $this->view->render('single', [
+                'article' => $article,
+                'comments' => $comments
+            ]);
+        }
     }
+
     public function addArticle(Parameter $post)
     {
         if($this->checkAdmin())
@@ -87,7 +97,7 @@ class BackController extends Controller
     {
         if($this->checkAdmin())
         {
-            $article = $this->articleDAO->getArticle($articleId, false);
+            $article = $this->articleDAO->getArticle($articleId);
             if($post->get('submit'))
             {
                 $errors = $this->validation->validate($post, 'Article');
@@ -158,6 +168,30 @@ class BackController extends Controller
         }
     }
 
+    public function addComment(Parameter $post, $articleId)
+    {
+        if($this->checkLoggedIn())
+        {
+            if($post->get('submit'))
+            {
+                $errors = $this->validation->validate($post, 'Comment');
+                if(!$errors)
+                {
+                    $this->commentDAO->addComment($post, $this->session->get('pseudo'), $articleId);
+                    $this->session->set('add_comment', 'Votre nouveau commentaire a bien été ajouté');
+                }
+                $article = $this->articleDAO->getArticle($articleId, true);
+                $comments = $this->commentDAO->getCommentsFromArticle($articleId);
+                return $this->view->render('single', [
+                    'article' => $article,
+                    'comments' => $comments,
+                    'post' => $post,
+                    'errors' => $errors
+                ]);
+            }
+        }
+    }
+
     public function unflagComment($commentId)
     {
         if($this->checkAdmin())
@@ -168,13 +202,13 @@ class BackController extends Controller
         }
     }
 
-    public function deleteComment($commentId, $pseudo)
+    public function deleteComment($commentId, $articleId, $pseudo)
     {
-        if($this->checkLoggedIn() && $this->session->get('pseudo') == $pseudo)
+        if($this->checkLoggedIn() && $this->session->get('pseudo') === $pseudo)
         {
             $this->commentDAO->deleteComment($commentId);
-            $this->session->set('delete_comment', 'Le commentaire a bien été supprimé');
-            header('Location: ../public/index.php?');
+            $this->session->set('delete_comment', 'Votre commentaire a bien été supprimé');
+            header('Location: ../public/index.php?route=viewArticle&articleId='.$articleId);
         }
         elseif($this->checkAdmin())
         {
@@ -199,13 +233,27 @@ class BackController extends Controller
     {
         if($this->checkLoggedIn())
         {
-            if($post->get('submit'))
+            if($post->get('submitPassword'))
             {
                 $this->userDAO->updatePassword($post, $this->session->get('pseudo'));
-                $this->session->set('update_password', 'Le mot de passe a été mis à jour');
+                $this->session->set('update_password', 'Votre mot de passe a été mis à jour');
                 header('Location: ../public/index.php?route=profile');
             }
-            return $this->view->render('update_password');
+            //return $this->view->render('update_password');
+        }
+    }
+
+    public function updateEmail(Parameter $post)
+    {
+        if($this->checkLoggedIn())
+        {
+            if($post->get('submitEmail'))
+            {
+                $this->userDAO->updateEmail($post, $this->session->get('pseudo'));
+                $this->session->set('update_email', 'Votre adresse e-mail a été mise à jour');
+                header('Location: ../public/index.php?route=profile');
+            }
+            //return $this->view->render('profile');
         }
     }
 

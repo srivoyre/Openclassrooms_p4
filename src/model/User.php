@@ -9,6 +9,8 @@ class User
     private $password;
     private $createdAt;
     private $role;
+    private $email;
+    private $numberOfComments;
 
     /**
      * @return int
@@ -88,5 +90,37 @@ class User
     public function setRole($role)
     {
         $this->role = $role;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getEmail()
+    {
+        return $this->email;
+    }
+
+    /**
+     * @param mixed $email
+     */
+    public function setEmail($email)
+    {
+        $this->email = $email;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getNumberOfComments()
+    {
+        return $this->numberOfComments;
+    }
+
+    /**
+     * @param mixed $numberOfComments
+     */
+    public function setNumberOfComments($numberOfComments)
+    {
+        $this->numberOfComments = $numberOfComments;
     }
 }

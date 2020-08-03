@@ -5,7 +5,9 @@
 <?= $this->session->show('flag_comment'); ?>
 <?= $this->session->show('unflag_comment'); ?>
 
-<a href="../public/index.php"><< Retour à l'accueil</a>
+<p>
+    <a href="../public/index.php"><< Retour à l'accueil</a>
+</p>
 
 <?php
 if(empty($article->getPreviousArticle())== false)
@@ -60,8 +62,23 @@ if(empty($article->getNextArticle()) == false)
 <br />
 
 <div id="comments" class="text-left" style="margin-left: 50px;">
-    <h3>Ajouter un commentaire</h3>
-    <?php include('form_comment.php'); ?>
+    <?php
+    if($this->session->get('loggedIn'))
+    {
+    ?>
+        <h3>Ajouter un commentaire</h3>
+        <?php include('form_comment.php'); ?>
+    <?php
+    }
+    else
+    {
+    ?>
+        <p>Vous devez être connecté pour poste un commentaire</p>
+        <a href="../public/index.php?route=login">Je me connecte !</a>
+        <a href="../public/index.php?route=register">Je crée un compte !</a>
+    <?php
+    }
+    ?>
     <h3>Commentaires</h3>
     <?php
     foreach ($comments as $comment)
@@ -98,7 +115,7 @@ if(empty($article->getNextArticle()) == false)
         {
         ?>
         <p>
-            <a href="../public/index.php?route=deleteComment&commentId=<?= $comment->getId(); ?>&pseudo=<?= $comment->getPseudo(); ?>">
+            <a href="../public/index.php?route=deleteComment&commentId=<?= $comment->getId(); ?>&articleId=<?= $comment->getArticleId(); ?>&pseudo=<?= $comment->getPseudo(); ?>">
                 Supprimer mon commentaire
             </a>
         </p>

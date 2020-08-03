@@ -7,6 +7,11 @@
         <input type="text" id="pseudo" name="pseudo">
         <br />
         <?= isset($errors['pseudo']) ? $errors['pseudo'] : ''; ?>
+        <label for="email">Adresse e-mail</label>
+        <br />
+        <input type="email" id="email" name="email">
+        <br />
+        <?= isset($errors['email']) ? $errors['email'] : ''; ?>
         <label for="password">Mot de passe</label>
         <br />
         <input type="password" id="password" name="password">
