@@ -105,8 +105,8 @@ class BackController extends Controller
                 {
                     $this->articleDAO->editArticle($post, $articleId, $this->session->get('id'));
                     $this->session->set('edit_article', 'L\'article a bien été modifié');
-                    //header('Location: ../public/index.php?route=administration');
                 }
+                $post->set('id', $article->getId());
                 return $this->view->render('edit_article', [
                     'post' => $post,
                     'errors' => $errors
@@ -125,8 +125,8 @@ class BackController extends Controller
                     'post' => $post,
                     'errors' => $errors
                 ]);
-
             }
+
             $post->set('id', $article->getId());
             $post->set('title', $article->getTitle());
             $post->set('order_num', $article->getOrderNum());
