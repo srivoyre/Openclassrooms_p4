@@ -42,13 +42,13 @@ class FrontController extends Controller
         if($post->get('submit'))
         {
             $errors = $this->validation->validate($post, 'User');
-            if($this->userDAO->checkUserPseudo($post))
+            if($this->userDAO->checkUser($post, 'pseudo', 'pseudo', 'register'))
             {
-                $errors['pseudo'] = $this->userDAO->checkUserPseudo($post);
+                $errors['pseudo'] = $this->userDAO->checkUser($post, 'pseudo', 'pseudo','register');
             }
-            if($this->userDAO->checkUserEmail($post))
+            if($this->userDAO->checkUser($post, 'email', 'email', 'register'))
             {
-                $errors['email'] = $this->userDAO->checkUserEmail($post);
+                $errors['email'] = $this->userDAO->checkUser($post, 'email', 'email', 'register');
             }
             if(!$errors)
             {
@@ -70,11 +70,17 @@ class FrontController extends Controller
     {
         if($post->get('submit'))
         {
-            $result = $this->userDAO->login($post);
-            if($result && $result['isPasswordValid'])
+            // We give the user the possibility to login with either his pseudo or his email
+            $checkUser = $this->userDAO->checkUser($post, 'username', 'pseudo', 'login');
+            if(!$checkUser)
             {
+                $checkUser = $this->userDAO->checkUser($post, 'username', 'email', 'login');
+            }
+            $checkPassword = $checkUser ? $this->userDAO->checkPassword($post): '';
+
+            if ($checkPassword) {
                 $this->session->set('login_message', 'Content de vous revoir');
-                $this->session->set('user', $result['user']);
+                $this->session->set('user', $checkPassword['user']);
                 $this->session->set('loggedIn', true);
                 header('Location: ../public/index.php');
             }
@@ -85,6 +91,14 @@ class FrontController extends Controller
                     'post' => $post
                 ]);
             }
+        }
+        if($this->session->get('loggedIn'))
+        {
+            header('Location: ../public/index.php');
+        }
+        else
+        {
+            return $this->view->render('login');
         }
         return $this->view->render('login');
     }
