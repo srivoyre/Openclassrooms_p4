@@ -30,6 +30,7 @@ class ArticleDAO extends DAO
     
     public function getArticles($published)
     {
+        $sql = '';
         if($published === true)
         {
             $sql = 'SELECT article.id, article.title, article.content, article.order_num, article.createdAt, article.published, article.lastPublishedDate, user.pseudo FROM article INNER JOIN user ON article.user_id = user.id WHERE article.published = 1 ORDER BY article.order_num DESC, article.createdAt DESC';
@@ -52,6 +53,7 @@ class ArticleDAO extends DAO
 
     public function getArticle($articleId, $published = false)
     {
+        $sql = '';
         if($published === true)
         {
             $sql = 'SELECT article.id, article.title, article.content, article.order_num, article.createdAt, article.published, article.lastPublishedDate, user.pseudo FROM article INNER JOIN user ON article.user_id WHERE article.published = 1 AND article.id = ?';

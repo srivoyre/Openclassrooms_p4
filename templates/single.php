@@ -47,7 +47,7 @@ if(empty($article->getNextArticle()) == false)
 
 <br />
 <?php
-    if($this->session->get('user')->getIsAdmin())
+    if($this->session->get('loggedIn') && $this->session->get('user')->getIsAdmin())
     {
         ?>
         <div class="actions">
@@ -111,7 +111,7 @@ if(empty($article->getNextArticle()) == false)
             </p>
         <?php
         }
-        if($this->session->get('user')->getPseudo() == $comment->getPseudo())
+        if($this->session->get('loggedIn') && $this->session->get('user')->getPseudo() == $comment->getPseudo())
         {
         ?>
         <p>
