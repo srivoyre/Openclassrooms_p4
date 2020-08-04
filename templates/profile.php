@@ -1,15 +1,15 @@
 <?php $this->title = 'Mon profil'; ?>
 
 <?php
-$loggedIn = isset($this->session) && $this->session->get('pseudo');
+$loggedIn = isset($this->session) && $this->session->get('user')->getPseudo();
 ?>
 
-<?= $this->session->show('update_email'); ?>
-<?= $this->session->show('update_password'); ?>
-<?= $this->session->show('not_admin'); ?>
+<?= $this->session->show('update_email_message'); ?>
+<?= $this->session->show('update_password_message'); ?>
+<?= $this->session->show('not_admin_message'); ?>
 
 <div>
-    <h2><?= $this->session->get('pseudo'); ?></h2>
+    <h2><?= $this->session->get('user')->getPseudo(); ?></h2>
     <p>Membre depuis le <?= $user->getCreatedAt(); ?></p>
     <p>Nombre de commentaires en ligne : <?= $user->getNumberOfComments(); ?></p>
 

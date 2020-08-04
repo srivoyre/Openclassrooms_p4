@@ -1,13 +1,13 @@
 <?php $this->title = 'Administration'; ?>
 
-<?= $this->session->show('add_article'); ?>
-<?= $this->session->show('edit_article'); ?>
-<?= $this->session->show('delete_article'); ?>
-<?= $this->session->show('publish_article'); ?>
-<?= $this->session->show('unpublish_article'); ?>
-<?= $this->session->show('unflag_comment'); ?>
-<?= $this->session->show('delete_comment'); ?>
-<?= $this->session->show('delete_user'); ?>
+<?= $this->session->show('add_article_message'); ?>
+<?= $this->session->show('edit_article_message'); ?>
+<?= $this->session->show('delete_article_message'); ?>
+<?= $this->session->show('publish_article_message'); ?>
+<?= $this->session->show('unpublish_article_message'); ?>
+<?= $this->session->show('unflag_comment_message'); ?>
+<?= $this->session->show('delete_comment_message'); ?>
+<?= $this->session->show('delete_user_message'); ?>
 
 <h2>Articles</h2>
 <a href="../public/index.php?route=addArticle">Nouvel article</a>

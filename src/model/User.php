@@ -138,7 +138,7 @@ class User
      */
     public function setIsAdmin($isAdmin)
     {
-        if($this->getRole() === '1')
+        if($isAdmin === '1')
         {
             $this->isAdmin = true;
         }

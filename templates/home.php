@@ -1,10 +1,10 @@
 <?php $this->title = "Accueil"; ?>
 
-<?= $this->session->show('register'); ?>
-<?= $this->session->show('login'); ?>
-<?= $this->session->show('logout'); ?>
-<?= $this->session->show('delete_user'); ?>
-<?= $this->session->show('delete_account'); ?>
+<?= $this->session->show('register_message'); ?>
+<?= $this->session->show('login_message'); ?>
+<?= $this->session->show('logout_message'); ?>
+<?= $this->session->show('delete_user_message'); ?>
+<?= $this->session->show('delete_account_message'); ?>
 
 <?php
 foreach ($articles as $article)
