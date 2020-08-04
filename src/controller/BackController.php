@@ -8,9 +8,9 @@ class BackController extends Controller
 {
     private function checkLoggedIn()
     {
-        if(!$this->session->get('pseudo'))
+        if(!$this->session->get('user')->getPseudo())
         {
-            $this->session->set('need_login', 'Vous devez vous connecter pour accéder à cette page');
+            $this->session->set('need_login_message', 'Vous devez vous connecter pour accéder à cette page');
             header('Location: ../public/index.php?route=login');
         }
         else
@@ -22,9 +22,10 @@ class BackController extends Controller
     private function checkAdmin()
     {
         $this->checkLoggedIn();
-        if(!($this->session->get('role') === 'admin'))
+        //if(!($this->session->get('role') === 'admin'))
+        if(!($this->session->get('user')->getIsAdmin()))
         {
-            $this->session->set('not_admin', 'Vous ne disposez pas des autorisations suffisantes pour accéder à cette page');
+            $this->session->set('not_admin_message', 'Vous ne disposez pas des autorisations suffisantes pour accéder à cette page');
             header('Location: ../public/index.php?route=errorPermission');
         }
         else
@@ -80,8 +81,8 @@ class BackController extends Controller
                 $errors = $this->validation->validate($post, 'Article');
                 if(!$errors)
                 {
-                    $this->articleDAO->addArticle($post, $this->session->get('id'));
-                    $this->session->set('add_article', 'Le nouvel article a bien été ajouté');
+                    $this->articleDAO->addArticle($post, $this->session->get('user')->getId());
+                    $this->session->set('add_article_message', 'Le nouvel article a bien été ajouté');
                     header('Location: ../public/index.php?route=administration');
                 }
                 return $this->view->render('add_article', [
@@ -103,8 +104,8 @@ class BackController extends Controller
                 $errors = $this->validation->validate($post, 'Article');
                 if(!$errors)
                 {
-                    $this->articleDAO->editArticle($post, $articleId, $this->session->get('id'));
-                    $this->session->set('edit_article', 'L\'article a bien été modifié');
+                    $this->articleDAO->editArticle($post, $articleId, $this->session->get('user')->getId());
+                    $this->session->set('edit_article_message', 'L\'article a bien été modifié');
                 }
                 $post->set('id', $article->getId());
                 return $this->view->render('edit_article', [
@@ -117,8 +118,8 @@ class BackController extends Controller
                 $errors = $this->validation->validate($post, 'Article');
                 if(!$errors)
                 {
-                    $this->articleDAO->editArticle($post, $articleId, $this->session->get('id'));
-                    $this->session->set('edit_article', 'L\'article a bien été modifié');
+                    $this->articleDAO->editArticle($post, $articleId, $this->session->get('user')->getId());
+                    $this->session->set('edit_article_message', 'L\'article a bien été modifié');
                     header('Location: ../public/index.php?route=administration');
                 }
                 return $this->view->render('edit_article', [
@@ -144,7 +145,7 @@ class BackController extends Controller
     {
         if ($this->checkAdmin()) {
             $this->articleDAO->editPublicationStatus(1, $articleId);
-            $this->session->set('publish_article', 'Le chapitre a bien été publié');
+            $this->session->set('publish_article_message', 'Le chapitre a bien été publié');
             header('Location: ../public/index.php?route=administration');
         }
     }
@@ -153,7 +154,7 @@ class BackController extends Controller
     {
         if ($this->checkAdmin()) {
             $this->articleDAO->editPublicationStatus(0, $articleId);
-            $this->session->set('unpublish_article', 'Le chapitre a bien été dépublié');
+            $this->session->set('unpublish_article_message', 'Le chapitre a bien été dépublié');
             header('Location: ../public/index.php?route=administration');
         }
     }
@@ -163,7 +164,7 @@ class BackController extends Controller
         if($this->checkAdmin())
         {
             $this->articleDAO->deleteArticle($articleId);
-            $this->session->set('delete_article', 'L\'article a bien été supprimé');
+            $this->session->set('delete_article_message', 'L\'article a bien été supprimé');
             header('Location: ../public/index.php?route=administration');
         }
     }
@@ -177,8 +178,8 @@ class BackController extends Controller
                 $errors = $this->validation->validate($post, 'Comment');
                 if(!$errors)
                 {
-                    $this->commentDAO->addComment($post, $this->session->get('pseudo'), $articleId);
-                    $this->session->set('add_comment', 'Votre nouveau commentaire a bien été ajouté');
+                    $this->commentDAO->addComment($post, $this->session->get('user')->getPseudo(), $articleId);
+                    $this->session->set('add_comment_message', 'Votre nouveau commentaire a bien été ajouté');
                 }
                 $article = $this->articleDAO->getArticle($articleId, true);
                 $comments = $this->commentDAO->getCommentsFromArticle($articleId);
@@ -197,23 +198,23 @@ class BackController extends Controller
         if($this->checkAdmin())
         {
             $this->commentDAO->unflagComment($commentId);
-            $this->session->set('unflag_comment', 'Le commentaire a bien été désignalé');
+            $this->session->set('unflag_comment_message', 'Le commentaire a bien été désignalé');
             header('Location: ../public/index.php?route=administration');
         }
     }
 
     public function deleteComment($commentId, $articleId, $pseudo)
     {
-        if($this->checkLoggedIn() && $this->session->get('pseudo') === $pseudo)
+        if($this->checkLoggedIn() && $this->session->get('user')->getPseudo() === $pseudo)
         {
             $this->commentDAO->deleteComment($commentId);
-            $this->session->set('delete_comment', 'Votre commentaire a bien été supprimé');
+            $this->session->set('delete_comment_message', 'Votre commentaire a bien été supprimé');
             header('Location: ../public/index.php?route=viewArticle&articleId='.$articleId);
         }
         elseif($this->checkAdmin())
         {
             $this->commentDAO->deleteComment($commentId);
-            $this->session->set('delete_comment', 'Le commentaire a bien été supprimé');
+            $this->session->set('delete_comment_message', 'Le commentaire a bien été supprimé');
             header('Location: ../public/index.php?route=administration');
         }
     }
@@ -222,7 +223,7 @@ class BackController extends Controller
     {
         if($this->checkLoggedIn())
         {
-            $user = $this->userDAO->getUser($this->session->get('pseudo'));
+            $user = $this->userDAO->getUser($this->session->get('user')->getPseudo());
             return $this->view->render('profile', [
                 'user' => $user
             ]);
@@ -233,13 +234,19 @@ class BackController extends Controller
     {
         if($this->checkLoggedIn())
         {
-            if($post->get('submitPassword'))
+            if($post->get('submit'))
             {
-                $this->userDAO->updatePassword($post, $this->session->get('pseudo'));
-                $this->session->set('update_password', 'Votre mot de passe a été mis à jour');
-                header('Location: ../public/index.php?route=profile');
+                $errors = $this->validation->validate($post, 'User');
+                if(!$errors) {
+                    $this->userDAO->updatePassword($post, $this->session->get('user')->getPseudo());
+                    $this->session->set('update_password_message', 'Votre mot de passe a été mis à jour');
+                    header('Location: ../public/index.php?route=profile');
+                }
+                return $this->view->render('update_password', [
+                    'errors' => $errors
+                ]);
             }
-            //return $this->view->render('update_password');
+            return $this->view->render('update_password');
         }
     }
 
@@ -249,8 +256,8 @@ class BackController extends Controller
         {
             if($post->get('submitEmail'))
             {
-                $this->userDAO->updateEmail($post, $this->session->get('pseudo'));
-                $this->session->set('update_email', 'Votre adresse e-mail a été mise à jour');
+                $this->userDAO->updateEmail($post, $this->session->get('user')->getPseudo());
+                $this->session->set('update_email_message', 'Votre adresse e-mail a été mise à jour');
                 header('Location: ../public/index.php?route=profile');
             }
             //return $this->view->render('profile');
@@ -269,7 +276,7 @@ class BackController extends Controller
     {
         if($this->checkLoggedIn())
         {
-            $this->userDAO->deleteAccount($this->session->get('pseudo'));
+            $this->userDAO->deleteAccount($this->session->get('user')->getPseudo());
             $this->logoutOrDelete('delete_account');
         }
     }
@@ -279,7 +286,7 @@ class BackController extends Controller
         if($this->checkAdmin())
         {
             $this->userDAO->deleteUser($userId);
-            $this->session->set('delete_user', 'L\'utilisateur a bien été supprimé');
+            $this->session->set('delete_user_message', 'L\'utilisateur a bien été supprimé');
             header('Location: ../public/index.php?route=administration');
         }
     }
@@ -290,11 +297,11 @@ class BackController extends Controller
         $this->session->start();
         if($param === 'logout')
         {
-            $this->session->set('logout', 'À bientôt');
+            $this->session->set('logout_message', 'À bientôt');
         }
         else
         {
-            $this->session->set('delete_account', 'Votre compte a bien été supprimé');
+            $this->session->set('delete_account_message', 'Votre compte a bien été supprimé');
         }
         header('Location: ../public/index.php');
     }

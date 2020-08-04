@@ -13,9 +13,9 @@
         <header>
             <a href="../public/index.php">Accueil</a>
             <?php
-            if($this->session->get('pseudo'))
+            if($this->session->get('loggedIn'))
             {
-                if($this->session->get('role') === 'admin') {
+                if(!$this->session->get('not_admin')) {
                 ?>
                 <a href="../public/index.php?route=administration">Administration</a>
                 <?php

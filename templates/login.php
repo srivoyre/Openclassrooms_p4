@@ -1,13 +1,13 @@
 <?php $this->title = "Connexion"; ?>
 
-<?= $this->session->show('error_login'); ?>
-<?= $this->session->show('need_login'); ?>
+<?= $this->session->show('error_login_message'); ?>
+<?= $this->session->show('need_login_message'); ?>
 
 <div>
     <form method="post" action="../public/index.php?route=login">
-        <label for="pseudo">Pseudo</label>
+        <label for="pseudo">Pseudo ou e-mail</label>
         <br />
-        <input type="text" id="pseudo" name="pseudo">
+        <input type="text" id="username" name="username">
         <br />
         <label for="password">Mot de passe</label>
         <br />

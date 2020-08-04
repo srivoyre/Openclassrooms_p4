@@ -1,9 +1,9 @@
 <?php $this->title = $article->getTitle(); ?>
 
-<?= $this->session->show('add_comment'); ?>
-<?= $this->session->show('delete_comment'); ?>
-<?= $this->session->show('flag_comment'); ?>
-<?= $this->session->show('unflag_comment'); ?>
+<?= $this->session->show('add_comment_message'); ?>
+<?= $this->session->show('delete_comment_message'); ?>
+<?= $this->session->show('flag_comment_message'); ?>
+<?= $this->session->show('unflag_comment_message'); ?>
 
 <p>
     <a href="../public/index.php"><< Retour à l'accueil</a>
@@ -47,7 +47,7 @@ if(empty($article->getNextArticle()) == false)
 
 <br />
 <?php
-    if(($this->session->get('role') === 'admin'))
+    if($this->session->get('user')->getIsAdmin())
     {
         ?>
         <div class="actions">
@@ -111,7 +111,7 @@ if(empty($article->getNextArticle()) == false)
             </p>
         <?php
         }
-        if($this->session->get('pseudo') == $comment->getPseudo())
+        if($this->session->get('user')->getPseudo() == $comment->getPseudo())
         {
         ?>
         <p>

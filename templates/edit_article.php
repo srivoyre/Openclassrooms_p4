@@ -1,7 +1,7 @@
 <?php $this->title = 'Modifier l\'article'; ?>
 <?php $this->script =  'src="https://cdn.tiny.cloud/1/8tzv2jc2jx5cy4ulyl2dvykrlorgyrfsyawguzw4kzmtly5t/tinymce/5/tinymce.min.js" referrerpolicy="origin"'; ?>
 
-<?= $this->session->show('edit_article'); ?>
+<?= $this->session->show('edit_article_message'); ?>
 
 <a href="../public/index.php?route=administration"><< Retour à l'administration</a>
 

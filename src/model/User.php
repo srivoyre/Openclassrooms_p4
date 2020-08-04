@@ -11,6 +11,7 @@ class User
     private $role;
     private $email;
     private $numberOfComments;
+    private $isAdmin;
 
     /**
      * @return int
@@ -123,4 +124,28 @@ class User
     {
         $this->numberOfComments = $numberOfComments;
     }
+
+    /**
+     * @return boolean
+     */
+    public function getIsAdmin()
+    {
+        return $this->isAdmin;
+    }
+
+    /**
+     * @param boolean $isAdmin
+     */
+    public function setIsAdmin($isAdmin)
+    {
+        if($isAdmin === '1')
+        {
+            $this->isAdmin = true;
+        }
+        else
+        {
+            $this->isAdmin = false;
+        }
+    }
+
 }

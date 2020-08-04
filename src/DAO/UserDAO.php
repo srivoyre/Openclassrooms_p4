@@ -13,16 +13,17 @@ class UserDAO extends DAO
         $user->setId($row['id']);
         $user->setPseudo($row['pseudo']);
         $user->setCreatedAt($row['createdAt']);
-        $user->setRole($row['name']);
+        $user->setRole($row['roleName']);
         $user->setEmail($row['email']);
         $user->setNumberOfComments($this->countComments($user->getPseudo()));
+        $user->setIsAdmin($row['roleId']);
 
         return $user;
     }
 
     public function getUsers()
     {
-        $sql = 'SELECT user.id, user.pseudo, user.createdAt, role.name, user.email FROM user INNER JOIN role ON user.role_id ORDER BY user.id DESC';
+        $sql = 'SELECT user.id, user.pseudo, user.createdAt, role.id AS roleId, role.name AS roleName, user.email FROM user INNER JOIN role ON role.id = user.role_id ORDER BY user.id DESC';
         $result = $this->createQuery($sql);
         $users = [];
         foreach ($result as $row)
@@ -36,7 +37,7 @@ class UserDAO extends DAO
 
     public function getUser($pseudo)
     {
-        $sql = 'SELECT user.id, user.pseudo, user.createdAt, role.name, user.email FROM user INNER JOIN role ON user.role_id WHERE user.pseudo = ? ORDER BY user.id DESC';
+        $sql = 'SELECT user.id, user.pseudo, user.createdAt, role.id AS roleId, role.name AS roleName, user.email FROM user INNER JOIN role ON role.id = user.role_id WHERE user.pseudo = ? ORDER BY user.id DESC';
         $result = $this->createQuery($sql, [$pseudo]);
         $user = $result->fetch();
         $result->closeCursor();
@@ -49,39 +50,51 @@ class UserDAO extends DAO
         $this->createQuery($sql, [$post->get('pseudo'), password_hash($post->get('password'), PASSWORD_BCRYPT), 2, $post->get('email')]);
     }
 
-    public function checkUserPseudo(Parameter $post)
+    public function checkUser(Parameter $post, $valueToCheck, $fieldToCheck, $param)
     {
-        $sql = 'SELECT COUNT(pseudo) FROM user WHERE pseudo = ?';
-        $result = $this->createQuery($sql, [$post->get('pseudo')]);
-        $isUnique = $result->fetchColumn();
-        if($isUnique)
+        $sql = '';
+        if($fieldToCheck === 'pseudo')
         {
-            return '<p>Le pseudo existe déjà</p>';
+            $sql = 'SELECT COUNT(pseudo) FROM user WHERE pseudo = ?';
         }
-    }
-    public function checkUserEmail(Parameter $post)
-    {
-        $sql = 'SELECT COUNT(email) FROM user WHERE email = ?';
-        $result = $this->createQuery($sql, [$post->get('email')]);
-        $isUnique = $result->fetchColumn();
-        if($isUnique)
+        elseif($fieldToCheck === 'email')
         {
-            return '<p>Un compte associé à cet e-mail existe déjà ! <a href="../public/index.php?route=login">Je me connecte</a> </p>';
+            $sql = 'SELECT COUNT(email) FROM user WHERE email = ?';
+        }
+        $result = $this->createQuery($sql, [$post->get($valueToCheck)]);
+        $isUnique = $result->fetchColumn();
+        if($param === 'register') {
+            if ($isUnique) {
+                return '<p>Ce pseudo n\'est pas disponible</p>';
+            }
+        }
+        elseif($param === 'login')
+        {
+            return $isUnique;
         }
     }
 
-    public function login(Parameter $post)
+    public function checkPassword(Parameter $post, $field)
     {
-        $sql = 'SELECT user.id, user.role_id, user.password, role.name, user.email FROM user INNER JOIN role ON role.id = user.role_id WHERE pseudo = ?';
-        $data = $this->createQuery($sql, [$post->get('pseudo')]);
+        if($field === 'pseudo')
+        {
+            $sql = 'SELECT user.id, user.pseudo, user.password, user.role_id AS roleId, role.name AS roleName, user.email, user.createdAt FROM user INNER JOIN role ON role.id = user.role_id WHERE pseudo = ?';
+        }
+        elseif($field === 'email')
+        {
+            $sql = 'SELECT user.id, user.pseudo, user.password, user.role_id AS roleId, role.name AS roleName, user.email, user.createdAt FROM user INNER JOIN role ON role.id = user.role_id WHERE email = ?';
+        }
+        $data = $this->createQuery($sql, [$post->get('username')]);
         $result = $data->fetch();
-        // works if password is invalid, doesnt work is pseudo does not exist
         $isPasswordValid = password_verify($post->get('password'), $result['password']);
 
-        return [
-            'result' => $result,
-            'isPasswordValid' => $isPasswordValid
-        ];
+        if($isPasswordValid) {
+            return [
+                'result' => $result,
+                'isPasswordValid' => $isPasswordValid,
+                'user' => $this->buildObject($result)
+            ];
+        }
     }
 
     public function updatePassword(Parameter $post, $pseudo)
