@@ -14,7 +14,7 @@ class Parameter
         $this->parameter = $parameter;
     }
 
-    public function get($name)
+    public function get(string $name)
     {
         if(isset($this->parameter[$name]))
         {
@@ -22,7 +22,7 @@ class Parameter
         }
     }
 
-    public function set($name, $value)
+    public function set(string $name, $value)
     {
         $this->parameter[$name] = $value;
     }

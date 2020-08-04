@@ -2,9 +2,11 @@
 
 namespace App\src\constraint;
 
+use App\config\Parameter;
+
 class Validation
 {
-    public function validate($data, $name)
+    public function validate(Parameter $data, string $name)
     {
         if($name === 'Article')
         {

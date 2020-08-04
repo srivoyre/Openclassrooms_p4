@@ -2,6 +2,8 @@
 
 namespace App\src\model;
 
+use Cassandra\Date;
+
 class Article
 {
     private $id;
@@ -16,7 +18,7 @@ class Article
     private $lastPublishedDate;
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getId()
     {
@@ -24,7 +26,7 @@ class Article
     }
 
     /**
-     * @param mixed $id
+     * @param string $id
      */
     public function setId($id)
     {
@@ -32,7 +34,7 @@ class Article
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getTitle()
     {
@@ -40,7 +42,7 @@ class Article
     }
 
     /**
-     * @param mixed $title
+     * @param string $title
      */
     public function setTitle($title)
     {
@@ -48,7 +50,7 @@ class Article
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getContent()
     {
@@ -56,7 +58,7 @@ class Article
     }
 
     /**
-     * @param mixed $content
+     * @param string $content
      */
     public function setContent($content)
     {
@@ -64,7 +66,7 @@ class Article
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getAuthor()
     {
@@ -72,7 +74,7 @@ class Article
     }
 
     /**
-     * @param mixed $user_id
+     * @param string $user_id
      */
     public function setAuthor($user_id)
     {
@@ -80,7 +82,7 @@ class Article
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getCreatedAt()
     {
@@ -88,7 +90,7 @@ class Article
     }
 
     /**
-     * @param mixed $createdAt
+     * @param \DateTime $createdAt
      */
     public function setCreatedAt($createdAt)
     {
@@ -96,7 +98,7 @@ class Article
     }
 
     /**
-     * @return mixed
+     * @return int
      */
     public function getOrderNum()
     {
@@ -104,7 +106,7 @@ class Article
     }
 
     /**
-     * @param mixed $order_num
+     * @param int $order_num
      */
     public function setOrderNum($order_num)
     {
@@ -112,7 +114,7 @@ class Article
     }
 
     /**
-     * @return mixed
+     * @return Article
      */
     public function getPreviousArticle()
     {
@@ -120,7 +122,7 @@ class Article
     }
 
     /**
-     * @param mixed $previousArticle
+     * @param Article $previousArticle
      */
     public function setPreviousArticle($previousArticle)
     {
@@ -128,7 +130,7 @@ class Article
     }
 
     /**
-     * @return mixed
+     * @return Article
      */
     public function getNextArticle()
     {
@@ -136,7 +138,7 @@ class Article
     }
 
     /**
-     * @param mixed $nextArticle
+     * @param Article $nextArticle
      */
     public function setNextArticle($nextArticle)
     {
@@ -144,7 +146,7 @@ class Article
     }
 
     /**
-     * @return mixed
+     * @return bool
      */
     public function getIsPublished()
     {
@@ -152,7 +154,7 @@ class Article
     }
 
     /**
-     * @param mixed $is_published
+     * @param bool $is_published
      */
     public function setIsPublished($is_published)
     {
@@ -160,7 +162,7 @@ class Article
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getLastPublishedDate()
     {
@@ -168,7 +170,7 @@ class Article
     }
 
     /**
-     * @param mixed $lastPublishedDate
+     * @param Date $lastPublishedDate
      */
     public function setLastPublishedDate($lastPublishedDate)
     {

@@ -94,7 +94,7 @@ if(empty($article->getNextArticle()) == false)
             Posté le <?=htmlspecialchars($comment->getCreatedAt());?>
         </p>
         <?php
-        if($comment->isFlag())
+        if($comment->getIsFlag())
         {
         ?>
             <p>

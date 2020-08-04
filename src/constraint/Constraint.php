@@ -4,7 +4,7 @@ namespace App\src\constraint;
 
 class Constraint
 {
-    public function notBlank($name, $value)
+    public function notBlank(string $name, $value)
     {
         if(empty($value))
         {
@@ -12,7 +12,7 @@ class Constraint
         }
     }
 
-    public function minLength($name, $value, $minSize)
+    public function minLength(string $name, $value, int $minSize)
     {
         if(strlen($value) < $minSize)
         {
@@ -20,7 +20,7 @@ class Constraint
         }
     }
 
-    public function maxLength($name, $value, $maxSize)
+    public function maxLength(string $name, $value, int $maxSize)
     {
         if(strlen($value) > $maxSize)
         {

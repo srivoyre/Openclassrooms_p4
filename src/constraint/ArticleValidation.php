@@ -24,7 +24,7 @@ class ArticleValidation extends Validation
         return $this->errors;
     }
 
-    private function checkField($name, $value)
+    private function checkField(string $name, $value)
     {
         if($name === 'title')
         {
@@ -43,7 +43,7 @@ class ArticleValidation extends Validation
         }
     }
 
-    private function addError($name, $error)
+    private function addError(string $name, $error)
     {
         if($error)
         {
@@ -53,7 +53,7 @@ class ArticleValidation extends Validation
         }
     }
 
-    private function checkTitle($name, $value)
+    private function checkTitle(string $name, $value)
     {
         if($this->constraint->notBlank($name, $value))
         {
@@ -71,7 +71,7 @@ class ArticleValidation extends Validation
         }
     }
 
-    private function checkContent($name, $value)
+    private function checkContent(string $name, $value)
     {
         if($this->constraint->notBlank($name, $value))
         {
@@ -84,7 +84,7 @@ class ArticleValidation extends Validation
         }
     }
 
-    private function checkOrderNum($name, $value)
+    private function checkOrderNum(string $name, $value)
     {
         if($this->constraint->notBlank($name, $value))
         {

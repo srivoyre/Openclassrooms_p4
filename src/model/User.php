@@ -94,7 +94,7 @@ class User
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getEmail()
     {
@@ -102,7 +102,7 @@ class User
     }
 
     /**
-     * @param mixed $email
+     * @param string $email
      */
     public function setEmail($email)
     {
@@ -110,7 +110,7 @@ class User
     }
 
     /**
-     * @return mixed
+     * @return int
      */
     public function getNumberOfComments()
     {
@@ -118,7 +118,7 @@ class User
     }
 
     /**
-     * @param mixed $numberOfComments
+     * @param int $numberOfComments
      */
     public function setNumberOfComments($numberOfComments)
     {
@@ -126,7 +126,7 @@ class User
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function getIsAdmin()
     {
@@ -134,7 +134,7 @@ class User
     }
 
     /**
-     * @param boolean $isAdmin
+     * @param bool $isAdmin
      */
     public function setIsAdmin($isAdmin)
     {

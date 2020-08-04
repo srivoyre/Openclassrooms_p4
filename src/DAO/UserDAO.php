@@ -7,7 +7,7 @@ use App\src\model\User;
 
 class UserDAO extends DAO
 {
-    public function buildObject($row)
+    public function buildObject(array $row)
     {
         $user = new User();
         $user->setId($row['id']);
@@ -23,7 +23,10 @@ class UserDAO extends DAO
 
     public function getUsers()
     {
-        $sql = 'SELECT user.id, user.pseudo, user.createdAt, role.id AS roleId, role.name AS roleName, user.email FROM user INNER JOIN role ON role.id = user.role_id ORDER BY user.id DESC';
+        $sql = 'SELECT user.id, user.pseudo, user.createdAt, role.id AS roleId, role.name AS roleName, user.email 
+                FROM user 
+                    INNER JOIN role ON role.id = user.role_id 
+                ORDER BY user.id DESC';
         $result = $this->createQuery($sql);
         $users = [];
         foreach ($result as $row)
@@ -35,9 +38,13 @@ class UserDAO extends DAO
         return $users;
     }
 
-    public function getUser($pseudo)
+    public function getUser(string $pseudo)
     {
-        $sql = 'SELECT user.id, user.pseudo, user.createdAt, role.id AS roleId, role.name AS roleName, user.email FROM user INNER JOIN role ON role.id = user.role_id WHERE user.pseudo = ? ORDER BY user.id DESC';
+        $sql = 'SELECT user.id, user.pseudo, user.createdAt, role.id AS roleId, role.name AS roleName, user.email 
+                FROM user 
+                    INNER JOIN role ON role.id = user.role_id 
+                WHERE user.pseudo = ? 
+                ORDER BY user.id DESC';
         $result = $this->createQuery($sql, [$pseudo]);
         $user = $result->fetch();
         $result->closeCursor();
@@ -46,24 +53,30 @@ class UserDAO extends DAO
 
     public function register(Parameter $post)
     {
-        $sql = 'INSERT INTO user (pseudo, password, createdAt, role_id, email) VALUES (?,?,NOW(),?,?)';
+        $sql = 'INSERT INTO user (pseudo, password, createdAt, role_id, email) 
+                VALUES (?,?,NOW(),?,?)';
         $this->createQuery($sql, [$post->get('pseudo'), password_hash($post->get('password'), PASSWORD_BCRYPT), 2, $post->get('email')]);
     }
 
-    public function checkUser(Parameter $post, $valueToCheck, $fieldToCheck, $param)
+    public function checkUser(Parameter $post, string $valueToCheck, string $fieldToCheck, string $param)
     {
         $sql = '';
         if($fieldToCheck === 'pseudo')
         {
-            $sql = 'SELECT COUNT(pseudo) FROM user WHERE pseudo = ?';
+            $sql = 'SELECT COUNT(pseudo) 
+                    FROM user 
+                    WHERE pseudo = ?';
         }
         elseif($fieldToCheck === 'email')
         {
-            $sql = 'SELECT COUNT(email) FROM user WHERE email = ?';
+            $sql = 'SELECT COUNT(email) 
+                    FROM user 
+                    WHERE email = ?';
         }
         $result = $this->createQuery($sql, [$post->get($valueToCheck)]);
         $isUnique = $result->fetchColumn();
-        if($param === 'register') {
+        if($param === 'register')
+        {
             if ($isUnique) {
                 return '<p>Ce pseudo n\'est pas disponible</p>';
             }
@@ -74,15 +87,21 @@ class UserDAO extends DAO
         }
     }
 
-    public function checkPassword(Parameter $post, $field)
+    public function checkPassword(Parameter $post, string $field)
     {
         if($field === 'pseudo')
         {
-            $sql = 'SELECT user.id, user.pseudo, user.password, user.role_id AS roleId, role.name AS roleName, user.email, user.createdAt FROM user INNER JOIN role ON role.id = user.role_id WHERE pseudo = ?';
+            $sql = 'SELECT user.id, user.pseudo, user.password, user.role_id AS roleId, role.name AS roleName, user.email, user.createdAt 
+                    FROM user 
+                        INNER JOIN role ON role.id = user.role_id 
+                    WHERE pseudo = ?';
         }
         elseif($field === 'email')
         {
-            $sql = 'SELECT user.id, user.pseudo, user.password, user.role_id AS roleId, role.name AS roleName, user.email, user.createdAt FROM user INNER JOIN role ON role.id = user.role_id WHERE email = ?';
+            $sql = 'SELECT user.id, user.pseudo, user.password, user.role_id AS roleId, role.name AS roleName, user.email, user.createdAt 
+                    FROM user 
+                        INNER JOIN role ON role.id = user.role_id 
+                    WHERE email = ?';
         }
         $data = $this->createQuery($sql, [$post->get('username')]);
         $result = $data->fetch();
@@ -97,33 +116,43 @@ class UserDAO extends DAO
         }
     }
 
-    public function updatePassword(Parameter $post, $pseudo)
+    public function updatePassword(Parameter $post, string $pseudo)
     {
-        $sql = 'UPDATE user SET password = ? WHERE pseudo = ?';
+        $sql = 'UPDATE user 
+                SET password = ? 
+                WHERE pseudo = ?';
         $this->createQuery($sql, [password_hash($post->get('password'), PASSWORD_BCRYPT), $pseudo]);
     }
 
-    public function updateEmail(Parameter $post, $pseudo)
+    public function updateEmail(Parameter $post, string $pseudo)
     {
-        $sql = 'UPDATE user SET email = ? WHERE pseudo = ?';
+        $sql = 'UPDATE user 
+                SET email = ? 
+                WHERE pseudo = ?';
         $this->createQuery($sql, [$post->get('email'), $pseudo]);
     }
 
-    public function deleteAccount($pseudo)
+    public function deleteAccount(string $pseudo)
     {
-        $sql = 'DELETE FROM user WHERE pseudo = ?';
+        $sql = 'DELETE 
+                FROM user 
+                WHERE pseudo = ?';
         $this->createQuery($sql, [$pseudo]);
     }
 
-    public function deleteUser($userId)
+    public function deleteUser(string $userId)
     {
-        $sql = 'DELETE FROM user WHERE id = ?';
+        $sql = 'DELETE 
+                FROM user 
+                WHERE id = ?';
         $this->createQuery($sql, [$userId]);
     }
 
-    public function countComments($pseudo)
+    public function countComments(string $pseudo)
     {
-        $sql = 'SELECT COUNT(id) FROM comment WHERE pseudo = ?';
+        $sql = 'SELECT COUNT(id) 
+                FROM comment 
+                WHERE pseudo = ?';
         $result = $this->createQuery($sql, [$pseudo]);
         return $result->fetchColumn();
     }

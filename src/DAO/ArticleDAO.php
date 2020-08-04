@@ -8,7 +8,7 @@ use function Sodium\add;
 
 class ArticleDAO extends DAO
 {
-    private function buildObject($row, $getSurroundingArticles)
+    private function buildObject(array $row, bool $getSurroundingArticles)
     {
         $article = new Article();
         $article->setId($row['id']);
@@ -19,8 +19,12 @@ class ArticleDAO extends DAO
         $article->setOrderNum($row['order_num']);
         if($getSurroundingArticles === true)
         {
-            $article->setNextArticle($this->getSurroundingArticle($article->getOrderNum(), 'next'));
-            $article->setPreviousArticle($this->getSurroundingArticle($article->getOrderNum(), 'previous'));
+            $article->setNextArticle(
+                $this->getSurroundingArticle($article->getOrderNum(), 'next')
+            );
+            $article->setPreviousArticle(
+                $this->getSurroundingArticle($article->getOrderNum(), 'previous')
+            );
         }
         $article->setIsPublished($row['published']);
         $article->setLastPublishedDate($row['lastPublishedDate']);
@@ -28,16 +32,23 @@ class ArticleDAO extends DAO
         return $article;
     } 
     
-    public function getArticles($published)
+    public function getArticles(bool $published)
     {
         $sql = '';
         if($published === true)
         {
-            $sql = 'SELECT article.id, article.title, article.content, article.order_num, article.createdAt, article.published, article.lastPublishedDate, user.pseudo FROM article INNER JOIN user ON article.user_id = user.id WHERE article.published = 1 ORDER BY article.order_num DESC, article.createdAt DESC';
+            $sql = 'SELECT article.id, article.title, article.content, article.order_num, article.createdAt, article.published, article.lastPublishedDate, user.pseudo 
+                    FROM article 
+                        INNER JOIN user ON article.user_id = user.id 
+                    WHERE article.published = 1 
+                    ORDER BY article.order_num DESC, article.createdAt DESC';
         }
         elseif($published === false)
         {
-            $sql = 'SELECT article.id, article.title, article.content, article.order_num, article.createdAt, article.published, article.lastPublishedDate, user.pseudo FROM article INNER JOIN user ON article.user_id = user.id ORDER BY article.order_num DESC, article.createdAt DESC';
+            $sql = 'SELECT article.id, article.title, article.content, article.order_num, article.createdAt, article.published, article.lastPublishedDate, user.pseudo 
+                    FROM article 
+                        INNER JOIN user ON article.user_id = user.id 
+                    ORDER BY article.order_num DESC, article.createdAt DESC';
         }
         $result = $this->createQuery($sql);
         $articles = [];
@@ -51,16 +62,23 @@ class ArticleDAO extends DAO
         return $articles;
     }
 
-    public function getArticle($articleId, $published = false)
+    public function getArticle(string $articleId, $published = false)
     {
         $sql = '';
         if($published === true)
         {
-            $sql = 'SELECT article.id, article.title, article.content, article.order_num, article.createdAt, article.published, article.lastPublishedDate, user.pseudo FROM article INNER JOIN user ON article.user_id WHERE article.published = 1 AND article.id = ?';
+            $sql = 'SELECT article.id, article.title, article.content, article.order_num, article.createdAt, article.published, article.lastPublishedDate, user.pseudo 
+                    FROM article 
+                        INNER JOIN user ON article.user_id 
+                    WHERE article.published = 1 
+                        AND article.id = ?';
         }
         elseif($published === false)
         {
-            $sql = 'SELECT article.id, article.title, article.content, article.order_num, article.createdAt, article.published, article.lastPublishedDate, user.pseudo FROM article INNER JOIN user ON article.user_id WHERE article.id = ?';
+            $sql = 'SELECT article.id, article.title, article.content, article.order_num, article.createdAt, article.published, article.lastPublishedDate, user.pseudo 
+                    FROM article 
+                        INNER JOIN user ON article.user_id 
+                    WHERE article.id = ?';
         }
         $result = $this->createQuery($sql, [$articleId]);
         $article = $result->fetch();
@@ -68,16 +86,28 @@ class ArticleDAO extends DAO
         return $this->buildObject($article, true);
     }
 
-    public function getSurroundingArticle($articleOrderNum, $place)
+    public function getSurroundingArticle(int $articleOrderNum, string $place)
     {
         $sql ='';
         if($place === 'next')
         {
-            $sql = 'SELECT article.id, article.title, article.content, article.order_num, article.createdAt, article.published,  article.lastPublishedDate, user.pseudo FROM article INNER JOIN user ON article.user_id WHERE article.order_num > ? AND article.published = 1 ORDER BY article.order_num ASC LIMIT 1';
+            $sql = 'SELECT article.id, article.title, article.content, article.order_num, article.createdAt, article.published,  article.lastPublishedDate, user.pseudo 
+                    FROM article 
+                        INNER JOIN user ON article.user_id 
+                    WHERE article.order_num > ? 
+                      AND article.published = 1 
+                    ORDER BY article.order_num ASC 
+                    LIMIT 1';
         }
         elseif($place === 'previous')
         {
-            $sql = 'SELECT article.id, article.title, article.content, article.order_num, article.createdAt, article.published, article.lastPublishedDate, user.pseudo FROM article INNER JOIN user ON article.user_id WHERE article.order_num < ? AND article.published = 1 ORDER BY article.order_num DESC LIMIT 1';
+            $sql = 'SELECT article.id, article.title, article.content, article.order_num, article.createdAt, article.published, article.lastPublishedDate, user.pseudo 
+                    FROM article 
+                        INNER JOIN user ON article.user_id 
+                    WHERE article.order_num < ? 
+                        AND article.published = 1 
+                    ORDER BY article.order_num DESC 
+                    LIMIT 1';
         }
         $result = $this->createQuery($sql, [$articleOrderNum]);
         $articles = [];
@@ -90,15 +120,18 @@ class ArticleDAO extends DAO
         return array_shift($articles);
     }
 
-    public function addArticle(Parameter $post, $userId)
+    public function addArticle(Parameter $post, string $userId)
     {
-        $sql = 'INSERT INTO article (title, content, order_num, published, createdAt, user_id) VALUES(?,?,?,?,NOW(),?)';
+        $sql = 'INSERT INTO article (title, content, order_num, published, createdAt, user_id) 
+                VALUES(?,?,?,?,NOW(),?)';
         $this->createQuery($sql, [$post->get('title'), $post->get('content'), $post->get('order_num'), 0, $userId]);
     }
 
     public function editArticle(Parameter $post, $articleId, $userId)
     {
-        $sql = 'UPDATE article SET title=:title, content=:content, order_num=:order_num, user_id=:user_id WHERE id=:articleId';
+        $sql = 'UPDATE article 
+                SET title=:title, content=:content, order_num=:order_num, user_id=:user_id 
+                WHERE id=:articleId';
         $this->createQuery($sql, [
             'title' => $post->get('title'),
             'content' => $post->get('content'),
@@ -108,16 +141,20 @@ class ArticleDAO extends DAO
         ]);
     }
 
-    public function editPublicationStatus($status, $articleId)
+    public function editPublicationStatus(int $status, string $articleId)
     {
         $sql = '';
         if($status == 1)
         {
-            $sql = 'UPDATE article SET published=:published, lastPublishedDate= NOW() WHERE id=:articleId';
+            $sql = 'UPDATE article 
+                    SET published=:published, lastPublishedDate= NOW() 
+                    WHERE id=:articleId';
         }
         elseif($status == 0)
         {
-            $sql = 'UPDATE article SET published=:published WHERE id=:articleId';
+            $sql = 'UPDATE article 
+                    SET published=:published 
+                    WHERE id=:articleId';
         }
         $this->createQuery($sql, [
             'published' => $status,
@@ -125,11 +162,15 @@ class ArticleDAO extends DAO
         ]);
     }
 
-    public function deleteArticle($articleId)
+    public function deleteArticle(string $articleId)
     {
-        $sql = 'DELETE FROM comment WHERE article_id = ?';
+        $sql = 'DELETE 
+                FROM comment 
+                WHERE article_id = ?';
         $this->createQuery($sql, [$articleId]);
-        $sql = 'DELETE FROM article WHERE id = ?';
+        $sql = 'DELETE 
+                FROM article 
+                WHERE id = ?';
         $this->createQuery($sql, [$articleId]);
     }
 }

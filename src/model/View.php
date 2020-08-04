@@ -18,7 +18,7 @@ class View
         $this->session = $this->request->getSession();
     }
 
-    public function render($template, $data = [])
+    public function render(string $template, $data = [])
     {
         $this->file = '../templates/'.$template.'.php';
         $content = $this->renderFile($this->file, $data);
@@ -32,7 +32,7 @@ class View
         echo $view;
     }
 
-    private function renderFile($file, $data)
+    private function renderFile(string $file, array $data)
     {
         if (file_exists($file))
         {

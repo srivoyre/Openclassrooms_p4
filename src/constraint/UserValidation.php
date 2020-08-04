@@ -24,7 +24,7 @@ class UserValidation extends Validation
         return $this->errors;
     }
 
-    public function checkField($name, $value)
+    public function checkField(string $name, $value)
     {
         if($name === 'pseudo')
         {
@@ -43,7 +43,7 @@ class UserValidation extends Validation
         }
     }
 
-    private function addError($name, $error)
+    private function addError(string $name, $error)
     {
         if($error)
         {
@@ -53,7 +53,7 @@ class UserValidation extends Validation
         }
     }
 
-    private function checkPseudo($name, $value)
+    private function checkPseudo(string $name, $value)
     {
         if($this->constraint->notBlank($name, $value))
         {
@@ -69,7 +69,7 @@ class UserValidation extends Validation
         }
     }
 
-    private function checkPassword($name, $value)
+    private function checkPassword(string $name, $value)
     {
         if($this->constraint->notBlank($name, $value))
         {

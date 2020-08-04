@@ -50,7 +50,10 @@ class Router
                 }
                 elseif($route === 'editArticle')
                 {
-                    $this->backController->editArticle($this->request->getPost(),$this->request->getGet()->get('articleId'));
+                    $this->backController->editArticle(
+                        $this->request->getPost(),
+                        $this->request->getGet()->get('articleId')
+                    );
                 }
                 elseif($route === 'deleteArticle')
                 {
@@ -58,11 +61,17 @@ class Router
                 }
                 elseif($route === 'addComment')
                 {
-                    $this->backController->addComment($this->request->getPost(), $this->request->getGet()->get('articleId'));
+                    $this->backController->addComment(
+                        $this->request->getPost(),
+                        $this->request->getGet()->get('articleId')
+                    );
                 }
                 elseif($route === 'flagComment')
                 {
-                    $this->frontController->flagComment($this->request->getGet()->get('commentId'), $this->request->getGet()->get('articleId'));
+                    $this->frontController->flagComment(
+                        $this->request->getGet()->get('commentId'),
+                        $this->request->getGet()->get('articleId')
+                    );
                 }
                 elseif($route === 'unflagComment')
                 {
@@ -70,7 +79,11 @@ class Router
                 }
                 elseif($route === 'deleteComment')
                 {
-                    $this->backController->deleteComment($this->request->getGet()->get('commentId'),$this->request->getGet()->get('articleId'),$this->request->getGet()->get('pseudo'));
+                    $this->backController->deleteComment(
+                        $this->request->getGet()->get('commentId'),
+                        $this->request->getGet()->get('articleId'),
+                        $this->request->getGet()->get('pseudo')
+                    );
                 }
                 elseif($route === 'register')
                 {
@@ -125,7 +138,6 @@ class Router
         }
         catch (Exception $ex)
         {
-            var_dump($ex);
             $this->errorController->errorServer();
         }
     }
