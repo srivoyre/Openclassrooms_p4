@@ -75,13 +75,17 @@ class FrontController extends Controller
             if(!$checkUser)
             {
                 $checkUser = $this->userDAO->checkUser($post, 'username', 'email', 'login');
+                $checkPassword = $checkUser ? $this->userDAO->checkPassword($post, 'email'): '';
             }
-            $checkPassword = $checkUser ? $this->userDAO->checkPassword($post): '';
+            else
+            {
+                $checkPassword = $checkUser ? $this->userDAO->checkPassword($post, 'pseudo'): '';
+            }
 
             if ($checkPassword) {
-                $this->session->set('login_message', 'Content de vous revoir');
-                $this->session->set('user', $checkPassword['user']);
                 $this->session->set('loggedIn', true);
+                $this->session->set('user', $checkPassword['user']);
+                $this->session->set('login_message', 'Content de vous revoir '.$this->session->get('user')->getPseudo(). ' !');
                 header('Location: ../public/index.php');
             }
             else

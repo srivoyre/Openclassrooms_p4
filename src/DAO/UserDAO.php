@@ -74,9 +74,16 @@ class UserDAO extends DAO
         }
     }
 
-    public function checkPassword(Parameter $post)
+    public function checkPassword(Parameter $post, $field)
     {
-        $sql = 'SELECT user.id, user.pseudo, user.password, user.role_id AS roleId, role.name AS roleName, user.email FROM user INNER JOIN role ON role.id = user.role_id WHERE pseudo = ?';
+        if($field === 'pseudo')
+        {
+            $sql = 'SELECT user.id, user.pseudo, user.password, user.role_id AS roleId, role.name AS roleName, user.email, user.createdAt FROM user INNER JOIN role ON role.id = user.role_id WHERE pseudo = ?';
+        }
+        elseif($field === 'email')
+        {
+            $sql = 'SELECT user.id, user.pseudo, user.password, user.role_id AS roleId, role.name AS roleName, user.email, user.createdAt FROM user INNER JOIN role ON role.id = user.role_id WHERE email = ?';
+        }
         $data = $this->createQuery($sql, [$post->get('username')]);
         $result = $data->fetch();
         $isPasswordValid = password_verify($post->get('password'), $result['password']);
