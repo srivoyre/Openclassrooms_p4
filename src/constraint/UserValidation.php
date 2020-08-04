@@ -79,9 +79,9 @@ class UserValidation extends Validation
         {
             return $this->constraint->minLength('password', $value, 6);
         }
-        if($this->constraint->maxLength($name, $value, 255))
+        if($this->constraint->maxLength($name, $value, 20))
         {
-            return $this->constraint->maxLength('password', $value, 255);
+            return $this->constraint->maxLength('password', $value, 20);
         }
     }
     private function checkEmail($value)
