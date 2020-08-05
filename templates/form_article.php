@@ -63,9 +63,9 @@ $submit = $route === 'addArticle' ? 'Créer' : 'Enregistrer';
     <input type="submit" value="<?= $submit; ?>" id="submit" name="submit">
     <?php
         if ($route !== 'addArticle') {
-        ?>
+    ?>
             <input type="submit" value="Enregistrer et quitter" id="submit" name="submitAndLeave">
-        <?php
+    <?php
         }
     ?>
 </form>
