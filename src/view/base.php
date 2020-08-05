@@ -67,6 +67,10 @@
 
         <div id="messages">
             <?php
+            var_dump($this->session->get('info_message'));
+            var_dump($this->session->get('success_message'));
+            var_dump($this->session->get('warning_message'));
+            var_dump($this->session->get('error_message'));
             if ($this->session->get('info_message')) {
             ?>
                 <div class="alert alert-info" role="alert">

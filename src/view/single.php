@@ -1,10 +1,5 @@
 <?php $this->title = $article->getTitle(); ?>
 
-<?= $this->session->show('add_comment_message'); ?>
-<?= $this->session->show('delete_comment_message'); ?>
-<?= $this->session->show('flag_comment_message'); ?>
-<?= $this->session->show('unflag_comment_message'); ?>
-
 <p>
     <a href="../public/index.php"><< Retour à l'accueil</a>
 </p>
