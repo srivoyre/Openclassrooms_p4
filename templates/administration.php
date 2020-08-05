@@ -25,7 +25,7 @@
     <?php
     foreach ($articles as $article)
     {
-        ?>
+    ?>
         <tr>
             <td>
                 <?= htmlspecialchars($article->getOrderNum()); ?>
@@ -36,13 +36,13 @@
                 {
                     ?>
                     Brouillon
-                    <?php
+                <?php
                 }
                 elseif ($article->getIsPublished() == 1)
                 {
                     ?>
                     Publié
-                    <?php
+                <?php
                 }
                 ?>
             </td>
@@ -61,7 +61,15 @@
                 <?= htmlspecialchars($article->getCreatedAt()); ?>
             </td>
             <td>
-                <?= htmlspecialchars($article->getLastPublishedDate()); ?>
+                <?php
+                    // Avoid default '01/01/1970' display if date is null
+                    if (!is_null($article->getLastPublishedDate())) {
+                ?>
+                        <?= date('d/m/Y', strtotime($article->getLastPublishedDate())); ?>
+                <?php
+                    }
+                ?>
+
             </td>
             <td>
                 <a href="../public/index.php?route=editArticle&articleId=<?= $article->getId(); ?>">
@@ -73,19 +81,19 @@
                 <?php
                 if($article->getIsPublished() == 0)
                 {
-                    ?>
+                ?>
                     <a href="../public/index.php?route=publishArticle&articleId=<?= $article->getId(); ?>">
                         Publier
                     </a>
-                    <?php
+                <?php
                 }
                 elseif ($article->getIsPublished() == 1)
                 {
-                    ?>
+                ?>
                     <a href="../public/index.php?route=unpublishArticle&articleId=<?= $article->getId(); ?>">
                         Dépublier
                     </a>
-                    <?php
+                <?php
                 }
                 ?>
             </td>
@@ -107,7 +115,7 @@
     <?php
     foreach($comments as $comment)
     {
-        ?>
+    ?>
         <tr>
             <td>
                 <?= htmlspecialchars($comment->getId()); ?>
@@ -149,7 +157,7 @@
     <?php
     foreach($users as $user)
     {
-        ?>
+    ?>
         <tr>
             <td>
                 <?= htmlspecialchars($user->getId()); ?>
@@ -172,22 +180,22 @@
                 <?php
                 if(!$user->getIsAdmin())
                 {
-                    ?>
+                ?>
                     <a href="../public/index.php?route=deleteUser&userId=<?= $user->getId(); ?>">
                         Supprimer
                     </a>
-                    <?php
+                <?php
                 }
                 else
                 {
-                    ?>
+                ?>
                     Suppression impossible
-                    <?php
+                <?php
                 }
                 ?>
             </td>
         </tr>
-        <?php
+    <?php
     }
     ?>
 </table>

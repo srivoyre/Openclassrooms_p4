@@ -166,7 +166,7 @@ class Article
      */
     public function getLastPublishedDate()
     {
-        return date('d/m/Y', strtotime($this->lastPublishedDate));
+        return $this->lastPublishedDate;
     }
 
     /**
