@@ -55,6 +55,7 @@ class FrontController extends Controller
             if(!$errors)
             {
                 $this->userDAO->register($post);
+                var_dump($post);
                 $this->login($post);
                 $this->session->set(
                     'register_message',
@@ -76,10 +77,10 @@ class FrontController extends Controller
         if($post->get('submit'))
         {
             // We give the user the possibility to login with either his pseudo or his email
-            $checkUser = $this->userDAO->checkUser($post, 'username', 'pseudo', 'login');
+            $checkUser = $this->userDAO->checkUser($post, 'pseudo', 'pseudo', 'login');
             if(!$checkUser)
             {
-                $checkUser = $this->userDAO->checkUser($post, 'username', 'email', 'login');
+                $checkUser = $this->userDAO->checkUser($post, 'pseudo', 'email', 'login');
                 $checkPassword = $checkUser ? $this->userDAO->checkPassword($post, 'email'): '';
             }
             else

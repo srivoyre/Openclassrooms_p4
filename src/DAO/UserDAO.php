@@ -77,8 +77,11 @@ class UserDAO extends DAO
         $isUnique = $result->fetchColumn();
         if($param === 'register')
         {
-            if ($isUnique) {
+            if ($isUnique && $fieldToCheck === 'pseudo') {
                 return '<p>Ce pseudo n\'est pas disponible</p>';
+            }
+            elseif ($isUnique && $fieldToCheck === 'email') {
+                return '<p>Un compte associé à cet e-mail existe déjà ! <a href="../public/index.php?route=login">Je me connecte</a> </p>';
             }
         }
         elseif($param === 'login')
