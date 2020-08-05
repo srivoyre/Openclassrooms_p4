@@ -178,7 +178,11 @@ class BackController extends Controller
             if ($post->get('submit')) {
                 $errors = $this->validation->validate($post, 'Comment');
                 if (!$errors) {
-                    $this->commentDAO->addComment($post, $this->session->get('user')->getPseudo(), $articleId);
+                    $this->commentDAO->addComment(
+                        $post,
+                        $this->session->get('user')->getPseudo(),
+                        $articleId
+                    );
                     $this->session->set(
                         'add_comment_message',
                         'Votre nouveau commentaire a bien été ajouté'

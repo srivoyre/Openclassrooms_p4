@@ -16,10 +16,10 @@ foreach ($articles as $article) {
             </a>
         </h2>
         <p>
-            <?= $article->getContent();?>
+            <?= substr(strip_tags($article->getContent()), 0, 150); ?>
         </p>
         <p>
-            Publié le : <?= htmlspecialchars($article->getLastPublishedDate());?>
+            Publié le : <?= htmlspecialchars(date('d/m/Y', strtotime($article->getLastPublishedDate())));?>
         </p>
     </div>
     <br />

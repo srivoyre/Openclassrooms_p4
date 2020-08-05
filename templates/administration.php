@@ -65,7 +65,7 @@
                     // Avoid default '01/01/1970' display if date is null
                     if (!is_null($article->getLastPublishedDate())) {
                 ?>
-                        <?= date('d/m/Y', strtotime($article->getLastPublishedDate())); ?>
+                        <?= htmlspecialchars(date('d/m/Y', strtotime($article->getLastPublishedDate()))); ?>
                 <?php
                     }
                 ?>
