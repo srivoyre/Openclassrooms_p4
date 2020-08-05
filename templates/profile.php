@@ -1,8 +1,6 @@
 <?php $this->title = 'Mon profil'; ?>
 
-<?php
-$loggedIn = isset($this->session) && $this->session->get('user')->getPseudo();
-?>
+<?php $loggedIn = isset($this->session) && $this->session->get('user')->getPseudo(); ?>
 
 <?= $this->session->show('update_email_message'); ?>
 <?= $this->session->show('update_password_message'); ?>

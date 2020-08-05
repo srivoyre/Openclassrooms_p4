@@ -12,7 +12,7 @@ class Comment
     private $articleId;
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getId()
     {
@@ -20,7 +20,7 @@ class Comment
     }
 
     /**
-     * @param mixed $id
+     * @param string $id
      */
     public function setId($id)
     {
@@ -28,7 +28,7 @@ class Comment
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getPseudo()
     {
@@ -36,7 +36,7 @@ class Comment
     }
 
     /**
-     * @param mixed $pseudo
+     * @param string $pseudo
      */
     public function setPseudo($pseudo)
     {
@@ -44,7 +44,7 @@ class Comment
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getContent()
     {
@@ -52,7 +52,7 @@ class Comment
     }
 
     /**
-     * @param mixed $content
+     * @param string $content
      */
     public function setContent($content)
     {
@@ -60,7 +60,7 @@ class Comment
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getCreatedAt()
     {
@@ -68,18 +68,24 @@ class Comment
     }
 
     /**
-     * @param mixed $createdAt
+     * @param \DateTime $createdAt
      */
     public function setCreatedAt($createdAt)
     {
         $this->createdAt = $createdAt;
     }
 
-    public function isFlag()
+    /**
+     * @param int $flag
+     */
+    public function getIsFlag()
     {
         return $this->flag;
     }
 
+    /**
+     * @param int $flag
+     */
     public function setFlag($flag)
     {
         $this->flag = $flag;

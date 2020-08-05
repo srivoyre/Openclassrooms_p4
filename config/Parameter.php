@@ -14,15 +14,14 @@ class Parameter
         $this->parameter = $parameter;
     }
 
-    public function get($name)
+    public function get(string $name)
     {
-        if(isset($this->parameter[$name]))
-        {
+        if( isset($this->parameter[$name])) {
             return $this->parameter[$name];
         }
     }
 
-    public function set($name, $value)
+    public function set(string $name, $value)
     {
         $this->parameter[$name] = $value;
     }

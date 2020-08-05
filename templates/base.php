@@ -15,7 +15,7 @@
             <?php
             if($this->session->get('loggedIn'))
             {
-                if(!$this->session->get('not_admin')) {
+                if($this->session->get('user')->getIsAdmin()) {
                 ?>
                 <a href="../public/index.php?route=administration">Administration</a>
                 <?php

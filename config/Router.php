@@ -24,108 +24,70 @@ class Router
     public function run()
     {
         $route = $this->request->getGet()->get('route');
-        try
-        {
-            if(isset($route))
-            {
-                if($route === 'viewArticle')
-                {
+        try {
+            if (isset($route)) {
+                if ($route === 'viewArticle') {
                     $this->frontController->getPublishedArticle($this->request->getGet()->get('articleId'));
-                }
-                elseif($route === 'article')
-                {
+                } elseif ($route === 'article') {
                     $this->backController->getArticle($this->request->getGet()->get('articleId'));
-                }
-                elseif($route === 'addArticle')
-                {
+                } elseif ($route === 'addArticle') {
                     $this->backController->addArticle($this->request->getPost());
-                }
-                elseif($route === 'publishArticle')
-                {
+                } elseif ($route === 'publishArticle') {
                     $this->backController->publishArticle($this->request->getGet()->get('articleId'));
-                }
-                elseif($route === 'unpublishArticle')
-                {
+                } elseif ($route === 'unpublishArticle') {
                     $this->backController->unpublishArticle($this->request->getGet()->get('articleId'));
-                }
-                elseif($route === 'editArticle')
-                {
-                    $this->backController->editArticle($this->request->getPost(),$this->request->getGet()->get('articleId'));
-                }
-                elseif($route === 'deleteArticle')
-                {
+                } elseif ($route === 'editArticle') {
+                    $this->backController->editArticle(
+                        $this->request->getPost(),
+                        $this->request->getGet()->get('articleId')
+                    );
+                } elseif ($route === 'deleteArticle') {
                     $this->backController->deleteArticle($this->request->getGet()->get('articleId'));
-                }
-                elseif($route === 'addComment')
-                {
-                    $this->backController->addComment($this->request->getPost(), $this->request->getGet()->get('articleId'));
-                }
-                elseif($route === 'flagComment')
-                {
-                    $this->frontController->flagComment($this->request->getGet()->get('commentId'), $this->request->getGet()->get('articleId'));
-                }
-                elseif($route === 'unflagComment')
-                {
+                } elseif ($route === 'addComment') {
+                    $this->backController->addComment(
+                        $this->request->getPost(),
+                        $this->request->getGet()->get('articleId')
+                    );
+                } elseif ($route === 'flagComment') {
+                    $this->frontController->flagComment(
+                        $this->request->getGet()->get('commentId'),
+                        $this->request->getGet()->get('articleId')
+                    );
+                } elseif ($route === 'unflagComment') {
                     $this->backController->unflagComment($this->request->getGet()->get('commentId'));
-                }
-                elseif($route === 'deleteComment')
-                {
-                    $this->backController->deleteComment($this->request->getGet()->get('commentId'),$this->request->getGet()->get('articleId'),$this->request->getGet()->get('pseudo'));
-                }
-                elseif($route === 'register')
-                {
+                } elseif ($route === 'deleteComment') {
+                    $this->backController->deleteComment(
+                        $this->request->getGet()->get('commentId'),
+                        $this->request->getGet()->get('articleId'),
+                        $this->request->getGet()->get('pseudo')
+                    );
+                } elseif ($route === 'register') {
                     $this->frontController->register($this->request->getPost());
-                }
-                elseif($route === 'login')
-                {
+                } elseif ($route === 'login') {
                     $this->frontController->login($this->request->getPost());
-                }
-                elseif($route === 'profile')
-                {
+                } elseif ($route === 'profile') {
                     $this->backController->profile();
-                }
-                elseif($route === 'updateEmail')
-                {
+                } elseif ($route === 'updateEmail') {
                     $this->backController->updateEmail($this->request->getPost());
-                }
-                elseif ($route === 'updatePassword')
-                {
+                } elseif ($route === 'updatePassword') {
                     $this->backController->updatePassword($this->request->getPost());
-                }
-                elseif($route === 'logout')
-                {
+                } elseif ($route === 'logout') {
                     $this->backController->logout();
-                }
-                elseif($route === 'deleteAccount')
-                {
+                } elseif ($route === 'deleteAccount') {
                     $this->backController->deleteAccount();
-                }
-                elseif($route === 'deleteUser')
-                {
+                } elseif ($route === 'deleteUser') {
                     $this->backController->deleteUser($this->request->getGet()->get('userId'));
-                }
-                elseif($route === 'administration')
-                {
+                } elseif ($route === 'administration') {
                     $this->backController->administration();
-                }
-                elseif ($route === 'errorPermission')
-                {
+                } elseif ($route === 'errorPermission') {
                     $this->errorController->errorPermission();
-                }
-                 // can't find route
-                else
-                {
+                } else {
                     $this->errorController->errorNotFound();
                 }
-            }
-            else
-            {
+            } else {
                 $this->frontController->home();
             }
-        }
-        catch (Exception $ex)
-        {
-            var_dump($ex);
+        } catch (Exception $ex) {
             $this->errorController->errorServer();
         }
     }

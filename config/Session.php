@@ -15,12 +15,12 @@ class Session
         $this->session = $session;
     }
 
-    public function set($name, $value)
+    public function set(string $name, $value)
     {
         $_SESSION[$name] = $value;
     }
 
-    public function get($name)
+    public function get(string $name)
     {
         if(isset($_SESSION[$name]))
         {
@@ -28,17 +28,16 @@ class Session
         }
     }
 
-    public function show($name)
+    public function show(string $name)
     {
-        if(isset($_SESSION[$name]))
-        {
+        if (isset($_SESSION[$name])) {
             $key = $this->get($name);
             $this->remove($name);
             return $key;
         }
     }
 
-    public function remove($name)
+    public function remove(string $name)
     {
         unset($_SESSION[$name]);
     }

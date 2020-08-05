@@ -7,9 +7,8 @@
 <?= $this->session->show('delete_account_message'); ?>
 
 <?php
-foreach ($articles as $article)
-{
-    ?>
+foreach ($articles as $article) {
+?>
     <div>
         <h2>
             <a href="../public/index.php?route=viewArticle&articleId=<?=htmlspecialchars($article->getId());?>">
@@ -24,6 +23,6 @@ foreach ($articles as $article)
         </p>
     </div>
     <br />
-    <?php
+<?php
 }
 ?>

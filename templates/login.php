@@ -7,7 +7,7 @@
     <form method="post" action="../public/index.php?route=login">
         <label for="pseudo">Pseudo ou e-mail</label>
         <br />
-        <input type="text" id="username" name="username">
+        <input type="text" id="pseudo" name="pseudo">
         <br />
         <label for="password">Mot de passe</label>
         <br />
