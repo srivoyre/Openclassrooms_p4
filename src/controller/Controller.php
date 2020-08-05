@@ -7,7 +7,7 @@ use App\src\model\DAO\CommentDAO;
 use App\src\model\DAO\UserDAO;
 use App\src\model\View;
 use App\src\constraint\Validation;
-use App\config\Request;
+use App\src\Request;
 
 abstract class Controller
 {

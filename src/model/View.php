@@ -2,7 +2,7 @@
 
 namespace App\src\model;
 
-use App\config\Request;
+use App\src\Request;
 
 class View
 {

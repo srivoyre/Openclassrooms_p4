@@ -2,7 +2,7 @@
 
 namespace App\src\model\DAO;
 
-use App\config\Parameter;
+use App\src\Parameter;
 use App\src\model\Article;
 use function Sodium\add;
 
