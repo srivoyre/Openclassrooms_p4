@@ -107,7 +107,7 @@ class UserDAO extends DAO
                     WHERE email = ?';
         }
 
-        $data = $this->createQuery($sql, [$post->get('username')]);
+        $data = $this->createQuery($sql, [$post->get('pseudo')]);
         $result = $data->fetch();
         $isPasswordValid = password_verify($post->get('password'), $result['password']);
 

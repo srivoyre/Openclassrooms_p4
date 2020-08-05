@@ -73,13 +73,16 @@ class FrontController extends Controller
     {
         if ($post->get('submit')) {
             // We give the user the possibility to login with either his pseudo or his email
-            $checkUser = $this->userDAO->checkUser($post, 'pseudo', 'pseudo', 'login');
-            if (!$checkUser) {
-                $checkUser = $this->userDAO->checkUser($post, 'pseudo', 'email', 'login');
-                $checkPassword = $checkUser ? $this->userDAO->checkPassword($post, 'email'): '';
-            } else {
-                $checkPassword = $checkUser ? $this->userDAO->checkPassword($post, 'pseudo'): '';
+            $checkPseudo = $this->userDAO->checkUser($post, 'pseudo', 'pseudo', 'login');
+            $checkEmail = $this->userDAO->checkUser($post, 'pseudo', 'email', 'login');
+
+            if ($checkPseudo) {
+                $validUsername = 'pseudo';
+            } elseif ($checkEmail) {
+                $validUsername = 'email';
             }
+
+            $checkPassword = $validUsername ? $this->userDAO->checkPassword($post, $validUsername): '';
 
             if ($checkPassword) {
                 $this->session->set('loggedIn', true);
