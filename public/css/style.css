@@ -1,0 +1,8 @@
+#messages {
+    display: flex;
+    justify-content: center;
+}
+#messages .alert {
+    text-align: center;
+    width: 500px;
+}
