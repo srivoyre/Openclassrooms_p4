@@ -2,25 +2,25 @@
 
 <h2>Articles</h2>
 <a type="button" class="btn btn-secondary" href="../public/index.php?route=addArticle">Nouvel article</a>
-<table>
+<table class="table table-hover">
     <thead>
-        <th>Numéro du chapitre</th>
-        <th>Statut</th>
-        <th>Titre</th>
-        <th>Contenu</th>
-        <th>Auteur</th>
-        <th>Date de création</th>
-        <th>Dernière publication</th>
-        <th>Actions</th>
+        <th scope="col">Numéro du chapitre</th>
+        <th scope="col">Statut</th>
+        <th scope="col">Titre</th>
+        <th scope="col">Contenu</th>
+        <th scope="col">Auteur</th>
+        <th scope="col">Date de création</th>
+        <th scope="col">Dernière publication</th>
+        <th scope="col">Actions</th>
     </thead>
     <?php
     foreach ($articles as $article)
     {
     ?>
         <tr>
-            <td>
+            <th  scope="row">
                 <?= htmlspecialchars($article->getOrderNum()); ?>
-            </td>
+            </th>
             <td>
                 <?php
                 if($article->getIsPublished() == 0)
@@ -95,22 +95,22 @@
 </table>
 
 <h2>Commentaires signalés</h2>
-<table>
+<table class="table table-hover">
     <thead>
-        <th>Id</th>
-        <th>Pseudo</th>
-        <th>Message</th>
-        <th>Date de création</th>
-        <th>Actions</th>
+        <th scope="col">Id</th>
+        <th scope="col">Pseudo</th>
+        <th scope="col">Message</th>
+        <th scope="col">Date de création</th>
+        <th scope="col">Actions</th>
     </thead>
     <?php
     foreach($comments as $comment)
     {
     ?>
         <tr>
-            <td>
+            <th scope="row">
                 <?= htmlspecialchars($comment->getId()); ?>
-            </td>
+            </th>
             <td>
                 <?= htmlspecialchars($comment->getPseudo()); ?>
             </td>
@@ -136,23 +136,23 @@
 
 
 <h2>Utilisateurs</h2>
-<table>
+<table class="table table-hover">
     <thead>
-        <th>Id</th>
-        <th>Pseudo</th>
-        <th>Email</th>
-        <th>Date de création</th>
-        <th>Rôle</th>
-        <th>Actions</th>
+        <th scope="col">Id</th>
+        <th scope="col">Pseudo</th>
+        <th scope="col">Email</th>
+        <th scope="col">Date de création</th>
+        <th scope="col">Rôle</th>
+        <th scope="col">Actions</th>
     </thead>
     <?php
     foreach($users as $user)
     {
     ?>
         <tr>
-            <td>
+            <th scope="row">
                 <?= htmlspecialchars($user->getId()); ?>
-            </td>
+            </th>
             <td>
                 <?= htmlspecialchars($user->getPseudo()); ?>
             </td>

@@ -13,7 +13,7 @@
             <br />
             <input class="form-control" type="email" id="email" name="email" value="<?= htmlspecialchars($user->getEmail()); ?>">
         </div>
-        <input type="submit" value="Mettre à jour mon e-mail" id="submitEmail" name="submitEmail">
+        <input class="btn btn-primary" type="submit" value="Mettre à jour mon e-mail" id="submitEmail" name="submitEmail">
     </form>
 
     <a type="button" class="btn btn-primary" href="../public/index.php?route=updatePassword">Modifier mon mot de passe</a>
