@@ -2,7 +2,7 @@
 
 namespace App\src\constraint;
 
-use App\config\Parameter;
+use App\src\Parameter;
 
 class Validation
 {

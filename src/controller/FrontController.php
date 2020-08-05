@@ -2,7 +2,7 @@
 
 namespace App\src\controller;
 
-use App\config\Parameter;
+use App\src\Parameter;
 
 class FrontController extends Controller
 {

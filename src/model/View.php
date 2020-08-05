@@ -2,7 +2,7 @@
 
 namespace App\src\model;
 
-use App\config\Request;
+use App\src\Request;
 
 class View
 {
@@ -20,9 +20,9 @@ class View
 
     public function render(string $template, $data = [])
     {
-        $this->file = '../templates/'.$template.'.php';
+        $this->file = '../src/view/'.$template.'.php';
         $content = $this->renderFile($this->file, $data);
-        $view = $this->renderFile('../templates/base.php', [
+        $view = $this->renderFile('../src/view/base.php', [
             'title' => $this->title,
             'script' => $this->script,
             'content' => $content,

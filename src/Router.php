@@ -1,6 +1,6 @@
 <?php
 
-namespace App\config;
+namespace App\src;
 
 use App\src\controller\FrontController;
 use App\src\controller\BackController;
