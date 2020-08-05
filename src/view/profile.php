@@ -8,10 +8,11 @@
     <p>Nombre de commentaires en ligne : <?= $user->getNumberOfComments(); ?></p>
 
     <form method="post" action="../public/index.php?route=updateEmail">
-        <label for="email">E-mail</label>
-        <br />
-        <input type="email" id="email" name="email" value="<?= htmlspecialchars($user->getEmail()); ?>">
-        <br />
+        <div class="form-group">
+            <label for="email">E-mail</label>
+            <br />
+            <input class="form-control" type="email" id="email" name="email" value="<?= htmlspecialchars($user->getEmail()); ?>">
+        </div>
         <input type="submit" value="Mettre à jour mon e-mail" id="submitEmail" name="submitEmail">
     </form>
 
