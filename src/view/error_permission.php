@@ -1,7 +1,7 @@
 <?php $this->title = "Privilèges insuffisants"; ?>
 
-<p>
+<div class="alert alert-warning" role="alert">
     <?= $this->session->show('not_admin_message'); ?>
-</p>
+</div>
 
 <a href="../public/index.php"><< Retour à l'accueil</a>

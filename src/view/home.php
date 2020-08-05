@@ -1,10 +1,12 @@
 <?php $this->title = "Accueil"; ?>
 
-<?= $this->session->show('register_message'); ?>
-<?= $this->session->show('login_message'); ?>
-<?= $this->session->show('logout_message'); ?>
-<?= $this->session->show('delete_user_message'); ?>
-<?= $this->session->show('delete_account_message'); ?>
+<div class="alert alert-info" role="alert">
+    <?= $this->session->show('register_message'); ?>
+    <?= $this->session->show('login_message'); ?>
+    <?= $this->session->show('logout_message'); ?>
+    <?= $this->session->show('delete_user_message'); ?>
+    <?= $this->session->show('delete_account_message'); ?>
+</div>
 
 <?php
 foreach ($articles as $article) {

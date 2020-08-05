@@ -72,7 +72,9 @@ class FrontController extends Controller
     public function login(Parameter $post)
     {
         if ($post->get('submit')) {
+
             // We give the user the possibility to login with either his pseudo or his email
+            $validUsername = '';
             $checkPseudo = $this->userDAO->checkUser($post, 'pseudo', 'pseudo', 'login');
             $checkEmail = $this->userDAO->checkUser($post, 'pseudo', 'email', 'login');
 
@@ -94,7 +96,7 @@ class FrontController extends Controller
                 header('Location: ../public/index.php');
             } else {
                 $this->session->set(
-                    'error_login_message',
+                    'message',
                     'Le pseudo et/ou le mot de passe sont incorrects'
                 );
                 return $this->view->render('login', [

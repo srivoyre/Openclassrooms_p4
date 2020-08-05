@@ -1,7 +1,4 @@
-<?php $this->title = "Connexion"; ?>
-
-<?= $this->session->show('error_login_message'); ?>
-<?= $this->session->show('need_login_message'); ?>
+<?php $this->title = "Connexion" ;?>
 
 <div>
     <form method="post" action="../public/index.php?route=login">

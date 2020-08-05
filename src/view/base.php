@@ -9,10 +9,11 @@
         <title>
             <?= $title ?>
         </title>
-        <!--jQuery, Poppers.js, Bootstrap JS, then custom script -->
+        <!--jQuery, Poppers.js, Bootstrap JS, then custom scripts -->
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.1/js/bootstrap.min.js" integrity="sha384-XEerZL0cuoUbHE4nZReLT7nx9gQrQreJekYhJD9WNWhH8nEW+0c5qq7aIo2Wl30J" crossorigin="anonymous"></script>
+        <script src="../../public/js/main.js"></script>
         <script <?= $script ?> ></script>
 
     </head>
@@ -57,31 +58,44 @@
         </header>
 
         <div>
+
             <h1>
                 <?= $title ?>
             </h1>
 
-
         </div>
 
+        <div id="messages">
+            <?php
+            if ($this->session->get('info_message')) {
+            ?>
+                <div class="alert alert-info" role="alert">
+                    <?= $this->session->show('info_message') ; ?>
+                </div>
+            <?php
+            } elseif ($this->session->get('success_message')) {
+            ?>
+                <div class="alert alert-success" role="alert">
+                    <?= $this->session->show('success_message') ; ?>
+                </div>
+            <?php
+            } elseif ($this->session->get('warning_message')) {
+            ?>
+                <div class="alert alert-warning" role="alert">
+                    <?= $this->session->show('warning_message') ; ?>
+                </div>
+            <?php
+            } elseif ($this->session->get('error_message')) {
+            ?>
+                <div class="alert alert-danger" role="alert">
+                    <?= $this->session->show('error_message') ; ?>
+                </div>
+            <?php
+            }
+            ?>
+        </div>
 
         <div id="content">
-            <?= $this->session->show('add_article'); ?>
-            <?= $this->session->show('edit_article'); ?>
-            <?= $this->session->show('delete_article'); ?>
-            <?= $this->session->show('add_comment'); ?>
-            <?= $this->session->show('flag_comment'); ?>
-            <?= $this->session->show('unflag_comment'); ?>
-            <?= $this->session->show('delete_comment'); ?>
-            <?= $this->session->show('register'); ?>
-            <?= $this->session->show('login'); ?>
-            <?= $this->session->show('logout'); ?>
-            <?= $this->session->show('delete_user'); ?>
-            <?= $this->session->show('delete_account'); ?>
-            <?= $this->session->show('error_login'); ?>
-            <?= $this->session->show('need_login'); ?>
-            <?= $this->session->show('update_password'); ?>
-            <?= $this->session->show('not_admin'); ?>
 
             <?= $content ?>
         </div>

@@ -2,9 +2,13 @@
 
 <?php $loggedIn = isset($this->session) && $this->session->get('user')->getPseudo(); ?>
 
-<?= $this->session->show('update_email_message'); ?>
-<?= $this->session->show('update_password_message'); ?>
-<?= $this->session->show('not_admin_message'); ?>
+<div class="alert alert-success" role="alert">
+    <?= $this->session->show('update_email_message'); ?>
+    <?= $this->session->show('update_password_message'); ?>
+</div>
+<div class="alert alert-warning" role="alert">
+    <?= $this->session->show('not_admin_message'); ?>
+</div>
 
 <div>
     <h2><?= $user->getPseudo(); ?></h2>
