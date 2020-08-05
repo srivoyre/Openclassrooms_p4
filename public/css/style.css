@@ -1,3 +1,6 @@
+/******************************
+Alerts
+******************************/
 #messages {
     display: flex;
     justify-content: center;
@@ -5,4 +8,32 @@
 #messages .alert {
     text-align: center;
     width: 500px;
+}
+/******************************
+Layout
+******************************/
+body {
+    width: 100%;
+}
+#title {
+    margin: 5%;
+}
+#content {
+    margin: 0 10%;
+}
+@media all and (min-width: 640px){
+    #content {
+        margin: 0 10%;
+    }
+}
+/******************************
+Navbar
+******************************/
+.navbar-brand {
+    font-size: 1.2rem;
+}
+@media all and (min-width: 375px){
+    .navbar-brand {
+        font-size: 1.55rem;
+    }
 }

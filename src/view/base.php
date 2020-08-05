@@ -58,12 +58,10 @@
             </nav>
         </header>
 
-        <div>
-
+        <div id="title">
             <h1>
                 <?= $title ?>
             </h1>
-
         </div>
 
         <div id="messages">
@@ -98,7 +96,6 @@
         </div>
 
         <div id="content">
-
             <?= $content ?>
         </div>
 
