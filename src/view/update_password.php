@@ -12,4 +12,4 @@
     </form>
 </div>
 
-<a href="../public/index.php?route=profile"><< Retour au profil</a>
+<a type="button" class="btn btn-secondary" href="../public/index.php?route=profile"><< Retour au profil</a>

@@ -2,14 +2,6 @@
 
 <?php $loggedIn = isset($this->session) && $this->session->get('user')->getPseudo(); ?>
 
-<div class="alert alert-success" role="alert">
-    <?= $this->session->show('update_email_message'); ?>
-    <?= $this->session->show('update_password_message'); ?>
-</div>
-<div class="alert alert-warning" role="alert">
-    <?= $this->session->show('not_admin_message'); ?>
-</div>
-
 <div>
     <h2><?= $user->getPseudo(); ?></h2>
     <p>Membre depuis le <?= $user->getCreatedAt(); ?></p>
@@ -23,7 +15,7 @@
         <input type="submit" value="Mettre à jour mon e-mail" id="submitEmail" name="submitEmail">
     </form>
 
-    <a href="../public/index.php?route=updatePassword">Modifier mon mot de passe</a>
-    <a href="../public/index.php?route=deleteAccount">Supprimer mon compte</a>
+    <a type="button" class="btn btn-primary" href="../public/index.php?route=updatePassword">Modifier mon mot de passe</a>
+    <a type="button" class="btn btn-danger" href="../public/index.php?route=deleteAccount">Supprimer mon compte</a>
 </div>
-<a href="../public/index.php">Retour à l'accueil</a>
+<a type="button" class="btn btn-secondary" href="../public/index.php">Retour à l'accueil</a>

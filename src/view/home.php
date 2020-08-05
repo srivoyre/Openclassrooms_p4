@@ -1,5 +1,5 @@
 <?php $this->title = "Accueil"; ?>
-    
+
 <?php
 foreach ($articles as $article) {
 ?>

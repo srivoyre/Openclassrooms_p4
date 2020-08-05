@@ -1,7 +1,7 @@
 <?php $this->title = 'Administration'; ?>
 
 <h2>Articles</h2>
-<a href="../public/index.php?route=addArticle">Nouvel article</a>
+<a type="button" class="btn btn-secondary" href="../public/index.php?route=addArticle">Nouvel article</a>
 <table>
     <thead>
         <th>Numéro du chapitre</th>
@@ -63,17 +63,17 @@
 
             </td>
             <td>
-                <a href="../public/index.php?route=editArticle&articleId=<?= $article->getId(); ?>">
+                <a type="button" class="btn btn-primary" href="../public/index.php?route=editArticle&articleId=<?= $article->getId(); ?>">
                     Modifier
                 </a>
-                <a href="../public/index.php?route=deleteArticle&articleId=<?= $article->getId(); ?>">
+                <a type="button" class="btn btn-danger" href="../public/index.php?route=deleteArticle&articleId=<?= $article->getId(); ?>">
                     Supprimer
                 </a>
                 <?php
                 if($article->getIsPublished() == 0)
                 {
                 ?>
-                    <a href="../public/index.php?route=publishArticle&articleId=<?= $article->getId(); ?>">
+                    <a type="button" class="btn btn-success" href="../public/index.php?route=publishArticle&articleId=<?= $article->getId(); ?>">
                         Publier
                     </a>
                 <?php
@@ -81,7 +81,7 @@
                 elseif ($article->getIsPublished() == 1)
                 {
                 ?>
-                    <a href="../public/index.php?route=unpublishArticle&articleId=<?= $article->getId(); ?>">
+                    <a type="button" class="btn btn-warning" href="../public/index.php?route=unpublishArticle&articleId=<?= $article->getId(); ?>">
                         Dépublier
                     </a>
                 <?php
@@ -121,10 +121,10 @@
                 <?= htmlspecialchars($comment->getCreatedAt()); ?>
             </td>
             <td>
-                <a href="../public/index.php?route=unflagComment&commentId=<?= $comment->getId(); ?>">
+                <a type="button" class="btn btn-primary" href="../public/index.php?route=unflagComment&commentId=<?= $comment->getId(); ?>">
                     Désignaler le commentaire
                 </a>
-                <a href="../public/index.php?route=deleteComment&commentId=<?= $comment->getId(); ?>">
+                <a type="button" class="btn btn-danger" href="../public/index.php?route=deleteComment&commentId=<?= $comment->getId(); ?>">
                     Supprimer le commentaire
                 </a>
             </td>
@@ -172,7 +172,7 @@
                 if(!$user->getIsAdmin())
                 {
                 ?>
-                    <a href="../public/index.php?route=deleteUser&userId=<?= $user->getId(); ?>">
+                    <a type="button" class="btn btn-danger" href="../public/index.php?route=deleteUser&userId=<?= $user->getId(); ?>">
                         Supprimer
                     </a>
                 <?php

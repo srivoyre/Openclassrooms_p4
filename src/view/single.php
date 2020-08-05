@@ -1,7 +1,7 @@
 <?php $this->title = $article->getTitle(); ?>
 
 <p>
-    <a href="../public/index.php"><< Retour à l'accueil</a>
+    <a type="button" class="btn btn-secondary" href="../public/index.php"><< Retour à l'accueil</a>
 </p>
 
 <?php
@@ -28,6 +28,20 @@ if (empty($article->getNextArticle()) == false) {
     <h2>
         <?= htmlspecialchars($article->getTitle());?>
     </h2>
+    <?php
+    if (
+        $this->session->get('loggedIn')
+        && $this->session->get('user')->getIsAdmin()
+    ) {
+        ?>
+        <div class="actions">
+            <a  type="button" class="btn btn-primary" href="../public/index.php?route=editArticle&articleId=<?= $article->getId(); ?>">
+                Modifier
+            </a>
+        </div>
+        <?php
+    }
+    ?>
     <p>
         <?= $article->getContent();?>
     </p>
@@ -38,22 +52,6 @@ if (empty($article->getNextArticle()) == false) {
         Publié le : <?= htmlspecialchars($article->getLastPublishedDate());?>
     </p>
 </div>
-
-<br />
-<?php
-if (
-    $this->session->get('loggedIn')
-    && $this->session->get('user')->getIsAdmin()
-) {
-?>
-    <div class="actions">
-        <a href="../public/index.php?route=editArticle&articleId=<?= $article->getId(); ?>">Modifier</a>
-        <a href="../public/index.php?route=deleteArticle&articleId=<?= $article->getId(); ?>">Supprimer</a>
-    </div>
-<?php
-}
-?>
-
 
 <br />
 
@@ -97,7 +95,7 @@ foreach ($comments as $comment) {
     } else {
 ?>
         <p>
-            <a href="../public/index.php?route=flagComment&commentId=<?= $comment->getId(); ?>&articleId=<?= $comment->getArticleId(); ?>">
+            <a  type="button" class="btn btn-outline-danger" href="../public/index.php?route=flagComment&commentId=<?= $comment->getId(); ?>&articleId=<?= $comment->getArticleId(); ?>">
                 Signaler le commentaire
             </a>
         </p>
@@ -110,7 +108,7 @@ foreach ($comments as $comment) {
     ) {
 ?>
         <p>
-            <a href="../public/index.php?route=deleteComment&commentId=<?= $comment->getId(); ?>&articleId=<?= $comment->getArticleId(); ?>&pseudo=<?= $comment->getPseudo(); ?>">
+            <a  type="button" class="btn btn-outline-primary" href="../public/index.php?route=deleteComment&commentId=<?= $comment->getId(); ?>&articleId=<?= $comment->getArticleId(); ?>&pseudo=<?= $comment->getPseudo(); ?>">
                 Supprimer mon commentaire
             </a>
         </p>

@@ -20,6 +20,6 @@
         <input type="submit" value="Inscription" id="submit" name="submit">
     </form>
 
-    <a href="../public/index.php?route=login">J'ai déjà un compte</a>
-    <a href="../public/index.php">Retour à l'accueil</a>
+    <a type="button" class="btn btn-primary" href="../public/index.php?route=login">J'ai déjà un compte</a>
+    <a type="button" class="btn btn-secondary" href="../public/index.php">Retour à l'accueil</a>
 </div>
