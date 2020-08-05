@@ -1,4 +1,22 @@
 {
+    "name": "srivoyre\n/\nOpenclassrooms_p4",
+    "version": "0.1.0",
+    "type": "project",
+    "description": "Blog pour l'écrivain Jean Forteroche, projet n°4 du parcours Développeur Web Junior d'Openclassrooms",
+    "keywords": [
+        "php",
+        "blog"
+    ],
+    "homepage": "https://github.com/srivoyre/Openclassrooms_p4",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Sophie de Rivoyre",
+            "email": "s.rivoyre@gmail.com",
+            "homepage": "https://github.com/srivoyre/",
+            "role": "Developer"
+        }
+    ],
     "autoload": {
         "psr-4": {
             "App\\config\\": "config/",
@@ -7,5 +25,10 @@
     },
     "require":{
         "twig/twig":"3.0.4"
+    },
+    "support": {
+        "email": "s.rivoyre@gmail.com",
+        "issues": "https://github.com/srivoyre/Openclassrooms_p4/issues",
+        "source": "https://github.com/srivoyre/Openclassrooms_p4"
     }
 }
