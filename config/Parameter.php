@@ -16,8 +16,7 @@ class Parameter
 
     public function get(string $name)
     {
-        if(isset($this->parameter[$name]))
-        {
+        if( isset($this->parameter[$name])) {
             return $this->parameter[$name];
         }
     }

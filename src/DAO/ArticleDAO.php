@@ -17,8 +17,8 @@ class ArticleDAO extends DAO
         $article->setAuthor($row['pseudo']);
         $article->setCreatedAt($row['createdAt']);
         $article->setOrderNum($row['order_num']);
-        if($getSurroundingArticles === true)
-        {
+
+        if ($getSurroundingArticles === true) {
             $article->setNextArticle(
                 $this->getSurroundingArticle($article->getOrderNum(), 'next')
             );
@@ -26,6 +26,7 @@ class ArticleDAO extends DAO
                 $this->getSurroundingArticle($article->getOrderNum(), 'previous')
             );
         }
+
         $article->setIsPublished($row['published']);
         $article->setLastPublishedDate($row['lastPublishedDate']);
 
@@ -35,28 +36,27 @@ class ArticleDAO extends DAO
     public function getArticles(bool $published)
     {
         $sql = '';
-        if($published === true)
-        {
+        if ($published === true) {
             $sql = 'SELECT article.id, article.title, article.content, article.order_num, article.createdAt, article.published, article.lastPublishedDate, user.pseudo 
                     FROM article 
                         INNER JOIN user ON article.user_id = user.id 
                     WHERE article.published = 1 
                     ORDER BY article.order_num DESC, article.createdAt DESC';
-        }
-        elseif($published === false)
-        {
+        } elseif ($published === false) {
             $sql = 'SELECT article.id, article.title, article.content, article.order_num, article.createdAt, article.published, article.lastPublishedDate, user.pseudo 
                     FROM article 
                         INNER JOIN user ON article.user_id = user.id 
                     ORDER BY article.order_num DESC, article.createdAt DESC';
         }
+
         $result = $this->createQuery($sql);
         $articles = [];
-        foreach ($result as $row)
-        {
+
+        foreach ($result as $row) {
             $articleId = $row['id'];
             $articles[$articleId] = $this->buildObject($row, false);
         }
+
         $result->closeCursor();
 
         return $articles;
@@ -65,32 +65,32 @@ class ArticleDAO extends DAO
     public function getArticle(string $articleId, $published = false)
     {
         $sql = '';
-        if($published === true)
-        {
+
+        if ($published === true) {
             $sql = 'SELECT article.id, article.title, article.content, article.order_num, article.createdAt, article.published, article.lastPublishedDate, user.pseudo 
                     FROM article 
                         INNER JOIN user ON article.user_id 
                     WHERE article.published = 1 
                         AND article.id = ?';
-        }
-        elseif($published === false)
-        {
+        } elseif($published === false) {
             $sql = 'SELECT article.id, article.title, article.content, article.order_num, article.createdAt, article.published, article.lastPublishedDate, user.pseudo 
                     FROM article 
                         INNER JOIN user ON article.user_id 
                     WHERE article.id = ?';
         }
+
         $result = $this->createQuery($sql, [$articleId]);
         $article = $result->fetch();
         $result->closeCursor();
+
         return $this->buildObject($article, true);
     }
 
     public function getSurroundingArticle(int $articleOrderNum, string $place)
     {
         $sql ='';
-        if($place === 'next')
-        {
+
+        if ($place === 'next') {
             $sql = 'SELECT article.id, article.title, article.content, article.order_num, article.createdAt, article.published,  article.lastPublishedDate, user.pseudo 
                     FROM article 
                         INNER JOIN user ON article.user_id 
@@ -98,9 +98,7 @@ class ArticleDAO extends DAO
                       AND article.published = 1 
                     ORDER BY article.order_num ASC 
                     LIMIT 1';
-        }
-        elseif($place === 'previous')
-        {
+        } elseif ($place === 'previous') {
             $sql = 'SELECT article.id, article.title, article.content, article.order_num, article.createdAt, article.published, article.lastPublishedDate, user.pseudo 
                     FROM article 
                         INNER JOIN user ON article.user_id 
@@ -109,14 +107,17 @@ class ArticleDAO extends DAO
                     ORDER BY article.order_num DESC 
                     LIMIT 1';
         }
+
         $result = $this->createQuery($sql, [$articleOrderNum]);
         $articles = [];
-        foreach ($result as $row)
-        {
+
+        foreach ($result as $row) {
             $articleId = $row['id'];
             $articles[$articleId] = $this->buildObject($row, false);
         }
+
         $result->closeCursor();
+
         return array_shift($articles);
     }
 
@@ -124,7 +125,13 @@ class ArticleDAO extends DAO
     {
         $sql = 'INSERT INTO article (title, content, order_num, published, createdAt, user_id) 
                 VALUES(?,?,?,?,NOW(),?)';
-        $this->createQuery($sql, [$post->get('title'), $post->get('content'), $post->get('order_num'), 0, $userId]);
+        $this->createQuery($sql, [
+            $post->get('title'),
+            $post->get('content'),
+            $post->get('order_num'),
+            0,
+            $userId
+        ]);
     }
 
     public function editArticle(Parameter $post, $articleId, $userId)

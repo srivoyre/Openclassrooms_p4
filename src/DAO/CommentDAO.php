@@ -27,8 +27,7 @@ class CommentDAO extends DAO
                 ORDER BY createdAt DESC';
         $result = $this->createQuery($sql, [$articleId]);
         $comments = [];
-        foreach ($result as $row)
-        {
+        foreach ($result as $row) {
             $commentId = $row['id'];
             $comments[$commentId] = $this->buildObject($row);
         }
@@ -40,7 +39,12 @@ class CommentDAO extends DAO
     {
         $sql = 'INSERT INTO comment (pseudo, content, createdAt, flag, article_id) 
                 VALUES (?,?,NOW(),?,?)';
-        $this->createQuery($sql, [$pseudo, $post->get('content'), 0, $articleId]);
+        $this->createQuery($sql, [
+            $pseudo,
+            $post->get('content'),
+            0,
+            $articleId
+        ]);
     }
 
     public function flagComment(string $commentId)
@@ -48,7 +52,10 @@ class CommentDAO extends DAO
         $sql = 'UPDATE comment 
                 SET flag = ? 
                 WHERE id = ?';
-        $this->createQuery($sql, [1, $commentId]);
+        $this->createQuery($sql, [
+            1,
+            $commentId
+        ]);
     }
 
     public function unflagComment(string $commentId)
@@ -56,7 +63,10 @@ class CommentDAO extends DAO
         $sql = 'UPDATE comment 
                 SET flag = ? 
                 WHERE id = ?';
-        $this->createQuery($sql, [0, $commentId]);
+        $this->createQuery($sql, [
+            0,
+            $commentId
+        ]);
     }
 
     public function deleteComment(string $commentId)
@@ -75,8 +85,7 @@ class CommentDAO extends DAO
                 ORDER BY createdAt DESC';
         $result = $this->createQuery($sql,[1]);
         $comments = [];
-        foreach ($result as $row)
-        {
+        foreach ($result as $row) {
             $commentId = $row['id'];
             $comments[$commentId] = $this->buildObject($row);
         }

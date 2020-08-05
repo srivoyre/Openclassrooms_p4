@@ -34,8 +34,7 @@ class View
 
     private function renderFile(string $file, array $data)
     {
-        if (file_exists($file))
-        {
+        if (file_exists($file)) {
             extract($data);
             ob_start();
             require $file;

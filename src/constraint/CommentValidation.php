@@ -16,8 +16,7 @@ class CommentValidation extends Validation
 
     public function check(Parameter $post)
     {
-        foreach ($post->all() as $key => $value)
-        {
+        foreach ($post->all() as $key => $value) {
             $this->checkField($key, $value);
         }
 
@@ -26,8 +25,7 @@ class CommentValidation extends Validation
 
     private function checkField(string $name, $value)
     {
-        if ($name === 'content')
-        {
+        if ($name === 'content') {
             $error = $this->checkContent($name, $value);
             $this->addError('content', $error);
         }
@@ -35,8 +33,7 @@ class CommentValidation extends Validation
 
     private function addError(string $name, $error)
     {
-        if($error)
-        {
+        if ($error) {
             $this->errors += [
                 $name => $error
             ];
@@ -45,12 +42,11 @@ class CommentValidation extends Validation
 
     private function checkContent(string $name, $value)
     {
-        if($this->constraint->notBlank($name, $value))
-        {
+        if ($this->constraint->notBlank($name, $value)) {
             return $this->constraint->notBlank('contenu', $value);
         }
-        if($this->constraint->minLength($name, $value, 2))
-        {
+
+        if ($this->constraint->minLength($name, $value, 2)) {
             return $this->constraint->minLength('contenu', $value, 2);
         }
     }

@@ -29,11 +29,12 @@ class UserDAO extends DAO
                 ORDER BY user.id DESC';
         $result = $this->createQuery($sql);
         $users = [];
-        foreach ($result as $row)
-        {
+
+        foreach ($result as $row) {
             $userId = $row['id'];
             $users[$userId] = $this->buildObject($row);
         }
+
         $result->closeCursor();
         return $users;
     }
@@ -55,62 +56,62 @@ class UserDAO extends DAO
     {
         $sql = 'INSERT INTO user (pseudo, password, createdAt, role_id, email) 
                 VALUES (?,?,NOW(),?,?)';
-        $this->createQuery($sql, [$post->get('pseudo'), password_hash($post->get('password'), PASSWORD_BCRYPT), 2, $post->get('email')]);
+        $this->createQuery($sql, [
+            $post->get('pseudo'),
+            password_hash($post->get('password'), PASSWORD_BCRYPT),
+            2,
+            $post->get('email')
+        ]);
     }
 
     public function checkUser(Parameter $post, string $valueToCheck, string $fieldToCheck, string $param)
     {
         $sql = '';
-        if($fieldToCheck === 'pseudo')
-        {
+
+        if ($fieldToCheck === 'pseudo') {
             $sql = 'SELECT COUNT(pseudo) 
                     FROM user 
                     WHERE pseudo = ?';
-        }
-        elseif($fieldToCheck === 'email')
-        {
+        } elseif ($fieldToCheck === 'email') {
             $sql = 'SELECT COUNT(email) 
                     FROM user 
                     WHERE email = ?';
         }
+
         $result = $this->createQuery($sql, [$post->get($valueToCheck)]);
         $isUnique = $result->fetchColumn();
-        if($param === 'register')
-        {
+
+        if ($param === 'register') {
             if ($isUnique && $fieldToCheck === 'pseudo') {
                 return '<p>Ce pseudo n\'est pas disponible</p>';
             }
             elseif ($isUnique && $fieldToCheck === 'email') {
                 return '<p>Un compte associé à cet e-mail existe déjà ! <a href="../public/index.php?route=login">Je me connecte</a> </p>';
             }
-        }
-        elseif($param === 'login')
-        {
+        } elseif($param === 'login') {
             return $isUnique;
         }
     }
 
     public function checkPassword(Parameter $post, string $field)
     {
-        if($field === 'pseudo')
-        {
+        if ($field === 'pseudo') {
             $sql = 'SELECT user.id, user.pseudo, user.password, user.role_id AS roleId, role.name AS roleName, user.email, user.createdAt 
                     FROM user 
                         INNER JOIN role ON role.id = user.role_id 
                     WHERE pseudo = ?';
-        }
-        elseif($field === 'email')
-        {
+        } elseif($field === 'email') {
             $sql = 'SELECT user.id, user.pseudo, user.password, user.role_id AS roleId, role.name AS roleName, user.email, user.createdAt 
                     FROM user 
                         INNER JOIN role ON role.id = user.role_id 
                     WHERE email = ?';
         }
+
         $data = $this->createQuery($sql, [$post->get('username')]);
         $result = $data->fetch();
         $isPasswordValid = password_verify($post->get('password'), $result['password']);
 
-        if($isPasswordValid) {
+        if ($isPasswordValid) {
             return [
                 'result' => $result,
                 'isPasswordValid' => $isPasswordValid,
@@ -124,7 +125,10 @@ class UserDAO extends DAO
         $sql = 'UPDATE user 
                 SET password = ? 
                 WHERE pseudo = ?';
-        $this->createQuery($sql, [password_hash($post->get('password'), PASSWORD_BCRYPT), $pseudo]);
+        $this->createQuery($sql, [
+            password_hash($post->get('password'), PASSWORD_BCRYPT),
+            $pseudo
+        ]);
     }
 
     public function updateEmail(Parameter $post, string $pseudo)
@@ -132,7 +136,10 @@ class UserDAO extends DAO
         $sql = 'UPDATE user 
                 SET email = ? 
                 WHERE pseudo = ?';
-        $this->createQuery($sql, [$post->get('email'), $pseudo]);
+        $this->createQuery($sql, [
+            $post->get('email'),
+            $pseudo
+        ]);
     }
 
     public function deleteAccount(string $pseudo)

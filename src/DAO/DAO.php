@@ -11,10 +11,10 @@ abstract class DAO
 
     private function checkConnection()
     {
-        if($this->connection === null)
-        {
+        if ($this->connection === null) {
             return $this->getConnection();
         }
+
         return $this->connection;
     }
 
@@ -25,21 +25,19 @@ abstract class DAO
             $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
             return $connection;
-        }
-        catch (Exception $errorConnection)
-        {
+        } catch (Exception $errorConnection) {
             die('Erreur de connexion :'.$errorConnection->getMessage());
         }
     }
 
     protected function createQuery(string $sql, $parameters = null)
     {
-        if ($parameters)
-        {
+        if ($parameters) {
             $result = $this->checkConnection()->prepare($sql);
             $result->execute($parameters);
             return $result;
         }
+
         $result = $this->checkConnection()->query($sql);
 
         return $result;

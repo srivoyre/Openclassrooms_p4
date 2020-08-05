@@ -7,8 +7,7 @@
 <?= $this->session->show('delete_account_message'); ?>
 
 <?php
-foreach ($articles as $article)
-{
+foreach ($articles as $article) {
     ?>
     <div>
         <h2>

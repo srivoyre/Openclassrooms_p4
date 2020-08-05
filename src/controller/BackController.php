@@ -8,16 +8,13 @@ class BackController extends Controller
 {
     private function checkLoggedIn()
     {
-        if(!$this->session->get('user')->getPseudo())
-        {
+        if (!$this->session->get('user')->getPseudo()) {
             $this->session->set(
                 'need_login_message',
                 'Vous devez vous connecter pour accéder à cette page'
             );
             header('Location: ../public/index.php?route=login');
-        }
-        else
-        {
+        } else {
             return true;
         }
     }
@@ -25,24 +22,20 @@ class BackController extends Controller
     private function checkAdmin()
     {
         $this->checkLoggedIn();
-        if(!($this->session->get('user')->getIsAdmin()))
-        {
+        if (!($this->session->get('user')->getIsAdmin())) {
             $this->session->set(
                 'not_admin_message',
                 'Vous ne disposez pas des autorisations suffisantes pour accéder à cette page'
             );
             header('Location: ../public/index.php?route=errorPermission');
-        }
-        else
-        {
+        } else {
             return true;
         }
     }
 
     public function administration()
     {
-        if($this->checkAdmin())
-        {
+        if ($this->checkAdmin()) {
             $articles = $this->articleDAO->getArticles(false);
             $comments = $this->commentDAO->getFlaggedComments();
             $users = $this->userDAO->getUsers();
@@ -57,17 +50,14 @@ class BackController extends Controller
 
     public function getArticle(string $articleId)
     {
-        if($this->checkAdmin())
-        {
+        if ($this->checkAdmin()) {
             $article = $this->articleDAO->getArticle($articleId, false);
             $comments = $this->commentDAO->getCommentsFromArticle($articleId);
             return $this->view->render('single', [
                 'article' => $article,
                 'comments' => $comments
             ]);
-        }
-        elseif($this->checkLoggedIn())
-        {
+        } elseif ($this->checkLoggedIn()) {
             $article = $this->articleDAO->getArticle($articleId, true);
             $comments = $this->commentDAO->getCommentsFromArticle($articleId);
             return $this->view->render('single', [
@@ -79,13 +69,10 @@ class BackController extends Controller
 
     public function addArticle(Parameter $post)
     {
-        if($this->checkAdmin())
-        {
-            if($post->get('submit'))
-            {
+        if ($this->checkAdmin()) {
+            if ($post->get('submit')) {
                 $errors = $this->validation->validate($post, 'Article');
-                if(!$errors)
-                {
+                if (!$errors) {
                     $this->articleDAO->addArticle($post, $this->session->get('user')->getId());
                     $this->session->set(
                         'add_article_message',
@@ -104,14 +91,11 @@ class BackController extends Controller
 
     public function editArticle(Parameter $post, string $articleId)
     {
-        if($this->checkAdmin())
-        {
+        if ($this->checkAdmin()) {
             $article = $this->articleDAO->getArticle($articleId);
-            if($post->get('submit'))
-            {
+            if ($post->get('submit')) {
                 $errors = $this->validation->validate($post, 'Article');
-                if(!$errors)
-                {
+                if (!$errors) {
                     $this->articleDAO->editArticle($post, $articleId, $this->session->get('user')->getId());
                     $this->session->set(
                         'edit_article_message',
@@ -123,12 +107,9 @@ class BackController extends Controller
                     'post' => $post,
                     'errors' => $errors
                 ]);
-            }
-            elseif($post->get('submitAndLeave'))
-            {
+            } elseif ($post->get('submitAndLeave')) {
                 $errors = $this->validation->validate($post, 'Article');
-                if(!$errors)
-                {
+                if (!$errors) {
                     $this->articleDAO->editArticle($post, $articleId, $this->session->get('user')->getId());
                     $this->session->set(
                         'edit_article_message',
@@ -181,8 +162,7 @@ class BackController extends Controller
 
     public function deleteArticle(string $articleId)
     {
-        if($this->checkAdmin())
-        {
+        if ($this->checkAdmin()) {
             $this->articleDAO->deleteArticle($articleId);
             $this->session->set(
                 'delete_article_message',
@@ -194,13 +174,10 @@ class BackController extends Controller
 
     public function addComment(Parameter $post, string $articleId)
     {
-        if($this->checkLoggedIn())
-        {
-            if($post->get('submit'))
-            {
+        if ($this->checkLoggedIn()) {
+            if ($post->get('submit')) {
                 $errors = $this->validation->validate($post, 'Comment');
-                if(!$errors)
-                {
+                if (!$errors) {
                     $this->commentDAO->addComment($post, $this->session->get('user')->getPseudo(), $articleId);
                     $this->session->set(
                         'add_comment_message',
@@ -221,8 +198,7 @@ class BackController extends Controller
 
     public function unflagComment(string $commentId)
     {
-        if($this->checkAdmin())
-        {
+        if ($this->checkAdmin()) {
             $this->commentDAO->unflagComment($commentId);
             $this->session->set(
                 'unflag_comment_message',
@@ -234,17 +210,17 @@ class BackController extends Controller
 
     public function deleteComment(string $commentId, string $articleId, string $pseudo)
     {
-        if($this->checkLoggedIn() && $this->session->get('user')->getPseudo() === $pseudo)
-        {
+        if (
+            $this->checkLoggedIn()
+            && $this->session->get('user')->getPseudo() === $pseudo
+        ) {
             $this->commentDAO->deleteComment($commentId);
             $this->session->set(
                 'delete_comment_message',
                 'Votre commentaire a bien été supprimé'
             );
             header('Location: ../public/index.php?route=viewArticle&articleId='.$articleId);
-        }
-        elseif($this->checkAdmin())
-        {
+        } elseif ($this->checkAdmin()) {
             $this->commentDAO->deleteComment($commentId);
             $this->session->set(
                 'delete_comment_message',
@@ -256,8 +232,7 @@ class BackController extends Controller
 
     public function profile()
     {
-        if($this->checkLoggedIn())
-        {
+        if ($this->checkLoggedIn()) {
             $user = $this->userDAO->getUser($this->session->get('user')->getPseudo());
             return $this->view->render('profile', [
                 'user' => $user
@@ -267,12 +242,10 @@ class BackController extends Controller
 
     public function updatePassword(Parameter $post)
     {
-        if($this->checkLoggedIn())
-        {
-            if($post->get('submit'))
-            {
+        if ($this->checkLoggedIn()) {
+            if ($post->get('submit')) {
                 $errors = $this->validation->validate($post, 'User');
-                if(!$errors) {
+                if (!$errors) {
                     $this->userDAO->updatePassword($post, $this->session->get('user')->getPseudo());
                     $this->session->set(
                         'update_password_message',
@@ -290,10 +263,8 @@ class BackController extends Controller
 
     public function updateEmail(Parameter $post)
     {
-        if($this->checkLoggedIn())
-        {
-            if($post->get('submitEmail'))
-            {
+        if ($this->checkLoggedIn()) {
+            if ($post->get('submitEmail')) {
                 $this->userDAO->updateEmail($post, $this->session->get('user')->getPseudo());
                 $this->session->set(
                     'update_email_message',
@@ -306,16 +277,14 @@ class BackController extends Controller
 
     public function logout()
     {
-        if($this->checkLoggedIn())
-        {
+        if ($this->checkLoggedIn()) {
             $this->logoutOrDelete('logout');
         }
     }
 
     public function deleteAccount()
     {
-        if($this->checkLoggedIn())
-        {
+        if ($this->checkLoggedIn()) {
             $this->userDAO->deleteAccount($this->session->get('user')->getPseudo());
             $this->logoutOrDelete('delete_account');
         }
@@ -323,8 +292,7 @@ class BackController extends Controller
 
     public function deleteUser(string $userId)
     {
-        if($this->checkAdmin())
-        {
+        if ($this->checkAdmin()) {
             $this->userDAO->deleteUser($userId);
             $this->session->set(
                 'delete_user_message',
@@ -338,12 +306,9 @@ class BackController extends Controller
     {
         $this->session->stop();
         $this->session->start();
-        if($param === 'logout')
-        {
+        if ($param === 'logout') {
             $this->session->set('logout_message', 'À bientôt');
-        }
-        else
-        {
+        } else {
             $this->session->set(
                 'delete_account_message',
                 'Votre compte a bien été supprimé'

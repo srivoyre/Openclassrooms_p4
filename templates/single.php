@@ -10,8 +10,7 @@
 </p>
 
 <?php
-if(empty($article->getPreviousArticle())== false)
-{
+if (empty($article->getPreviousArticle())== false) {
     ?>
     <a href="../public/index.php?route=viewArticle&articleId=<?= $article->getPreviousArticle()->getId(); ?>">
         <
@@ -19,8 +18,8 @@ if(empty($article->getPreviousArticle())== false)
     Chapitre <?= $article->getPreviousArticle()->getOrderNum(); ?>
     <?php
 }
-if(empty($article->getNextArticle()) == false)
-{
+
+if(empty($article->getNextArticle()) == false) {
     ?>
     Chapitre <?= $article->getNextArticle()->getOrderNum(); ?>
     <a href="../public/index.php?route=viewArticle&articleId=<?= $article->getNextArticle()->getId(); ?>">
@@ -47,8 +46,10 @@ if(empty($article->getNextArticle()) == false)
 
 <br />
 <?php
-    if($this->session->get('loggedIn') && $this->session->get('user')->getIsAdmin())
-    {
+    if (
+            $this->session->get('loggedIn')
+            && $this->session->get('user')->getIsAdmin()
+    ) {
         ?>
         <div class="actions">
             <a href="../public/index.php?route=editArticle&articleId=<?= $article->getId(); ?>">Modifier</a>
@@ -63,15 +64,12 @@ if(empty($article->getNextArticle()) == false)
 
 <div id="comments" class="text-left" style="margin-left: 50px;">
     <?php
-    if($this->session->get('loggedIn'))
-    {
+    if ($this->session->get('loggedIn')) {
     ?>
         <h3>Ajouter un commentaire</h3>
         <?php include('form_comment.php'); ?>
     <?php
-    }
-    else
-    {
+    } else {
     ?>
         <p>Vous devez être connecté pour poste un commentaire</p>
         <a href="../public/index.php?route=login">Je me connecte !</a>
@@ -81,8 +79,7 @@ if(empty($article->getNextArticle()) == false)
     ?>
     <h3>Commentaires</h3>
     <?php
-    foreach ($comments as $comment)
-    {
+    foreach ($comments as $comment) {
         ?>
         <h4>
             <?= htmlspecialchars($comment->getPseudo());?>
@@ -94,15 +91,13 @@ if(empty($article->getNextArticle()) == false)
             Posté le <?=htmlspecialchars($comment->getCreatedAt());?>
         </p>
         <?php
-        if($comment->getIsFlag())
-        {
+        if ($comment->getIsFlag()) {
         ?>
             <p>
                 Ce commentaire a été signalé
             </p>
         <?php
-        } else
-        {
+        } else {
         ?>
             <p>
                 <a href="../public/index.php?route=flagComment&commentId=<?= $comment->getId(); ?>&articleId=<?= $comment->getArticleId(); ?>">
@@ -111,8 +106,11 @@ if(empty($article->getNextArticle()) == false)
             </p>
         <?php
         }
-        if($this->session->get('loggedIn') && $this->session->get('user')->getPseudo() == $comment->getPseudo())
-        {
+
+        if (
+                $this->session->get('loggedIn')
+                && $this->session->get('user')->getPseudo() == $comment->getPseudo()
+        ) {
         ?>
         <p>
             <a href="../public/index.php?route=deleteComment&commentId=<?= $comment->getId(); ?>&articleId=<?= $comment->getArticleId(); ?>&pseudo=<?= $comment->getPseudo(); ?>">
