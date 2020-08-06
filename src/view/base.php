@@ -93,7 +93,7 @@
             <div class="col-3"></div>
         </div>
 
-        <div id="content" class="row">
+        <div id="content" class="row mt-4">
             <?= $content ?>
         </div>
 

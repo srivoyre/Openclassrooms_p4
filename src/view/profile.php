@@ -11,7 +11,7 @@
             <div class="form-group">
                 <div class="row">
                     <div class="col-12">
-                        <label for="email">E-mail</label>
+                        <label for="email">E-mail :</label>
                     </div>
                 </div>
                 <div class="row">
@@ -25,11 +25,12 @@
 
             </div>
         </form>
+
         <div class="row mt-5">
-            <div class="col-6">
+            <div class="col-6 text-center">
                 <a type="button" class="btn btn-outline-primary" href="../public/index.php?route=updatePassword">Modifier mon mot de passe</a>
             </div>
-            <div class="col-6">
+            <div class="col-6 text-center">
                 <a type="button" class="btn btn-outline-danger" href="../public/index.php?route=deleteAccount">Supprimer mon compte</a>
             </div>
         </div>
