@@ -2,7 +2,6 @@
 $route = isset($post) && $post->get('id') ? 'editArticle&articleId='.$post->get('id') : 'addArticle';
 $submit = $route === 'addArticle' ? 'Créer' : 'Enregistrer';
 ?>
-
 <form method="post" action="../public/index.php?route=<?= $route; ?>">
     <div class="form-group">
         <label for="title">Titre du chapitre</label>
@@ -20,8 +19,8 @@ $submit = $route === 'addArticle' ? 'Créer' : 'Enregistrer';
         <label for="content">Contenu</label>
         <br />
         <textarea id="content" class="form-control" name="content">
-            <?= isset($post) ? htmlspecialchars($post->get('content')) : ''; ?>
-        </textarea>
+    <?= isset($post) ? htmlspecialchars($post->get('content')) : ''; ?>
+</textarea>
         <?= isset($errors['content']) ? $errors['content'] : ''; ?>
         <script>
             tinymce.init({
@@ -65,10 +64,11 @@ $submit = $route === 'addArticle' ? 'Créer' : 'Enregistrer';
 
     <input class="btn btn-primary" type="submit" value="<?= $submit; ?>" id="submit" name="submit">
     <?php
-        if ($route !== 'addArticle') {
-    ?>
-            <input class="btn btn-primary" type="submit" value="Enregistrer et quitter" id="submit" name="submitAndLeave">
-    <?php
-        }
+    if ($route !== 'addArticle') {
+        ?>
+        <input class="btn btn-primary" type="submit" value="Enregistrer et quitter" id="submit" name="submitAndLeave">
+        <?php
+    }
     ?>
 </form>
+

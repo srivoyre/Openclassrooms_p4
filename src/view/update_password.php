@@ -1,7 +1,7 @@
 <?php $this->title = 'Modifier mon mot de passe'; ?>
 
 <div class="row my-2">
-    <div class="col-12 mx-0">
+    <div class="col-12 mx-0 px-0">
         <a href="../public/index.php?route=profile">
             << Retour au profil
         </a>

@@ -1,7 +1,7 @@
 <?php $this->title = htmlspecialchars($article->getTitle()); ?>
 
 <div class="row my-2">
-    <div class="col-12 mx-0">
+    <div class="col-12 mx-0 px-0">
         <a href="../public/index.php">
             << Retour à la liste des chapitres
         </a>
