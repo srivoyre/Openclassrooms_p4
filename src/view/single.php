@@ -114,9 +114,9 @@
                                 <?= htmlspecialchars($comment->getPseudo());?>
                             </span>
                             <br />
-                            <em style="font-size: small">
+                            <span class="font-italic small">
                                 Posté le <?=htmlspecialchars($comment->getCreatedAt());?>
-                            </em>
+                            </span>
                         </div>
                         <div id="flag-comment col-2">
                             <?php
