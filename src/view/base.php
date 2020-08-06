@@ -60,12 +60,6 @@
             </nav>
         </header>
 
-        <div id="title" class="row">
-            <h1>
-                <?= $title ?>
-            </h1>
-        </div>
-
         <div id="messages" class="row">
             <div class="col-3"></div>
             <?php

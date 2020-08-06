@@ -1,42 +1,50 @@
 <?php $this->title = htmlspecialchars($article->getTitle()); ?>
 
-<div class="row">
-    <div class="col-6">
-        <a type="button" class="btn btn-secondary" href="../public/index.php"><< Accueil</a>
+<div class="row my-2">
+    <div class="col-12 mx-0">
+        <a href="../public/index.php">
+            << Retour à la liste des chapitres
+        </a>
     </div>
-    <div class="col-6 text-right">
+</div>
+
+<div class="row container">
+    <div class="col-10">
+        <h1>
+            <?= htmlspecialchars($article->getTitle()); ?>
+        </h1>
+    </div>
+    <div class="col-2">
         <?php
         if (
             $this->session->get('loggedIn')
             && $this->session->get('user')->getIsAdmin()
         ) {
-        ?>
-            <a  type="button" class="btn btn-primary" href="../public/index.php?route=editArticle&articleId=<?= $article->getId(); ?>">
-                Modifier
+            ?>
+            <a  type="button" class="btn btn-outline-primary" href="../public/index.php?route=editArticle&articleId=<?= $article->getId(); ?>">
+                <i class="fas fa-edit"></i>
             </a>
-        <?php
+            <?php
         }
         ?>
     </div>
-
 </div>
 
-<div class="row container">
+<div class="row">
         <?= $article->getContent();?>
     <div class="bold">
         Publié le <?= htmlspecialchars(date('d/m/Y', strtotime($article->getLastPublishedDate())));?>
     </div>
 </div>
 
-<div id="chapters-nav" class="row">
+<div id="chapters-nav" class="row my-3">
     <div id="previous-chapter" class="col-6">
         <?php
         if (empty($article->getPreviousArticle()) == false) {
         ?>
-            <a href="../public/index.php?route=viewArticle&articleId=<?= $article->getPreviousArticle()->getId(); ?>">
-                <
+            <a class="btn btn-secondary" href="../public/index.php?route=viewArticle&articleId=<?= $article->getPreviousArticle()->getId(); ?>">
+                << Précédent
             </a>
-            Chapitre <?= $article->getPreviousArticle()->getOrderNum(); ?>
         <?php
         }
         ?>
@@ -45,9 +53,8 @@
         <?php
         if (empty($article->getNextArticle()) == false) {
         ?>
-            Chapitre <?= $article->getNextArticle()->getOrderNum(); ?>
-            <a href="../public/index.php?route=viewArticle&articleId=<?= $article->getNextArticle()->getId(); ?>">
-                >
+            <a class="btn btn-secondary" href="../public/index.php?route=viewArticle&articleId=<?= $article->getNextArticle()->getId(); ?>">
+                Suivant >>
             </a>
 
         <?php
@@ -56,7 +63,7 @@
     </div>
 </div>
 
-<div id="comments-container" class="border border-bottom-0 row">
+<div id="comments-container" class="border border-bottom-0 container row py-3">
     <div class="col-12">
         <div class="row">
             <div class="col-12">
@@ -65,14 +72,18 @@
                 if ($this->session->get('loggedIn')) {
                     ?>
                     <h4>Ajouter un commentaire</h4>
-                    <?php include('form_comment.php'); ?>
+                    <div class="row my-4">
+                        <div class="col-12">
+                            <?php include('form_comment.php'); ?>
+                        </div>
+                    </div>
                     <?php
                 } else {
                     ?>
-                    <div class="row">
+                    <div class="row my-3">
                         <div class="col-12">Vous devez être connecté pour commenter !</div>
                     </div>
-                    <div class="row">
+                    <div class="row mb-3">
                         <div class="col-4 col-sm-3 col-md-2">
                             <a type="button" class="btn btn-primary" href="../public/index.php?route=login">
                                 Connexion
@@ -95,10 +106,10 @@
         <?php
         foreach ($comments as $comment) {
         ?>
-            <div class="comment-container row">
-                <div class="col-12">
+            <div class="row">
+                <div class="col-12 mx-0">
                     <div class="comment-header row">
-                        <div class="col-10">
+                        <div class="col-8">
                             <span class="bold">
                                 <?= htmlspecialchars($comment->getPseudo());?>
                             </span>
@@ -107,48 +118,44 @@
                                 Posté le <?=htmlspecialchars($comment->getCreatedAt());?>
                             </em>
                         </div>
-                        <div class="col-2 comment-actions">
-                            <div class="row">
-                                <div id="flag-comment col-6">
-                                    <?php
-                                    if ($comment->getIsFlag()) {
-                                        ?>
-                                        <div class="text-danger flagged-text">
-                                            <i class="fas fa-flag"></i> Signalé
-                                        </div>
-                                        <?php
-                                    } else {
-                                        ?>
-                                        <div class="action">
-                                            <a type="button" class="btn btn-outline-danger" alt="Signaler le commentaire" href="../public/index.php?route=flagComment&commentId=<?= $comment->getId(); ?>&articleId=<?= $comment->getArticleId(); ?>">
-                                                <i class="fas fa-exclamation-circle"></i>
-                                            </a>
-                                        </div>
-                                        <?php
-                                    }
-                                    ?>
+                        <div id="flag-comment col-2">
+                            <?php
+                            if ($comment->getIsFlag()) {
+                                ?>
+                                <div class="text-danger flagged-text">
+                                    <i class="fas fa-flag"></i>
                                 </div>
-                                <div id="delete-comment col-6">
-                                    <?php
-                                    if (
-                                        $this->session->get('loggedIn')
-                                        && $this->session->get('user')->getPseudo() == $comment->getPseudo()
-                                    ) {
-                                        ?>
-                                        <div class="action">
-                                            <a  type="button" class="btn btn-outline-danger" href="../public/index.php?route=deleteComment&commentId=<?= $comment->getId(); ?>&articleId=<?= $comment->getArticleId(); ?>&pseudo=<?= $comment->getPseudo(); ?>">
-                                                <i class="fas fa-trash-alt"></i>
-                                            </a>
-                                        </div>
-                                        <?php
-                                    }
-                                    ?>
+                                <?php
+                            } else {
+                                ?>
+                                <div class="mx-1">
+                                    <a type="button" class="btn btn-outline-danger" alt="Signaler le commentaire" href="../public/index.php?route=flagComment&commentId=<?= $comment->getId(); ?>&articleId=<?= $comment->getArticleId(); ?>">
+                                        <i class="fas fa-exclamation-circle"></i>
+                                    </a>
                                 </div>
-                            </div>
+                                <?php
+                            }
+                            ?>
+                        </div>
+                        <div id="delete-comment col-2">
+                            <?php
+                            if (
+                                $this->session->get('loggedIn')
+                                && $this->session->get('user')->getPseudo() == $comment->getPseudo()
+                            ) {
+                                ?>
+                                <div class="mx-1">
+                                    <a  type="button" class="btn btn-outline-danger" href="../public/index.php?route=deleteComment&commentId=<?= $comment->getId(); ?>&articleId=<?= $comment->getArticleId(); ?>&pseudo=<?= $comment->getPseudo(); ?>">
+                                        <i class="fas fa-trash-alt"></i>
+                                    </a>
+                                </div>
+                                <?php
+                            }
+                            ?>
                         </div>
                     </div>
-                    <div class="comment-content row">
-                        <div class="col-12">
+                    <div class="row">
+                        <div class="col-12 border-bottom ml-3 mb-3 pb-3 text-break">
                             <?= htmlspecialchars($comment->getContent());?>
                         </div>
                     </div>

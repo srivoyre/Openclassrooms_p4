@@ -24,17 +24,11 @@ Alerts
 /******************************
 Layout
 ******************************/
-
 #title {
     margin: 0 5%;
 }
 #content {
     margin: 0 5%;
-}
-@media all and (min-width: 640px){
-    #content {
-        /*margin: 0 10%;*/
-    }
 }
 /******************************
 Navbar
@@ -46,86 +40,4 @@ Navbar
     .navbar-brand {
         font-size: 1.55rem;
     }
-}
-/******************************
-Chapters
-******************************/
-#chapters-nav {
-    /*padding: 20px;
-    display: flex;
-    justify-content: space-between;*/
-}
-/******************************
-Chapters - comments
-******************************/
-/*#comments-container {
-    border-top: 2px solid lightgray;
-    border-right: 2px solid lightgray;
-    border-left: 2px solid lightgray;
-    padding: 15px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-#comments-container h3 {
-    align-self: flex-start;
-}
-@media all and (min-width: 375px){
-    #comments-container {
-        padding: 25px 55px;
-    }
-}
-
-#comment-form-container {
-    margin: 20px 0;
-    width: 90%;
-}
-
-.comment-container {
-    border-bottom: 1px solid lightgray;
-    margin: 20px 0;
-    padding-bottom: 10px;
-    width: 100%;
-}
-.comment-container  {
-
-}
-.comment-header {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-}
-
-@media all and (min-width: 375px){
-    .comment-content {
-        margin-left: 15px;
-    }
-}
-.comment-content {
-    overflow-wrap: break-word;
-    width: 100%;
-    padding: 5px;
-}
-.comment-actions {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    text-align: right;
-    margin-left: 5px;
-    box-sizing: content-box;
-}
-.comment-actions .action {
-    margin: 0 5px;
-}*/
-.flagged-text {
-    font-size: 0.8em;
-}
-@media all and (min-width: 375px){
-    .flagged-text {
-        font-size: 1em;
-    }
-}
-#unlogged-actions {
-    display: flex;
-    justify-content: space-between;
 }
