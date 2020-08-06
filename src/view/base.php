@@ -60,44 +60,46 @@
             </nav>
         </header>
 
-        <div id="title">
+        <div id="title" class="row">
             <h1>
                 <?= $title ?>
             </h1>
         </div>
 
-        <div id="messages">
+        <div id="messages" class="row">
+            <div class="col-3"></div>
             <?php
 
             if ($this->session->get('info_message')) {
             ?>
-                <div class="alert alert-info" role="alert">
+                <div class="alert alert-info col-3" role="alert">
                     <?= $this->session->show('info_message') ; ?>
                 </div>
             <?php
             } elseif ($this->session->get('success_message')) {
             ?>
-                <div class="alert alert-success" role="alert">
+                <div class="alert alert-success col-3" role="alert">
                     <?= $this->session->show('success_message') ; ?>
                 </div>
             <?php
             } elseif ($this->session->get('warning_message')) {
             ?>
-                <div class="alert alert-warning" role="alert">
+                <div class="alert alert-warning col-3" role="alert">
                     <?= $this->session->show('warning_message') ; ?>
                 </div>
             <?php
             } elseif ($this->session->get('error_message')) {
             ?>
-                <div class="alert alert-danger" role="alert">
+                <div class="alert alert-danger col-3" role="alert">
                     <?= $this->session->show('error_message') ; ?>
                 </div>
             <?php
             }
             ?>
+            <div class="col-3"></div>
         </div>
 
-        <div id="content">
+        <div id="content" class="row">
             <?= $content ?>
         </div>
 

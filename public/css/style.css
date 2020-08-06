@@ -1,17 +1,14 @@
 /******************************
 Bootstrap overrides
 ******************************/
-
-
+* {
+ /*   border: 1px solid black;*/
+}
 /******************************
 General
 ******************************/
 .bold {
     font-weight: 600;
-}
-italic {
-    font-style: italic;
-    font-size: small;
 }
 /******************************
 Alerts
@@ -27,18 +24,16 @@ Alerts
 /******************************
 Layout
 ******************************/
-/*body {
-    width: 100%;
-}*/
+
 #title {
-    margin: 5%;
+    margin: 0 5%;
 }
 #content {
     margin: 0 5%;
 }
 @media all and (min-width: 640px){
     #content {
-        margin: 0 10%;
+        /*margin: 0 10%;*/
     }
 }
 /******************************
@@ -52,11 +47,18 @@ Navbar
         font-size: 1.55rem;
     }
 }
-
+/******************************
+Chapters
+******************************/
+#chapters-nav {
+    /*padding: 20px;
+    display: flex;
+    justify-content: space-between;*/
+}
 /******************************
 Chapters - comments
 ******************************/
-#comments-container {
+/*#comments-container {
     border-top: 2px solid lightgray;
     border-right: 2px solid lightgray;
     border-left: 2px solid lightgray;
@@ -85,8 +87,8 @@ Chapters - comments
     padding-bottom: 10px;
     width: 100%;
 }
-.comment-container * {
-    /*border: 1px solid black;*/
+.comment-container  {
+
 }
 .comment-header {
     display: flex;
@@ -114,7 +116,7 @@ Chapters - comments
 }
 .comment-actions .action {
     margin: 0 5px;
-}
+}*/
 .flagged-text {
     font-size: 0.8em;
 }
