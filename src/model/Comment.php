@@ -64,7 +64,7 @@ class Comment
      */
     public function getCreatedAt()
     {
-        return date('d/m/Y', strtotime($this->createdAt)). ' à '.date('H:i:s', strtotime($this->createdAt));
+        return date('d/m/Y', strtotime($this->createdAt)). ' à '.date('H:i', strtotime($this->createdAt));
     }
 
     /**

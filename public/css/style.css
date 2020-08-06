@@ -1,4 +1,9 @@
 /******************************
+Bootstrap overrides
+******************************/
+
+
+/******************************
 General
 ******************************/
 .bold {
@@ -6,6 +11,7 @@ General
 }
 italic {
     font-style: italic;
+    font-size: small;
 }
 /******************************
 Alerts
@@ -48,23 +54,40 @@ Navbar
 }
 
 /******************************
-Chapter
+Chapters - comments
 ******************************/
-
 #comments-container {
     border-top: 2px solid lightgray;
     border-right: 2px solid lightgray;
     border-left: 2px solid lightgray;
     padding: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+#comments-container h3 {
+    align-self: flex-start;
+}
+@media all and (min-width: 375px){
+    #comments-container {
+        padding: 25px 55px;
+    }
+}
+
+#comment-form-container {
+    margin: 20px 0;
+    width: 90%;
 }
 
 .comment-container {
-    border: 2px solid lightgray;
+    border-bottom: 1px solid lightgray;
     margin: 20px 0;
-    padding: 10px;
+    padding-bottom: 10px;
     width: 100%;
 }
-
+.comment-container * {
+    /*border: 1px solid black;*/
+}
 .comment-header {
     display: flex;
     align-items: flex-start;
@@ -81,11 +104,17 @@ Chapter
     width: 100%;
     padding: 5px;
 }
-.flag-container {
+.comment-actions {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
     text-align: right;
     margin-left: 5px;
+    box-sizing: content-box;
 }
-
+.comment-actions .action {
+    margin: 0 5px;
+}
 .flagged-text {
     font-size: 0.8em;
 }
@@ -93,4 +122,8 @@ Chapter
     .flagged-text {
         font-size: 1em;
     }
+}
+#unlogged-actions {
+    display: flex;
+    justify-content: space-between;
 }
