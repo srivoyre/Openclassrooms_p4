@@ -4,12 +4,6 @@ Layout
 #content {
     margin: 0 5%;
 }
-
-footer {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-}
 /******************************
 Bootstrap overrides
 ******************************/

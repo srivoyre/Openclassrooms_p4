@@ -25,33 +25,33 @@
 
         <header>
 
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <a class="navbar-brand" href="../public/index.php">Billet simple pour l'Alaska</a>
+            <nav class="navbar navbar-expand-lg navbar-light bg-info">
+                <a class="navbar-brand text-white" href="../public/index.php">Billet simple pour l'Alaska</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
                 <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
                     <div class="navbar-nav">
-                        <a class="nav-link" href="../public/index.php">Tous les chapitres</a>
+                        <a class="nav-link text-white" href="../public/index.php">Tous les chapitres</a>
                         <?php
                         if($this->session->get('loggedIn'))
                         {
                             if($this->session->get('user')->getIsAdmin()) {
                                 ?>
-                                <a class="nav-link" href="../public/index.php?route=administration">Administration</a>
+                                <a class="nav-link text-white" href="../public/index.php?route=administration">Administration</a>
                                 <?php
                             }
                             ?>
-                            <a class="nav-link" href="../public/index.php?route=profile">Profil</a>
-                            <a class="nav-link" href="../public/index.php?route=logout">Déconnexion</a>
+                            <a class="nav-link text-white" href="../public/index.php?route=profile">Profil</a>
+                            <a class="nav-link text-white" href="../public/index.php?route=logout">Déconnexion</a>
                             <?php
                         }
                         else
                         {
                             ?>
-                            <a class="nav-link" href="../public/index.php?route=register">Inscription</a>
-                            <a class="nav-link" href="../public/index.php?route=login">Connexion</a>
+                            <a class="nav-link text-white" href="../public/index.php?route=register">Inscription</a>
+                            <a class="nav-link text-white" href="../public/index.php?route=login">Connexion</a>
                             <?php
                         }
                         ?>
@@ -115,4 +115,5 @@
         </div>
 
     </body>
+
 </html>
