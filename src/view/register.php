@@ -36,12 +36,12 @@
 
         <div class="row mt-5">
             <div class="col-6 text-center">
-                <a type="button" class="btn btn-primary" href="../public/index.php?route=login">
+                <a type="button" class="btn btn-primary btn-block" href="../public/index.php?route=login">
                     J'ai un compte !
                 </a>
             </div>
             <div class="col-6 text-center">
-                <a type="button" class="btn btn-secondary" href="../public/index.php">
+                <a type="button" class="btn btn-secondary btn-block" href="../public/index.php">
                     Aller à l'accueil
                 </a>
             </div>

@@ -25,12 +25,12 @@
                 </form>
                 <div class="row mt-5">
                     <div class="col-6 text-center">
-                        <a type="button" class="btn btn-primary" href="../public/index.php?route=register">
+                        <a type="button" class="btn btn-primary btn-block" href="../public/index.php?route=register">
                             Je crée un compte
                         </a>
                     </div>
                     <div class="col-6 text-center">
-                        <a type="button" class="btn btn-secondary" href="../public/index.php">
+                        <a type="button" class="btn btn-secondary btn-block" href="../public/index.php">
                             Retour à l'accueil
                         </a>
                     </div>

@@ -148,7 +148,7 @@
                                 if ($comment->getIsFlag()) {
                                     ?>
                                     <div class="text-danger flagged-text">
-                                        <i class="fas fa-flag"></i>
+                                        <i class="fas fa-flag"></i> Signalé
                                     </div>
                                     <?php
                                 } else {
