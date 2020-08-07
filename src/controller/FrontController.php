@@ -52,7 +52,6 @@ class FrontController extends Controller
 
             if (!$errors) {
                 $this->userDAO->register($post);
-                var_dump($post);
                 $this->login($post);
                 $this->session->set(
                     'success_message',
@@ -90,7 +89,7 @@ class FrontController extends Controller
                 $this->session->set('loggedIn', true);
                 $this->session->set('user', $checkPassword['user']);
                 $this->session->set(
-                    'login_message',
+                    'info_message',
                     'Content de vous revoir '.$this->session->get('user')->getPseudo(). ' !'
                 );
                 header('Location: ../public/index.php');

@@ -1,6 +1,49 @@
 <?php $this->title = 'Mon profil'; ?>
 <?php $loggedIn = isset($this->session) && $this->session->get('user')->getPseudo(); ?>
 
+<div class="message">
+    <?php
+
+    if ($this->session->get('info_message')) {
+        ?>
+        <div class="alert alert-info alert-dismissible fade show" role="alert">
+            <?= $this->session->show('info_message') ; ?>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <?php
+    } elseif ($this->session->get('success_message')) {
+        ?>
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <?= $this->session->show('success_message') ; ?>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <?php
+    } elseif ($this->session->get('warning_message')) {
+        ?>
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            <?= $this->session->show('warning_message') ; ?>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <?php
+    } elseif ($this->session->get('error_message')) {
+        ?>
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <?= $this->session->show('error_message') ; ?>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <?php
+    }
+    ?>
+</div>
+
 <div class="row">
     <div class="col-12">
         <h1><?= $user->getPseudo(); ?></h1>

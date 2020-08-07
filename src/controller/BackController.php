@@ -311,7 +311,7 @@ class BackController extends Controller
         $this->session->stop();
         $this->session->start();
         if ($param === 'logout') {
-            $this->session->set('logout_message', 'À bientôt');
+            $this->session->set('info_message', 'À bientôt');
         } else {
             $this->session->set(
                 'success_message',

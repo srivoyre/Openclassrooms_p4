@@ -60,37 +60,52 @@
             </nav>
         </header>
 
-        <div id="messages" class="row">
-            <div class="col-3"></div>
-            <?php
-
-            if ($this->session->get('info_message')) {
-            ?>
-                <div class="alert alert-info col-3" role="alert">
-                    <?= $this->session->show('info_message') ; ?>
+        <div class="row mt-3">
+            <div class="col-1 col-sm-2 col-md-3 col-lg-4"></div>
+            <div class="col-10 col-sm-8 col-md-6 col-lg-4">
+                <div class="message">
+                    <?php
+                    if ($this->session->get('info_message')) {
+                        ?>
+                        <div class="alert alert-info alert-dismissible fade show" role="alert">
+                            <?= $this->session->show('info_message') ; ?>
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <?php
+                    } elseif ($this->session->get('success_message')) {
+                        ?>
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            <?= $this->session->show('success_message') ; ?>
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <?php
+                    } elseif ($this->session->get('warning_message')) {
+                        ?>
+                        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                            <?= $this->session->show('warning_message') ; ?>
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <?php
+                    } elseif ($this->session->get('error_message')) {
+                        ?>
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            <?= $this->session->show('error_message') ; ?>
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <?php
+                    }
+                    ?>
                 </div>
-            <?php
-            } elseif ($this->session->get('success_message')) {
-            ?>
-                <div class="alert alert-success col-3" role="alert">
-                    <?= $this->session->show('success_message') ; ?>
-                </div>
-            <?php
-            } elseif ($this->session->get('warning_message')) {
-            ?>
-                <div class="alert alert-warning col-3" role="alert">
-                    <?= $this->session->show('warning_message') ; ?>
-                </div>
-            <?php
-            } elseif ($this->session->get('error_message')) {
-            ?>
-                <div class="alert alert-danger col-3" role="alert">
-                    <?= $this->session->show('error_message') ; ?>
-                </div>
-            <?php
-            }
-            ?>
-            <div class="col-3"></div>
+            </div>
+            <div class="col-1 col-sm-2 col-md-3 col-lg-4"></div>
         </div>
 
         <div id="content" class="row mt-4">
