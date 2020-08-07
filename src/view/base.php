@@ -94,7 +94,9 @@
         </div>
 
         <div id="content" class="row mt-4">
-            <?= $content ?>
+            <div class="col-12">
+                <?= $content ?>
+            </div>
         </div>
 
     </body>

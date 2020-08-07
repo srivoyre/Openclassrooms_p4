@@ -8,7 +8,7 @@
     </div>
 </div>
 
-<div class="row container">
+<div class="row mx-0">
     <div class="col-10">
         <h1>
             <?= htmlspecialchars($article->getTitle()); ?>
@@ -30,7 +30,7 @@
     </div>
 </div>
 
-<div class="row">
+<div class="row container">
         <?= $article->getContent();?>
     <div class="bold">
         Publié le <?= htmlspecialchars(date('d/m/Y', strtotime($article->getLastPublishedDate())));?>
