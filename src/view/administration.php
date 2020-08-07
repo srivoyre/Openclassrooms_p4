@@ -134,7 +134,6 @@
     {
         ?>
         <tr class="">
-            <!--<th class="d-block d-md-none" scope="col">Détails du commentaire signalé :</th>-->
             <th scope="row">
                 <?= htmlspecialchars($comment->getPseudo()); ?>
             </th>
