@@ -118,40 +118,42 @@
                                 Posté le <?=htmlspecialchars($comment->getCreatedAt());?>
                             </span>
                         </div>
-                        <div id="flag-comment col-2">
-                            <?php
-                            if ($comment->getIsFlag()) {
-                                ?>
-                                <div class="text-danger flagged-text">
-                                    <i class="fas fa-flag"></i>
-                                </div>
+                        <div class="col-4 d-flex flex-wrap justify-content-end">
+                            <div id="flag-comment">
                                 <?php
-                            } else {
+                                if ($comment->getIsFlag()) {
+                                    ?>
+                                    <div class="text-danger flagged-text">
+                                        <i class="fas fa-flag"></i>
+                                    </div>
+                                    <?php
+                                } else {
+                                    ?>
+                                    <div class="mx-1">
+                                        <a type="button" class="btn btn-outline-danger" alt="Signaler le commentaire" href="../public/index.php?route=flagComment&commentId=<?= $comment->getId(); ?>&articleId=<?= $comment->getArticleId(); ?>">
+                                            <i class="fas fa-exclamation-circle"></i>
+                                        </a>
+                                    </div>
+                                    <?php
+                                }
                                 ?>
-                                <div class="mx-1">
-                                    <a type="button" class="btn btn-outline-danger" alt="Signaler le commentaire" href="../public/index.php?route=flagComment&commentId=<?= $comment->getId(); ?>&articleId=<?= $comment->getArticleId(); ?>">
-                                        <i class="fas fa-exclamation-circle"></i>
-                                    </a>
-                                </div>
+                            </div>
+                            <div id="delete-comment">
                                 <?php
-                            }
-                            ?>
-                        </div>
-                        <div id="delete-comment col-2">
-                            <?php
-                            if (
-                                $this->session->get('loggedIn')
-                                && $this->session->get('user')->getPseudo() == $comment->getPseudo()
-                            ) {
+                                if (
+                                    $this->session->get('loggedIn')
+                                    && $this->session->get('user')->getPseudo() == $comment->getPseudo()
+                                ) {
+                                    ?>
+                                    <div class="mx-1">
+                                        <a  type="button" class="btn btn-outline-danger" href="../public/index.php?route=deleteComment&commentId=<?= $comment->getId(); ?>&articleId=<?= $comment->getArticleId(); ?>&pseudo=<?= $comment->getPseudo(); ?>">
+                                            <i class="fas fa-trash-alt"></i>
+                                        </a>
+                                    </div>
+                                    <?php
+                                }
                                 ?>
-                                <div class="mx-1">
-                                    <a  type="button" class="btn btn-outline-danger" href="../public/index.php?route=deleteComment&commentId=<?= $comment->getId(); ?>&articleId=<?= $comment->getArticleId(); ?>&pseudo=<?= $comment->getPseudo(); ?>">
-                                        <i class="fas fa-trash-alt"></i>
-                                    </a>
-                                </div>
-                                <?php
-                            }
-                            ?>
+                            </div>
                         </div>
                     </div>
                     <div class="row">
