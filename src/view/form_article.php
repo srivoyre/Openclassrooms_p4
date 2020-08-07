@@ -19,8 +19,8 @@ $submit = $route === 'addArticle' ? 'Créer' : 'Enregistrer';
         <label for="content">Contenu</label>
         <br />
         <textarea id="content" class="form-control" name="content">
-    <?= isset($post) ? htmlspecialchars($post->get('content')) : ''; ?>
-</textarea>
+            <?= isset($post) ? htmlspecialchars($post->get('content')) : ''; ?>
+        </textarea>
         <?= isset($errors['content']) ? $errors['content'] : ''; ?>
         <script>
             tinymce.init({

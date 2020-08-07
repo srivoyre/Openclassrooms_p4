@@ -12,7 +12,7 @@
     </div>
 </div>
 
-<table class="table table-hover">
+<table class="table table-hover table-responsive-lg">
     <thead>
         <tr>
             <th class="text-center" scope="col">N°</th>
@@ -54,34 +54,25 @@
                 }
                 ?>
             </td>
-            <td class="">
-                <span class="d-none d-md-block">
+            <td class="text-justify">
+                <span class="d-none d-lg-block">
                     <?= substr(strip_tags($article->getContent()), 0, 150); ?>
                 </span>
-                <span class="font-italic d-block d-md-none">
+                <span class="font-italic d-block d-lg-none">
                     Aperçu du chapitre indisponible
                 </span>
             </td>
-            <td class="">
-                <span class="font-italic d-block d-md-none">
-                    Écrit par
-                </span>
+            <td>
                 <?= htmlspecialchars($article->getAuthor()); ?>
             </td>
-            <td class="">
-                <span class="font-italic d-block d-md-none">
-                    Date de création :
-                </span>
+            <td>
                 <?= htmlspecialchars($article->getCreatedAt()); ?>
             </td>
-            <td class="">
+            <td>
                 <?php
                 // Avoid default '01/01/1970' display if date is null
                 if (!is_null($article->getLastPublishedDate())) {
                 ?>
-                    <span class="font-italic d-block d-md-none">
-                        Dernière publication le
-                    </span>
                     <?= htmlspecialchars(date('d/m/Y', strtotime($article->getLastPublishedDate()))); ?>
                 <?php
                 }
@@ -126,7 +117,7 @@
 
 <h2>Commentaires signalés</h2>
 
-<table class="table table-hover table-responsive">
+<table class="table table-hover table-responsive-lg">
     <thead class="">
         <tr class="">
             <th class="text-center" scope="col">Pseudo</th>
@@ -142,16 +133,14 @@
         ?>
         <tr class="">
             <!--<th class="d-block d-md-none" scope="col">Détails du commentaire signalé :</th>-->
-            <td>
-                <span class="font-weight-bold">
-                    <?= htmlspecialchars($comment->getPseudo()); ?>
-                </span>
-            </td>
+            <th scope="row">
+                <?= htmlspecialchars($comment->getPseudo()); ?>
+            </th>
             <td class="text-break">
                 <?= substr(htmlspecialchars($comment->getContent()), 0, 150); ?>
             </td>
-            <td class="">
-                Commentaire posté le : <?= htmlspecialchars($comment->getCreatedAt()); ?>
+            <td>
+                <?= htmlspecialchars($comment->getCreatedAt()); ?>
             </td>
             <td class="d-flex flex-wrap justify-content-end">
                 <a type="button" class="btn btn-outline-primary mb-1 mx-1" href="../public/index.php?route=unflagComment&commentId=<?= $comment->getId(); ?>">
@@ -173,10 +162,9 @@
 </div>
 
 <h2>Utilisateurs</h2>
-<table class="table table-hover">
+<table class="table table-hover table-responsive-lg">
     <thead>
         <th class="text-center" scope="col">Pseudo</th>
-        <!--<th scope="col">Détails</th>-->
         <th scope="col">Email</th>
         <th scope="col">Date de création</th>
         <th scope="col">Rôle</th>
@@ -187,9 +175,9 @@
     {
         ?>
         <tr>
-            <td>
+            <th scope="row">
                 <?= htmlspecialchars($user->getPseudo()); ?>
-            </td>
+            </th>
             <td class="">
                 <a href="mailto:<?= htmlspecialchars($user->getEmail()); ?>">
                     <?= htmlspecialchars($user->getEmail()); ?>
@@ -214,7 +202,9 @@
                 else
                 {
                     ?>
-                    Suppression impossible
+                    <span class="font-italic">
+                        Suppression impossible
+                    </span>
                     <?php
                 }
                 ?>
