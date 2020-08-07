@@ -180,6 +180,7 @@ class BackController extends Controller
                 if (!$errors) {
                     $this->commentDAO->addComment(
                         $post,
+                        $this->session->get('user')->getId(),
                         $this->session->get('user')->getPseudo(),
                         $articleId
                     );
@@ -304,7 +305,7 @@ class BackController extends Controller
     public function deleteAccount()
     {
         if ($this->checkLoggedIn()) {
-            $this->userDAO->deleteAccount($this->session->get('user')->getPseudo());
+            $this->userDAO->deleteUser($this->session->get('user')->getId());
             $this->logoutOrDelete('delete_account');
         }
     }
@@ -312,6 +313,7 @@ class BackController extends Controller
     public function deleteUser(string $userId)
     {
         if ($this->checkAdmin()) {
+            $this->commentDAO->deleteUserComments($userId);
             $this->userDAO->deleteUser($userId);
             $this->session->set(
                 'success_message',

@@ -1,5 +1,5 @@
 {
-    "name": "srivoyre/Openclassrooms_p4",
+    "name": "srivoyre/openclassrooms_p4",
     "version": "0.1.0",
     "type": "project",
     "description": "Blog pour l'écrivain Jean Forteroche, projet n°4 du parcours Développeur Web Junior d'Openclassrooms",
@@ -22,9 +22,6 @@
             "App\\config\\": "config/",
             "App\\src\\": "src/"
         }
-    },
-    "require":{
-        "twig/twig":"3.0.5"
     },
     "support": {
         "email": "s.rivoyre@gmail.com",

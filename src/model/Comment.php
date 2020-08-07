@@ -5,6 +5,7 @@ namespace App\src\model;
 class Comment
 {
     private $id;
+    private $userId;
     private $pseudo;
     private $content;
     private $createdAt;
@@ -25,6 +26,22 @@ class Comment
     public function setId($id)
     {
         $this->id = $id;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getUserId()
+    {
+        return $this->userId;
+    }
+
+    /**
+     * @param mixed $userId
+     */
+    public function setUserId($userId)
+    {
+        $this->userId = $userId;
     }
 
     /**
