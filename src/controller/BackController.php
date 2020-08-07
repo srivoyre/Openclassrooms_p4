@@ -305,7 +305,7 @@ class BackController extends Controller
     public function deleteAccount()
     {
         if ($this->checkLoggedIn()) {
-            $this->userDAO->deleteAccount($this->session->get('user')->getPseudo());
+            $this->userDAO->deleteUser($this->session->get('user')->getId());
             $this->logoutOrDelete('delete_account');
         }
     }
