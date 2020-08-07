@@ -1,48 +1,5 @@
 <?php $this->title = htmlspecialchars($article->getTitle()); ?>
 
-<div class="message">
-    <?php
-
-    if ($this->session->get('info_message')) {
-        ?>
-        <div class="alert alert-info alert-dismissible fade show" role="alert">
-            <?= $this->session->show('info_message') ; ?>
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-        <?php
-    } elseif ($this->session->get('success_message')) {
-        ?>
-        <div class="alert alert-success alert-dismissible fade show" role="alert">
-            <?= $this->session->show('success_message') ; ?>
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-        <?php
-    } elseif ($this->session->get('warning_message')) {
-        ?>
-        <div class="alert alert-warning alert-dismissible fade show" role="alert">
-            <?= $this->session->show('warning_message') ; ?>
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-        <?php
-    } elseif ($this->session->get('error_message')) {
-        ?>
-        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-            <?= $this->session->show('error_message') ; ?>
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-        <?php
-    }
-    ?>
-</div>
-
 <div class="row my-2">
     <div class="col-6 mx-0 px-0">
         <a class="btn btn-light" href="../public/index.php">
@@ -82,7 +39,14 @@
 <div class="row">
     <div class="col-12 mb-3">
         <span class="font-weight-bold font-italic">
-            Publié le <?= htmlspecialchars(date('d/m/Y', strtotime($article->getLastPublishedDate())));?>
+            <?php
+            // Avoid default '01/01/1970' display if date is null
+            if (!is_null($article->getLastPublishedDate())) {
+                ?>
+                publié le <?= htmlspecialchars(date('d/m/Y', strtotime($article->getLastPublishedDate()))); ?>
+                <?php
+            }
+            ?>
         </span>
     </div>
 </div>
@@ -115,7 +79,7 @@
 
 <div class="row">
     <div class="col-md-1 col-lg-2"></div>
-    <div id="comments-container" class="border border-bottom-0 col-md-10 col-lg-8 py-3 px-md-2 p-lg-5">
+    <div id="comments-container" class="border col-md-10 col-lg-8 py-3 px-md-2 p-lg-5">
         <div class="row">
             <div class="col-12">
                 <h3>Commentaires</h3>
@@ -155,6 +119,11 @@
         </div>
 
         <?php
+        if (empty($comments)) {
+            ?>
+            <div class="font-italic text-center">Soyez le premier à commenter !</div>
+            <?php
+        }
         foreach ($comments as $comment) {
             ?>
             <div class="row">
