@@ -1,6 +1,6 @@
 <?php
 
-namespace App\src\model;
+namespace App\src\controller;
 
 use App\src\Request;
 
