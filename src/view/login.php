@@ -30,7 +30,7 @@
                         </a>
                     </div>
                     <div class="col-6 text-center">
-                        <a type="button" class="btn btn-secondary btn-block" href="../public/index.php">
+                        <a type="button" class="btn btn-info btn-block" href="../public/index.php">
                             Retour à l'accueil
                         </a>
                     </div>

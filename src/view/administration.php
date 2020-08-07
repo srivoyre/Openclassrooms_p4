@@ -5,7 +5,7 @@
             <h2>Chapitres</h2>
         </div>
         <div class="col-6 text-right">
-            <a type="button" class="btn btn-outline-secondary" href="../public/index.php?route=addArticle">
+            <a type="button" class="btn btn-outline-info" href="../public/index.php?route=addArticle">
                 Nouveau chapitre
             </a>
         </div>

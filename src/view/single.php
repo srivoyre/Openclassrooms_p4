@@ -2,7 +2,7 @@
 
 <div class="row my-2">
     <div class="col-6 mx-0 px-0">
-        <a href="../public/index.php">
+        <a class="btn btn-light" href="../public/index.php">
             << Retour à la liste des chapitres
         </a>
     </div>
@@ -49,7 +49,7 @@
         <?php
         if (empty($article->getPreviousArticle()) == false) {
             ?>
-            <a class="btn btn-secondary" href="../public/index.php?route=viewArticle&articleId=<?= $article->getPreviousArticle()->getId(); ?>">
+            <a class="btn btn-info" href="../public/index.php?route=viewArticle&articleId=<?= $article->getPreviousArticle()->getId(); ?>">
                 << Précédent
             </a>
             <?php
@@ -60,7 +60,7 @@
         <?php
         if (empty($article->getNextArticle()) == false) {
             ?>
-            <a class="btn btn-secondary" href="../public/index.php?route=viewArticle&articleId=<?= $article->getNextArticle()->getId(); ?>">
+            <a class="btn btn-info" href="../public/index.php?route=viewArticle&articleId=<?= $article->getNextArticle()->getId(); ?>">
                 Suivant >>
             </a>
 
@@ -118,7 +118,7 @@
                 <div class="col-12 mx-0">
                     <div class="comment-header row">
                         <div class="col-7">
-                    <span class="bold">
+                    <span class="font-weight-bold">
                         <?= htmlspecialchars($comment->getPseudo());?>
                     </span>
                             <br />
