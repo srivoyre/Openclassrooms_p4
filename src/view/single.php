@@ -31,11 +31,9 @@
 </div>
 
 <div class="row">
-    <div class="col-2"></div>
     <div class="col-12">
         <?= $article->getContent();?>
     </div>
-    <div class="col-2"></div>
 </div>
 
 <div class="row">
@@ -81,7 +79,7 @@
                 <?php
                 if ($this->session->get('loggedIn')) {
                     ?>
-                    <h4>Ajouter un commentaire</h4>
+                    <h4 class="mt-3">Ajouter un commentaire :</h4>
                     <div class="row my-4">
                         <div class="col-12">
                             <?php include('form_comment.php'); ?>

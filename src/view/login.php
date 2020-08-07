@@ -1,14 +1,14 @@
 <?php $this->title = "Connexion" ;?>
-<div class="row">
-    <div class="col-12">
+<div class="row mt-5">
+    <div class="col-sm-2 col-lg-3 col-xl-4"></div>
+    <div class="col-12 col-sm-8 col-lg-6 col-xl-4">
 
         <h1>
             Connexion
         </h1>
 
         <div class="row">
-
-            <div class="col-12 col-sm-8 col-md-6 col-xl-4">
+            <div class="col-12">
 
                 <form method="post" action="../public/index.php?route=login">
                     <div class="form-group">
@@ -43,5 +43,7 @@
         </div>
 
     </div>
+
+    <div class="col-sm-2 col-lg-3 col-xl-4"></div>
 
 </div>

@@ -33,7 +33,7 @@
 
                 <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
                     <div class="navbar-nav">
-                        <a class="nav-link" href="../public/index.php">Accueil</a>
+                        <a class="nav-link" href="../public/index.php">Tous les chapitres</a>
                         <?php
                         if($this->session->get('loggedIn'))
                         {
