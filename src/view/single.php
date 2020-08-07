@@ -1,126 +1,224 @@
-<?php $this->title = $article->getTitle(); ?>
+<?php $this->title = htmlspecialchars($article->getTitle()); ?>
 
-<?= $this->session->show('add_comment_message'); ?>
-<?= $this->session->show('delete_comment_message'); ?>
-<?= $this->session->show('flag_comment_message'); ?>
-<?= $this->session->show('unflag_comment_message'); ?>
+<div class="message">
+    <?php
 
-<p>
-    <a href="../public/index.php"><< Retour à l'accueil</a>
-</p>
-
-<?php
-if (empty($article->getPreviousArticle())== false) {
-?>
-    <a href="../public/index.php?route=viewArticle&articleId=<?= $article->getPreviousArticle()->getId(); ?>">
-        <
-    </a>
-    Chapitre <?= $article->getPreviousArticle()->getOrderNum(); ?>
-<?php
-}
-
-if (empty($article->getNextArticle()) == false) {
-?>
-    Chapitre <?= $article->getNextArticle()->getOrderNum(); ?>
-    <a href="../public/index.php?route=viewArticle&articleId=<?= $article->getNextArticle()->getId(); ?>">
-        >
-    </a>
-<?php
-}
-?>
-
-<div>
-    <h2>
-        <?= htmlspecialchars($article->getTitle());?>
-    </h2>
-    <p>
-        <?= $article->getContent();?>
-    </p>
-    <p>
-        Auteur : <?= htmlspecialchars($article->getAuthor());?>
-    </p>
-    <p>
-        Publié le : <?= htmlspecialchars($article->getLastPublishedDate());?>
-    </p>
+    if ($this->session->get('info_message')) {
+        ?>
+        <div class="alert alert-info alert-dismissible fade show" role="alert">
+            <?= $this->session->show('info_message') ; ?>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <?php
+    } elseif ($this->session->get('success_message')) {
+        ?>
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <?= $this->session->show('success_message') ; ?>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <?php
+    } elseif ($this->session->get('warning_message')) {
+        ?>
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            <?= $this->session->show('warning_message') ; ?>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <?php
+    } elseif ($this->session->get('error_message')) {
+        ?>
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <?= $this->session->show('error_message') ; ?>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <?php
+    }
+    ?>
 </div>
 
-<br />
-<?php
-if (
-    $this->session->get('loggedIn')
-    && $this->session->get('user')->getIsAdmin()
-) {
-?>
-    <div class="actions">
-        <a href="../public/index.php?route=editArticle&articleId=<?= $article->getId(); ?>">Modifier</a>
-        <a href="../public/index.php?route=deleteArticle&articleId=<?= $article->getId(); ?>">Supprimer</a>
+<div class="row my-2">
+    <div class="col-6 mx-0 px-0">
+        <a class="btn btn-light" href="../public/index.php">
+            << Retour à la liste des chapitres
+        </a>
     </div>
-<?php
-}
-?>
-
-
-<br />
-
-<div id="comments" class="text-left" style="margin-left: 50px;">
-<?php
-if ($this->session->get('loggedIn')) {
-?>
-    <h3>Ajouter un commentaire</h3>
-    <?php include('form_comment.php'); ?>
-<?php
-} else {
-?>
-    <p>Vous devez être connecté pour poste un commentaire</p>
-    <a href="../public/index.php?route=login">Je me connecte !</a>
-    <a href="../public/index.php?route=register">Je crée un compte !</a>
-<?php
-}
-?>
-
-<h3>Commentaires</h3>
-
-<?php
-foreach ($comments as $comment) {
-?>
-    <h4>
-        <?= htmlspecialchars($comment->getPseudo());?>
-    </h4>
-    <p>
-        <?= htmlspecialchars($comment->getContent());?>
-    </p>
-    <p>
-        Posté le <?=htmlspecialchars($comment->getCreatedAt());?>
-    </p>
-<?php
-    if ($comment->getIsFlag()) {
-?>
-        <p>
-            Ce commentaire a été signalé
-        </p>
-<?php
-    } else {
-?>
-        <p>
-            <a href="../public/index.php?route=flagComment&commentId=<?= $comment->getId(); ?>&articleId=<?= $comment->getArticleId(); ?>">
-                Signaler le commentaire
-            </a>
-        </p>
-<?php
-    }
-
-    if (
+    <div class="col-6 text-right">
+        <?php
+        if (
             $this->session->get('loggedIn')
-            && $this->session->get('user')->getPseudo() == $comment->getPseudo()
-    ) {
-?>
-        <p>
-            <a href="../public/index.php?route=deleteComment&commentId=<?= $comment->getId(); ?>&articleId=<?= $comment->getArticleId(); ?>&pseudo=<?= $comment->getPseudo(); ?>">
-                Supprimer mon commentaire
+            && $this->session->get('user')->getIsAdmin()
+        ) {
+            ?>
+            <a  type="button" class="btn btn-outline-primary" href="../public/index.php?route=editArticle&articleId=<?= $article->getId(); ?>">
+                <i class="fas fa-edit"></i>
             </a>
-        </p>
-<?php
-    }
-}
-?>
+            <?php
+        }
+        ?>
+    </div>
 </div>
+
+<div class="row mx-0">
+    <div class="col-12 my-3">
+        <h1>
+            <?= htmlspecialchars($article->getTitle()); ?>
+        </h1>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        <?= $article->getContent();?>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 mb-3">
+        <span class="font-weight-bold font-italic">
+            Publié le <?= htmlspecialchars(date('d/m/Y', strtotime($article->getLastPublishedDate())));?>
+        </span>
+    </div>
+</div>
+
+<div id="chapters-nav" class="row mb-4">
+    <div id="previous-chapter" class="col-6">
+        <?php
+        if (empty($article->getPreviousArticle()) == false) {
+            ?>
+            <a class="btn btn-info" href="../public/index.php?route=viewArticle&articleId=<?= $article->getPreviousArticle()->getId(); ?>">
+                << Précédent
+            </a>
+            <?php
+        }
+        ?>
+    </div>
+    <div id="next-chapter" class="col-6 text-right">
+        <?php
+        if (empty($article->getNextArticle()) == false) {
+            ?>
+            <a class="btn btn-info" href="../public/index.php?route=viewArticle&articleId=<?= $article->getNextArticle()->getId(); ?>">
+                Suivant >>
+            </a>
+
+            <?php
+        }
+        ?>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-1 col-lg-2"></div>
+    <div id="comments-container" class="border border-bottom-0 col-md-10 col-lg-8 py-3 px-md-2 p-lg-5">
+        <div class="row">
+            <div class="col-12">
+                <h3>Commentaires</h3>
+                <?php
+                if ($this->session->get('loggedIn')) {
+                    ?>
+                    <h4 class="mt-3">Ajouter un commentaire :</h4>
+                    <div class="row my-4">
+                        <div class="col-12">
+                            <?php include('form_comment.php'); ?>
+                        </div>
+                    </div>
+                    <?php
+                } else {
+                    ?>
+                    <div class="row my-3">
+                        <div class="col-12">Vous devez être connecté pour commenter !</div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-4 col-sm-3 col-md-2">
+                            <a type="button" class="btn btn-primary" href="../public/index.php?route=login">
+                                Connexion
+                            </a>
+                        </div>
+                        <div class="col-4 col-sm-3 col-md-2">
+                            <a type="button" class="btn btn-primary" href="../public/index.php?route=register">
+                                Inscription
+                            </a>
+                        </div>
+                        <div class="col-4 col-sm-6 col-md-8"></div>
+                    </div>
+
+                    <?php
+                }
+                ?>
+            </div>
+        </div>
+
+        <?php
+        foreach ($comments as $comment) {
+            ?>
+            <div class="row">
+                <div class="col-12 mx-0">
+                    <div class="comment-header row">
+                        <div class="col-7">
+                    <span class="font-weight-bold">
+                        <?= htmlspecialchars($comment->getPseudo());?>
+                    </span>
+                            <br />
+                            <span class="font-italic small">
+                        Posté le <?=htmlspecialchars($comment->getCreatedAt());?>
+                    </span>
+                        </div>
+                        <div class="col-5 d-flex flex-wrap justify-content-end">
+                            <div id="delete-comment">
+                                <?php
+                                if (
+                                    $this->session->get('loggedIn')
+                                    && $this->session->get('user')->getPseudo() == $comment->getPseudo()
+                                ) {
+                                    ?>
+                                    <div class="mx-1">
+                                        <a  type="button" class="btn btn-outline-danger" href="../public/index.php?route=deleteComment&commentId=<?= $comment->getId(); ?>&articleId=<?= $comment->getArticleId(); ?>&pseudo=<?= $comment->getPseudo(); ?>">
+                                            <i class="fas fa-trash-alt"></i>
+                                        </a>
+                                    </div>
+                                    <?php
+                                }
+                                ?>
+                            </div>
+                            <div id="flag-comment">
+                                <?php
+                                if ($comment->getIsFlag()) {
+                                    ?>
+                                    <div class="text-danger flagged-text">
+                                        <i class="fas fa-flag"></i> Signalé
+                                    </div>
+                                    <?php
+                                } else {
+                                    ?>
+                                    <div class="mx-1">
+                                        <a type="button" class="btn btn-outline-danger" alt="Signaler le commentaire" href="../public/index.php?route=flagComment&commentId=<?= $comment->getId(); ?>&articleId=<?= $comment->getArticleId(); ?>">
+                                            <i class="fas fa-exclamation-circle"></i>
+                                        </a>
+                                    </div>
+                                    <?php
+                                }
+                                ?>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-11 border-bottom ml-3 mb-3 pb-3 text-break">
+                            <?= htmlspecialchars($comment->getContent());?>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <?php
+        }
+        ?>
+    </div>
+    <div class="col-md-1 col-lg-2"></div>
+</div>
+

@@ -1,9 +1,9 @@
 <form method="post" action="../public/index.php?route=addComment&articleId=<?= htmlspecialchars($article->getId()); ?>">
-
-    <label for="content">Message*</label>
-    <br />
-    <textarea id="content" name="content"><?= isset($post) ? htmlspecialchars($post->get('content')) : ''; ?></textarea>
-    <br />
+    <div class="form-group">
+        <textarea class="form-control" id="comment-form-content" name="content" required aria-required="true"></textarea>
+    </div>
     <?= isset($errors['content']) ? $errors['content'] : ''; ?>
-    <input type="submit" value="Commenter" id="submit" name="submit">
+    <div class="text-right">
+        <input class="btn btn-primary align-right" type="submit" value="Commenter" id="submit" name="submit">
+    </div>
 </form>

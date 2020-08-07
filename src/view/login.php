@@ -1,22 +1,49 @@
-<?php $this->title = "Connexion"; ?>
+<?php $this->title = "Connexion" ;?>
+<div class="row mt-5">
+    <div class="col-sm-2 col-lg-3 col-xl-4"></div>
+    <div class="col-12 col-sm-8 col-lg-6 col-xl-4">
 
-<?= $this->session->show('error_login_message'); ?>
-<?= $this->session->show('need_login_message'); ?>
+        <h1>
+            Connexion
+        </h1>
 
-<div>
-    <form method="post" action="../public/index.php?route=login">
-        <label for="pseudo">Pseudo ou e-mail</label>
-        <br />
-        <input type="text" id="pseudo" name="pseudo">
-        <br />
-        <label for="password">Mot de passe</label>
-        <br />
-        <input type="password" id="password" name="password">
-        <br />
-        <input type="submit" value="Connexion" id="submit" name="submit">
-    </form>
+        <div class="row">
+            <div class="col-12">
 
-    <a href="../public/index.php?route=register">Vous n'avez pas encore de compte ?</a>
+                <form method="post" action="../public/index.php?route=login">
+                    <div class="form-group">
+                        <label for="pseudo">Pseudo ou e-mail</label>
+                        <br />
+                        <input class="form-control" type="text" id="pseudo" name="pseudo" required aria-required="true">
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Mot de passe</label>
+                        <br />
+                        <input class="form-control" type="password" id="password" name="password" required aria-required="true">
+                    </div>
+                    <input class="btn btn-primary"  type="submit" value="Connexion" id="submit" name="submit">
+                </form>
+                <div class="row mt-5">
+                    <div class="col-6 text-center">
+                        <a type="button" class="btn btn-primary btn-block" href="../public/index.php?route=register">
+                            Je crée un compte
+                        </a>
+                    </div>
+                    <div class="col-6 text-center">
+                        <a type="button" class="btn btn-info btn-block" href="../public/index.php">
+                            Retour à l'accueil
+                        </a>
+                    </div>
+                </div>
+            </div>
 
-    <a href="../public/index.php">Retour à l'accueil</a>
+            <div class="col-sm-2 col-md-3 col-xl-4"></div>
+
+            <div class="col-sm-2 col-md-3 col-xl-4"></div>
+        </div>
+
+    </div>
+
+    <div class="col-sm-2 col-lg-3 col-xl-4"></div>
+
 </div>

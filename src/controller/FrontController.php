@@ -32,7 +32,7 @@ class FrontController extends Controller
     {
         $this->commentDAO->flagComment($commentId);
         $this->session->set(
-            'flag_comment_message',
+            'info_message',
             'Le commentaire a bien été signalé'
         );
         header('Location: ../public/index.php?route=viewArticle&articleId='.$articleId);
@@ -52,10 +52,9 @@ class FrontController extends Controller
 
             if (!$errors) {
                 $this->userDAO->register($post);
-                var_dump($post);
                 $this->login($post);
                 $this->session->set(
-                    'register_message',
+                    'success_message',
                     'Votre inscription a bien été effectuée'
                 );
                 header('Location: ../public/index.php');
@@ -72,7 +71,9 @@ class FrontController extends Controller
     public function login(Parameter $post)
     {
         if ($post->get('submit')) {
+
             // We give the user the possibility to login with either his pseudo or his email
+            $validUsername = '';
             $checkPseudo = $this->userDAO->checkUser($post, 'pseudo', 'pseudo', 'login');
             $checkEmail = $this->userDAO->checkUser($post, 'pseudo', 'email', 'login');
 
@@ -88,13 +89,13 @@ class FrontController extends Controller
                 $this->session->set('loggedIn', true);
                 $this->session->set('user', $checkPassword['user']);
                 $this->session->set(
-                    'login_message',
+                    'info_message',
                     'Content de vous revoir '.$this->session->get('user')->getPseudo(). ' !'
                 );
                 header('Location: ../public/index.php');
             } else {
                 $this->session->set(
-                    'error_login_message',
+                    'error_message',
                     'Le pseudo et/ou le mot de passe sont incorrects'
                 );
                 return $this->view->render('login', [

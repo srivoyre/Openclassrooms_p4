@@ -64,13 +64,13 @@ class UserValidation extends Validation
     private function checkPassword(string $name, $value)
     {
         if ($this->constraint->notBlank($name, $value)) {
-            return $this->constraint->notBlank('password', $value);
+            return $this->constraint->notBlank('mot de passe', $value);
         }
         if ($this->constraint->minLength($name, $value, 6)) {
-            return $this->constraint->minLength('password', $value, 6);
+            return $this->constraint->minLength('mot de passe', $value, 6);
         }
         if ($this->constraint->maxLength($name, $value, 20)) {
-            return $this->constraint->maxLength('password', $value, 20);
+            return $this->constraint->maxLength('mot de passe', $value, 20);
         }
     }
     private function checkEmail($value)

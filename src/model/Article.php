@@ -86,7 +86,7 @@ class Article
      */
     public function getCreatedAt()
     {
-        return date('d/m/Y H:i:s', strtotime($this->createdAt));
+        return date('d/m/Y H:i', strtotime($this->createdAt));
     }
 
     /**
