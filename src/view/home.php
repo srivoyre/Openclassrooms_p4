@@ -18,7 +18,7 @@
                             Publié le <?= htmlspecialchars(date('d/m/Y', strtotime($article->getLastPublishedDate())));?>
                         </div>
                     </p>
-                    <a href="../public/index.php?route=viewArticle&articleId=<?=htmlspecialchars($article->getId());?>" class="btn btn-primary">
+                    <a href="../public/index.php?route=viewArticle&articleId=<?=htmlspecialchars($article->getId());?>" class="btn btn-info">
                         Lire ce chapitre
                     </a>
                 </div>

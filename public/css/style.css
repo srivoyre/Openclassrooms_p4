@@ -41,23 +41,10 @@ Buttons
 ******************************/
 .btn {
     font-size: smaller;
-}/*
-.btn-outline-primary, .btn-primary {
-    border-color: #46C1EB;
 }
-.btn-outline-primary {
-    color: #46C1EB;
+/******************************
+Cards
+******************************/
+.card-header {
+    background-color: #ffffff !important;
 }
-.btn-primary {
-    background-color: #46C1EB;
-}
-
-.btn-outline-secondary, .secondary {
-    border-color: #489598;
-}
-.btn-outline-secondary {
-    color: #489598;
-}
-.btn-secondary {
-    background-color: #489598;
-}*/
