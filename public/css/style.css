@@ -1,19 +1,14 @@
 /******************************
-Alerts
-******************************/
-#messages {
-    display: flex;
-    justify-content: center;
-}
-#messages .alert {
-    text-align: center;
-    width: 500px;
-}
-/******************************
 Layout
 ******************************/
 #content {
     margin: 0 5%;
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
 }
 /******************************
 Bootstrap overrides
@@ -22,7 +17,6 @@ Bootstrap overrides
 Navbar
 ******************************/
 .navbar-brand {
-    color: #ffffff !important;
     font-size: 1.2rem;
 }
 @media all and (min-width: 375px){
@@ -30,11 +24,9 @@ Navbar
         font-size: 1.55rem;
     }
 }
-.bg-light {
-    background-color: #17a2b8 !important;
-}
-.nav-link {
-    color: #ffffff !important;
+
+.navbar-light .navbar-toggler {
+    border: none;
 }
 /******************************
 Buttons
