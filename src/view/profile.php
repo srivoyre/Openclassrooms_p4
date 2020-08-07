@@ -27,10 +27,10 @@
         </form>
 
         <div class="row mt-5">
-            <div class="col-6 text-center">
+            <div class="col-6 col-md-3 text-center text-md-left">
                 <a type="button" class="btn btn-outline-primary" href="../public/index.php?route=updatePassword">Modifier mon mot de passe</a>
             </div>
-            <div class="col-6 text-center">
+            <div class="col-6 col-md-3 text-center text-md-left">
                 <a type="button" class="btn btn-outline-danger" href="../public/index.php?route=deleteAccount">Supprimer mon compte</a>
             </div>
         </div>
