@@ -84,16 +84,25 @@
             <div class="col-12">
                 <h3>Commentaires</h3>
                 <?php
-                if ($this->session->get('loggedIn')) {
+                if (
+                        $this->session->get('loggedIn')
+                        && $article->getIsPublished()
+                ) {
                     ?>
                     <h4 class="mt-3">Ajouter un commentaire :</h4>
                     <div class="row my-4">
                         <div class="col-12">
                             <?php include('form_comment.php'); ?>
                         </div>
+                        <?php
+                        if (empty($comments)) {
+                        ?>
+                        <div class="font-italic text-center">Soyez le premier à commenter !</div>
+                        <?php
+                        }?>
                     </div>
                     <?php
-                } else {
+                } elseif ($article->getIsPublished()) {
                     ?>
                     <div class="row my-3">
                         <div class="col-12">Vous devez être connecté pour commenter !</div>
@@ -113,17 +122,16 @@
                     </div>
 
                     <?php
+                } else {
+                    ?>
+                    <div class="font-italic text-center">Les commentaires ne sont pas activés pour ce chapitre.</div>
+                    <?php
                 }
                 ?>
             </div>
         </div>
 
         <?php
-        if (empty($comments)) {
-            ?>
-            <div class="font-italic text-center">Soyez le premier à commenter !</div>
-            <?php
-        }
         foreach ($comments as $comment) {
             ?>
             <div class="row">
