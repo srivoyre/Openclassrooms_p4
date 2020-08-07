@@ -15,21 +15,21 @@
                     <div class="form-group">
                         <label for="pseudo">Pseudo</label>
                         <br />
-                        <input class="form-control" type="text" id="pseudo" name="pseudo">
+                        <input class="form-control" type="text" id="pseudo" name="pseudo" aria-label="Pseudo" required aria-required="true">
                         <br />
                         <?= isset($errors['pseudo']) ? $errors['pseudo'] : ''; ?>
                     </div>
                     <div class="form-group">
                         <label for="email">Adresse e-mail</label>
                         <br />
-                        <input class="form-control" type="email" id="email" name="email" aria-label="Username" aria-describedby="basic-addon1">
+                        <input class="form-control" type="email" id="email" name="email" aria-label="E-mail" aria-describedby="basic-addon1" required aria-required="true">
                         <br />
                         <?= isset($errors['email']) ? $errors['email'] : ''; ?>
                     </div>
                     <div class="form-group">
                         <label for="password">Mot de passe</label>
                         <br />
-                        <input class="form-control" type="password" id="password" name="password">
+                        <input class="form-control" type="password" id="password" name="password" aria-label="Mot de passe" required aria-required="true">
                         <br />
                         <?= isset($errors['password']) ? $errors['password'] : ''; ?>
                     </div>

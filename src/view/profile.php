@@ -16,7 +16,7 @@
                 </div>
                 <div class="row">
                     <div class="col-12 col-md-8 pb-2">
-                        <input class="form-control" type="email" id="email" name="email" value="<?= htmlspecialchars($user->getEmail()); ?>">
+                        <input class="form-control" type="email" id="email" name="email" aria-label="E-mail" value="<?= htmlspecialchars($user->getEmail()); ?>" required aria-required="true">
                     </div>
                     <div class="col-12 col-md-4 pb-2">
                         <input class="btn btn-primary" type="submit" value="Mettre à jour mon e-mail" id="submitEmail" name="submitEmail">

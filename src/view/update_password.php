@@ -23,8 +23,8 @@
                 </div>
                 <div class="row">
                     <div class="col-12 col-md-8 pb-2">
-                        <input class="form-control" type="password" id="password" name="password"><?= isset($errors['password']) ? $errors['password'] : ''; ?>
-
+                        <input class="form-control" type="password" id="password" name="password" aria-label="Mot de passe" required aria-required="true">
+                        <?= isset($errors['password']) ? $errors['password'] : ''; ?>
                     </div>
                     <div class="col-12 col-md-4 pb-2">
                         <input class="btn btn-primary"  type="submit" value="Mettre à jour" id="submit" name="submit">

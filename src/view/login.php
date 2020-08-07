@@ -14,12 +14,12 @@
                     <div class="form-group">
                         <label for="pseudo">Pseudo ou e-mail</label>
                         <br />
-                        <input class="form-control" type="text" id="pseudo" name="pseudo">
+                        <input class="form-control" type="text" id="pseudo" name="pseudo" required aria-required="true">
                     </div>
                     <div class="form-group">
                         <label for="password">Mot de passe</label>
                         <br />
-                        <input class="form-control" type="password" id="password" name="password">
+                        <input class="form-control" type="password" id="password" name="password" required aria-required="true">
                     </div>
                     <input class="btn btn-primary"  type="submit" value="Connexion" id="submit" name="submit">
                 </form>
