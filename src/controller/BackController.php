@@ -313,7 +313,7 @@ class BackController extends Controller
     public function deleteUser(string $userId)
     {
         if ($this->checkAdmin()) {
-            $this->userDAO->deleteUserComments($userId);
+            $this->commentDAO->deleteUserComments($userId);
             $this->userDAO->deleteUser($userId);
             $this->session->set(
                 'success_message',
