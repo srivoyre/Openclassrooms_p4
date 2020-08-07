@@ -269,12 +269,20 @@ class BackController extends Controller
     {
         if ($this->checkLoggedIn()) {
             if ($post->get('submitEmail')) {
-                $this->userDAO->updateEmail($post, $this->session->get('user')->getPseudo());
-                $this->session->set(
-                    'success_message',
-                    'Votre adresse e-mail a été mise à jour'
-                );
-                header('Location: ../public/index.php?route=profile');
+                $errors = $this->validation->validate($post, 'User');
+                if (!$errors) {
+                    $this->userDAO->updateEmail($post, $this->session->get('user')->getPseudo());
+                    $this->session->set(
+                        'success_message',
+                        'Votre adresse e-mail a été mise à jour'
+                    );
+                    header('Location: ../public/index.php?route=profile');
+                }
+
+                return $this->view->render('profile', [
+                    'user' => $this->session->get('user'),
+                    'errors' => $errors
+                ]);
             }
         }
     }
