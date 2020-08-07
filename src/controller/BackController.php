@@ -180,6 +180,7 @@ class BackController extends Controller
                 if (!$errors) {
                     $this->commentDAO->addComment(
                         $post,
+                        $this->session->get('user')->getId(),
                         $this->session->get('user')->getPseudo(),
                         $articleId
                     );
