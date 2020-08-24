@@ -2,14 +2,15 @@
 <html lang="fr">
     <head>
         <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, shrink-to-fit=no">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
         <title>
             <?= $title ?>
         </title>
 
-        <link rel="icon" type="image/x-icon" href="/img/favicon.ico">
+        <link rel="canonical" href="onlineprojects.fr">
+        <link rel="icon" type="image/x-icon" href="../img/favicon.ico">
 
         <meta name="description" content="Billet simple pour l'Alaska : le nouveau roman de Jean Forteroche publié en ligne">
         <meta name="author"     content="Sophie de Rivoyre">
@@ -19,13 +20,13 @@
         <meta property="og:title"       content="Billet simple pour l'Alaska">
         <meta property="og:url"         content="onlineprojects.fr">
         <meta property="og:description" content="Billet simple pour l'Alaska : le nouveau roman de Jean Forteroche publié en ligne">
-        <meta property="og:image"       content="/img/logo.png">
+        <meta property="og:image"       content="../img/logo.png">
 
         <meta name="twitter:card"           content="summary">
         <meta name="twitter:title"          content="Billet simple pour l'Alaska">
         <meta name="twitter:site"           content="onlineprojects.fr">
         <meta name="twitter:description"    content="Billet simple pour l'Alaska : le nouveau roman de Jean Forteroche publié en ligne">
-        <meta name="twitter:image"          content="../public/img/logo.png">
+        <meta name="twitter:image"          content="../img/logo.png">
         <meta name="twitter:creator"        content="@sophiederivoyre">
 
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.1/css/bootstrap.min.css" integrity="sha384-VCmXjywReHh4PwowAiWNagnWcLhlEJLA5buUprzK8rxFgeH0kww/aWY76TfkUoSX" crossorigin="anonymous">
