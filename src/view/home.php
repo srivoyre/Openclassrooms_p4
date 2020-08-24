@@ -1,8 +1,12 @@
-<?php $this->title = "Accueil"; ?>
+<?php $this->title = "Billet simple pour l'Alaska"; ?>
 
 <div class="row mt-4">
     <div class="col-md-1 col-lg-2"></div>
     <div class="col-md-10 col-lg-8">
+        <h1 class="d-none">
+            Tous les chapitres
+        </h1>
+
         <?php
         foreach ($articles as $article) {
             ?>
@@ -14,11 +18,11 @@
                     <h3 class="card-title"><?= htmlspecialchars($article->getTitle());?></h3>
                     <p class="card-text">
                         <?= substr(strip_tags($article->getContent()), 0, 300); ?>...
-                        <div class="font-weight-bold font-italic">
+                        <span class="font-weight-bold font-italic">
                             Publié le <?= htmlspecialchars(date('d/m/Y', strtotime($article->getLastPublishedDate())));?>
-                        </div>
+                        </span>
                     </p>
-                    <a href="../public/index.php?route=viewArticle&articleId=<?=htmlspecialchars($article->getId());?>" class="btn btn-info">
+                    <a href="index.php?route=viewArticle&articleId=<?=htmlspecialchars($article->getId());?>" class="btn btn-info">
                         Lire ce chapitre
                     </a>
                 </div>

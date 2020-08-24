@@ -2,7 +2,7 @@
 
 <div class="row my-2">
     <div class="col-6 mx-0 px-0">
-        <a class="btn btn-light" href="../public/index.php">
+        <a class="btn btn-light" href="index.php">
             << Retour à la liste des chapitres
         </a>
     </div>
@@ -13,7 +13,7 @@
             && $this->session->get('user')->getIsAdmin()
         ) {
             ?>
-            <a  type="button" class="btn btn-outline-primary" href="../public/index.php?route=editArticle&articleId=<?= $article->getId(); ?>">
+            <a  type="button" class="btn btn-outline-primary" href="index.php?route=editArticle&articleId=<?= $article->getId(); ?>">
                 <i class="fas fa-edit"></i>
             </a>
             <?php
@@ -56,7 +56,7 @@
         <?php
         if (empty($article->getPreviousArticle()) == false) {
             ?>
-            <a class="btn btn-info" href="../public/index.php?route=viewArticle&articleId=<?= $article->getPreviousArticle()->getId(); ?>">
+            <a class="btn btn-info" href="index.php?route=viewArticle&articleId=<?= $article->getPreviousArticle()->getId(); ?>">
                 << Précédent
             </a>
             <?php
@@ -67,7 +67,7 @@
         <?php
         if (empty($article->getNextArticle()) == false) {
             ?>
-            <a class="btn btn-info" href="../public/index.php?route=viewArticle&articleId=<?= $article->getNextArticle()->getId(); ?>">
+            <a class="btn btn-info" href="index.php?route=viewArticle&articleId=<?= $article->getNextArticle()->getId(); ?>">
                 Suivant >>
             </a>
 
@@ -109,12 +109,12 @@
                     </div>
                     <div class="row mb-3">
                         <div class="col-4 col-sm-3 col-md-2">
-                            <a type="button" class="btn btn-primary" href="../public/index.php?route=login">
+                            <a type="button" class="btn btn-primary" href="index.php?route=login">
                                 Connexion
                             </a>
                         </div>
                         <div class="col-4 col-sm-3 col-md-2">
-                            <a type="button" class="btn btn-primary" href="../public/index.php?route=register">
+                            <a type="button" class="btn btn-primary" href="index.php?route=register">
                                 Inscription
                             </a>
                         </div>
@@ -155,7 +155,7 @@
                                 ) {
                                     ?>
                                     <div class="mx-1">
-                                        <a  type="button" class="btn btn-outline-danger" href="../public/index.php?route=deleteComment&commentId=<?= $comment->getId(); ?>&articleId=<?= $comment->getArticleId(); ?>&pseudo=<?= $comment->getPseudo(); ?>">
+                                        <a  type="button" class="btn btn-outline-danger" href="index.php?route=deleteComment&commentId=<?= $comment->getId(); ?>&articleId=<?= $comment->getArticleId(); ?>&pseudo=<?= $comment->getPseudo(); ?>">
                                             <i class="fas fa-trash-alt"></i>
                                         </a>
                                     </div>
@@ -174,7 +174,7 @@
                                 } else {
                                     ?>
                                     <div class="mx-1">
-                                        <a type="button" class="btn btn-outline-danger" alt="Signaler le commentaire" href="../public/index.php?route=flagComment&commentId=<?= $comment->getId(); ?>&articleId=<?= $comment->getArticleId(); ?>">
+                                        <a type="button" class="btn btn-outline-danger" alt="Signaler le commentaire" href="index.php?route=flagComment&commentId=<?= $comment->getId(); ?>&articleId=<?= $comment->getArticleId(); ?>">
                                             <i class="fas fa-exclamation-circle"></i>
                                         </a>
                                     </div>

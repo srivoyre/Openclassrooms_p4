@@ -7,7 +7,7 @@
         <p>Membre depuis le <?= $user->getCreatedAt(); ?></p>
         <p>Nombre de commentaires en ligne : <?= $user->getNumberOfComments(); ?></p>
 
-        <form method="post" action="../public/index.php?route=updateEmail">
+        <form method="post" action="index.php?route=updateEmail">
             <div class="form-group">
                 <div class="row">
                     <div class="col-12">
@@ -30,10 +30,10 @@
 
         <div class="row mt-5">
             <div class="col-6 col-md-3 text-center text-md-left">
-                <a type="button" class="btn btn-outline-primary btn-block" href="../public/index.php?route=updatePassword">Modifier mon mot de passe</a>
+                <a type="button" class="btn btn-outline-primary btn-block" href="index.php?route=updatePassword">Modifier mon mot de passe</a>
             </div>
             <div class="col-6 col-md-3 text-center text-md-left">
-                <a type="button" class="btn btn-outline-danger btn-block" href="../public/index.php?route=deleteAccount">Supprimer mon compte</a>
+                <a type="button" class="btn btn-outline-danger btn-block" href="index.php?route=deleteAccount">Supprimer mon compte</a>
             </div>
         </div>
     </div>

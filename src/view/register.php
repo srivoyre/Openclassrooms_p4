@@ -9,7 +9,7 @@
             Inscription
         </h1>
 
-        <form method="post" action="../public/index.php?route=register">
+        <form method="post" action="index.php?route=register">
             <div class="form-group">
                 <label for="pseudo">Pseudo</label>
                 <br />
@@ -36,12 +36,12 @@
 
         <div class="row mt-5">
             <div class="col-6 text-center">
-                <a type="button" class="btn btn-primary btn-block" href="../public/index.php?route=login">
+                <a type="button" class="btn btn-primary btn-block" href="index.php?route=login">
                     J'ai un compte !
                 </a>
             </div>
             <div class="col-6 text-center">
-                <a type="button" class="btn btn-info btn-block" href="../public/index.php">
+                <a type="button" class="btn btn-info btn-block" href="index.php">
                     Aller à l'accueil
                 </a>
             </div>

@@ -1,4 +1,4 @@
-<form method="post" action="../public/index.php?route=addComment&articleId=<?= htmlspecialchars($article->getId()); ?>">
+<form method="post" action="index.php?route=addComment&articleId=<?= htmlspecialchars($article->getId()); ?>">
     <div class="form-group">
         <textarea class="form-control" id="comment-form-content" name="content" required aria-required="true"></textarea>
     </div>

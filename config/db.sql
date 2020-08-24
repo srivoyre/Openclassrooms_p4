@@ -8,12 +8,12 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de données : `blog-test-ultime`
+-- Base de données : `blog`
 --
-DROP DATABASE IF EXISTS `blog-test-ultime`;
-CREATE DATABASE `blog-test-ultime` CHARACTER SET utf8;
+DROP DATABASE IF EXISTS `blog`;
+CREATE DATABASE `blog` CHARACTER SET utf8;
 
-USE `blog-test-ultime`;
+USE `blog`;
 
 -- --------------------------------------------------------
 --
