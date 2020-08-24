@@ -5,7 +5,7 @@
             <h2>Chapitres</h2>
         </div>
         <div class="col-6 text-right">
-            <a type="button" class="btn btn-outline-info" href="../public/index.php?route=addArticle">
+            <a type="button" class="btn btn-outline-info" href="index.php?route=addArticle">
                 Nouveau chapitre
             </a>
         </div>
@@ -34,7 +34,7 @@
                 <?= filter_var($article->getOrderNum()); ?>
             </th>
             <td>
-                <a href="../public/index.php?route=article&articleId=<?= htmlspecialchars($article->getId()); ?>">
+                <a href="index.php?route=article&articleId=<?= htmlspecialchars($article->getId()); ?>">
                     <?= htmlspecialchars($article->getTitle()); ?>
                 </a>
             </td>
@@ -81,10 +81,10 @@
             </td>
             <td class="d-flex flex-wrap justify-content-end">
                 <div class="d-flex flex-row justify-content-end">
-                    <a type="button" class="btn btn-outline-primary mb-1 mx-1" href="../public/index.php?route=editArticle&articleId=<?= $article->getId(); ?>">
+                    <a type="button" class="btn btn-outline-primary mb-1 mx-1" href="index.php?route=editArticle&articleId=<?= $article->getId(); ?>">
                         <i class="fas fa-edit"></i>
                     </a>
-                    <a type="button" class="btn btn-outline-danger mb-1 mx-1" href="../public/index.php?route=deleteArticle&articleId=<?= $article->getId(); ?>">
+                    <a type="button" class="btn btn-outline-danger mb-1 mx-1" href="index.php?route=deleteArticle&articleId=<?= $article->getId(); ?>">
                         <i class="fas fa-trash-alt"></i>
                     </a>
                 </div>
@@ -92,7 +92,7 @@
                 if($article->getIsPublished() == 0)
                 {
                     ?>
-                    <a type="button" class="btn btn-outline-success btn-block mb-1 mx-1" href="../public/index.php?route=publishArticle&articleId=<?= $article->getId(); ?>">
+                    <a type="button" class="btn btn-outline-success btn-block mb-1 mx-1" href="index.php?route=publishArticle&articleId=<?= $article->getId(); ?>">
                         Publier
                     </a>
                     <?php
@@ -100,7 +100,7 @@
                 elseif ($article->getIsPublished() == 1)
                 {
                     ?>
-                    <a type="button" class="btn btn-outline-warning btn-block mb-1 mx-1" href="../public/index.php?route=unpublishArticle&articleId=<?= $article->getId(); ?>">
+                    <a type="button" class="btn btn-outline-warning btn-block mb-1 mx-1" href="index.php?route=unpublishArticle&articleId=<?= $article->getId(); ?>">
                         Dépublier
                     </a>
                     <?php
@@ -144,10 +144,10 @@
                 <?= htmlspecialchars($comment->getCreatedAt()); ?>
             </td>
             <td class="d-flex flex-wrap justify-content-end">
-                <a type="button" class="btn btn-outline-primary mb-1 mx-1" href="../public/index.php?route=unflagComment&commentId=<?= $comment->getId(); ?>">
+                <a type="button" class="btn btn-outline-primary mb-1 mx-1" href="index.php?route=unflagComment&commentId=<?= $comment->getId(); ?>">
                     Désignaler
                 </a>
-                <a type="button" class="btn btn-outline-danger mb-1 mx-1" href="../public/index.php?route=deleteComment&commentId=<?= $comment->getId(); ?>">
+                <a type="button" class="btn btn-outline-danger mb-1 mx-1" href="index.php?route=deleteComment&commentId=<?= $comment->getId(); ?>">
                     <i class="fas fa-trash-alt"></i>
                 </a>
             </td>
@@ -195,7 +195,7 @@
                 if(!$user->getIsAdmin())
                 {
                     ?>
-                    <a type="button" class="btn btn-outline-danger" href="../public/index.php?route=deleteUser&userId=<?= $user->getId(); ?>">
+                    <a type="button" class="btn btn-outline-danger" href="index.php?route=deleteUser&userId=<?= $user->getId(); ?>">
                         <i class="fas fa-trash-alt"></i>
                     </a>
                     <?php
