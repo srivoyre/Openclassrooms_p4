@@ -2,12 +2,12 @@
 $route = isset($post) && $post->get('id') ? 'editArticle&articleId='.$post->get('id') : 'addArticle';
 $submit = $route === 'addArticle' ? 'Créer' : 'Enregistrer';
 ?>
-<form method="post" action="index.php?route=<?= $route; ?>">
+<form method="post" action="index.php?route=<?= filter_var($route); ?>">
     <div class="form-group">
         <label for="title">Titre du chapitre</label>
         <br />
-        <input class="form-control" type="text" id="title" name="title" value="<?= isset($post) ? htmlspecialchars($post->get('title')) : ''; ?>">
-        <?= isset($errors['title']) ? $errors['title'] : ''; ?>
+        <input class="form-control" type="text" id="title" name="title" value="<?= isset($post) ? filter_var($post->get('title')) : ''; ?>">
+        <?= isset($errors['title']) ? filter_var($errors['title']) : ''; ?>
     </div>
     <div class="form-group">
         <label for="order_num">Numéro du chapitre</label>
@@ -62,7 +62,7 @@ $submit = $route === 'addArticle' ? 'Créer' : 'Enregistrer';
         </script>
     </div>
 
-    <input class="btn btn-primary" type="submit" value="<?= $submit; ?>" id="submit" name="submit">
+    <input class="btn btn-primary" type="submit" value="<?= filter_var($submit); ?>" id="submit" name="submit">
     <?php
     if ($route !== 'addArticle') {
         ?>

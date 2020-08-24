@@ -91,7 +91,7 @@
                     if ($this->session->get('info_message')) {
                         ?>
                         <div class="alert alert-info alert-dismissible fade show" role="alert">
-                            <?= $this->session->show(filter_var('info_message')) ; ?>
+                            <?= filter_var($this->session->show('info_message')) ; ?>
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
