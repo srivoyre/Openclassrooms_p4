@@ -14,9 +14,9 @@
                     <h3 class="card-title"><?= htmlspecialchars($article->getTitle());?></h3>
                     <p class="card-text">
                         <?= substr(strip_tags($article->getContent()), 0, 300); ?>...
-                        <div class="font-weight-bold font-italic">
+                        <span class="font-weight-bold font-italic">
                             Publié le <?= htmlspecialchars(date('d/m/Y', strtotime($article->getLastPublishedDate())));?>
-                        </div>
+                        </span>
                     </p>
                     <a href="../public/index.php?route=viewArticle&articleId=<?=htmlspecialchars($article->getId());?>" class="btn btn-info">
                         Lire ce chapitre
