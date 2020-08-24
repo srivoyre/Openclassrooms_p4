@@ -43,7 +43,7 @@ $submit = $route === 'addArticle' ? 'Créer' : 'Enregistrer';
                     'table emoticons template paste help',
                     'autosave'
                 ],
-                toolbar1: ' undo redo | styleselect | bold italic underline | alignment | fontselect fontsizeselect | casechange | forecolor backcolor emoticons | removeformat ',
+                toolbar1: ' undo redo | styleselect | alignment | bold italic underline | fontselect fontsizeselect | casechange | forecolor backcolor emoticons | removeformat ',
                 toolbar2: 'bullist numlist outdent indent | link image table advtable | preview | restoredraft ',
                 toolbar_mode: 'floating',
                 setup: function (editor) {
@@ -66,7 +66,7 @@ $submit = $route === 'addArticle' ? 'Créer' : 'Enregistrer';
     <?php
     if ($route !== 'addArticle') {
         ?>
-        <input class="btn btn-primary" type="submit" value="Enregistrer et quitter" id="submit" name="submitAndLeave">
+        <input class="btn btn-primary" type="submit" value="Enregistrer et quitter" id="submitAndLeave" name="submitAndLeave">
         <?php
     }
     ?>
