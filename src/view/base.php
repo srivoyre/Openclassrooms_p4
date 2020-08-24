@@ -16,7 +16,6 @@
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.1/js/bootstrap.min.js" integrity="sha384-XEerZL0cuoUbHE4nZReLT7nx9gQrQreJekYhJD9WNWhH8nEW+0c5qq7aIo2Wl30J" crossorigin="anonymous"></script>
         <!-- Font Awesome -->
         <script src="https://kit.fontawesome.com/65eb1404cc.js" crossorigin="anonymous"></script>
-        <script src="../../public/js/main.js"></script>
         <script <?= $script ?> ></script>
 
     </head>

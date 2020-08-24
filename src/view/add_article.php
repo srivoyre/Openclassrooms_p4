@@ -9,6 +9,7 @@
     </div>
 </div>
 <div class="row container">
-    <div class="col-12"
-    <?php include('form_article.php'); ?>
+    <div class="col-12">
+        <?php include('form_article.php'); ?>
+    </div>
 </div>
