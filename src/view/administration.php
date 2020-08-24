@@ -31,7 +31,7 @@
         ?>
         <tr>
             <th scope="row">
-                <?= htmlspecialchars($article->getOrderNum()); ?>
+                <?= filter_var($article->getOrderNum()); ?>
             </th>
             <td>
                 <a href="../public/index.php?route=article&articleId=<?= htmlspecialchars($article->getId()); ?>">
