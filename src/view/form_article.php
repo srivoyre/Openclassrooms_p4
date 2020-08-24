@@ -12,16 +12,16 @@ $submit = $route === 'addArticle' ? 'Créer' : 'Enregistrer';
     <div class="form-group">
         <label for="order_num">Numéro du chapitre</label>
         <br />
-        <input class="form-control" type="number" id="order_num" name="order_num" value="<?= isset($post) ? $post->get('order_num') : ''; ?>">
-        <?= isset($errors['order_num']) ? $errors['order_num'] : ''; ?>
+        <input class="form-control" type="number" id="order_num" name="order_num" value="<?= isset($post) ? filter_var($post->get('order_num')) : ''; ?>">
+        <?= isset($errors['order_num']) ? filter_var($errors['order_num']) : ''; ?>
     </div>
     <div class="form-group">
         <label for="content">Contenu</label>
         <br />
         <textarea id="content" class="form-control" name="content">
-            <?= isset($post) ? htmlspecialchars($post->get('content')) : ''; ?>
+            <?= isset($post) ? filter_var($post->get('content')) : ''; ?>
         </textarea>
-        <?= isset($errors['content']) ? $errors['content'] : ''; ?>
+        <?= isset($errors['content']) ? filter_var($errors['content']) : ''; ?>
         <script>
             tinymce.init({
                 selector: 'textarea',
