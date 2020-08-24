@@ -186,7 +186,7 @@ class BackController extends Controller
                     );
                     $this->session->set(
                         'success_message',
-                        'Votre nouveau commentaire a bien été ajouté'
+                        'Votre commentaire a bien été ajouté'
                     );
                 }
                 $article = $this->articleDAO->getArticle($articleId, true);

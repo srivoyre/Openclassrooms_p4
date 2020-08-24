@@ -2,7 +2,7 @@
 $route = isset($post) && $post->get('id') ? 'editArticle&articleId='.$post->get('id') : 'addArticle';
 $submit = $route === 'addArticle' ? 'Créer' : 'Enregistrer';
 ?>
-<form method="post" action="../public/index.php?route=<?= $route; ?>">
+<form method="post" action="index.php?route=<?= $route; ?>">
     <div class="form-group">
         <label for="title">Titre du chapitre</label>
         <br />

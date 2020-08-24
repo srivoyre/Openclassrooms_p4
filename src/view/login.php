@@ -10,7 +10,7 @@
         <div class="row">
             <div class="col-12">
 
-                <form method="post" action="../public/index.php?route=login">
+                <form method="post" action="index.php?route=login">
                     <div class="form-group">
                         <label for="pseudo">Pseudo ou e-mail</label>
                         <br />
@@ -25,12 +25,12 @@
                 </form>
                 <div class="row mt-5">
                     <div class="col-6 text-center">
-                        <a type="button" class="btn btn-primary btn-block" href="../public/index.php?route=register">
+                        <a type="button" class="btn btn-primary btn-block" href="index.php?route=register">
                             Je crée un compte
                         </a>
                     </div>
                     <div class="col-6 text-center">
-                        <a type="button" class="btn btn-info btn-block" href="../public/index.php">
+                        <a type="button" class="btn btn-info btn-block" href="index.php">
                             Retour à l'accueil
                         </a>
                     </div>

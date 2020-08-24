@@ -22,7 +22,7 @@
                             Publié le <?= htmlspecialchars(date('d/m/Y', strtotime($article->getLastPublishedDate())));?>
                         </span>
                     </p>
-                    <a href="../public/index.php?route=viewArticle&articleId=<?=htmlspecialchars($article->getId());?>" class="btn btn-info">
+                    <a href="index.php?route=viewArticle&articleId=<?=htmlspecialchars($article->getId());?>" class="btn btn-info">
                         Lire ce chapitre
                     </a>
                 </div>

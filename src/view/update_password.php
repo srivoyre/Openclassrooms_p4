@@ -2,7 +2,7 @@
 
 <div class="row my-2">
     <div class="col-12 mx-0 px-0">
-        <a class="btn btn-light" href="../public/index.php?route=profile">
+        <a class="btn btn-light" href="index.php?route=profile">
             << Retour au profil
         </a>
     </div>
@@ -11,7 +11,7 @@
     <div class="col-12">
         <h1>Modifier mon mot de passe</h1>
 
-        <form method="post" action="../public/index.php?route=updatePassword">
+        <form method="post" action="index.php?route=updatePassword">
             <div class="form-group">
                 <div class="row">
                     <div class="col-12 col-md-8">
