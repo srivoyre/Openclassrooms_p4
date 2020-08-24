@@ -66,7 +66,7 @@
                 <?= htmlspecialchars($article->getAuthor()); ?>
             </td>
             <td>
-                <?= htmlspecialchars($article->getCreatedAt()); ?>
+                <?= filter_var($article->getCreatedAt()); ?>
             </td>
             <td>
                 <?php

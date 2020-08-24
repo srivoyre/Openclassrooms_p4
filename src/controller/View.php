@@ -29,7 +29,7 @@ class View
             'session' => $this->session
         ]);
 
-        echo $view;
+        echo filter_var($view);
     }
 
     private function renderFile(string $file, array $data)
