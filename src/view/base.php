@@ -10,7 +10,7 @@
         </title>
 
         <link rel="canonical" href="onlineprojects.fr">
-        <link rel="icon" type="image/x-icon" href="../img/favicon.ico">
+        <link rel="icon" type="image/x-icon" href="img/favicon.ico">
 
         <meta name="description" content="Billet simple pour l'Alaska : le nouveau roman de Jean Forteroche publié en ligne">
         <meta name="author"     content="Sophie de Rivoyre">
@@ -20,17 +20,17 @@
         <meta property="og:title"       content="Billet simple pour l'Alaska">
         <meta property="og:url"         content="onlineprojects.fr">
         <meta property="og:description" content="Billet simple pour l'Alaska : le nouveau roman de Jean Forteroche publié en ligne">
-        <meta property="og:image"       content="../img/logo.png">
+        <meta property="og:image"       content="img/logo.png">
 
         <meta name="twitter:card"           content="summary">
         <meta name="twitter:title"          content="Billet simple pour l'Alaska">
         <meta name="twitter:site"           content="onlineprojects.fr">
         <meta name="twitter:description"    content="Billet simple pour l'Alaska : le nouveau roman de Jean Forteroche publié en ligne">
-        <meta name="twitter:image"          content="../img/logo.png">
+        <meta name="twitter:image"          content="img/logo.png">
         <meta name="twitter:creator"        content="@sophiederivoyre">
 
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.1/css/bootstrap.min.css" integrity="sha384-VCmXjywReHh4PwowAiWNagnWcLhlEJLA5buUprzK8rxFgeH0kww/aWY76TfkUoSX" crossorigin="anonymous">
-        <link rel="stylesheet" href="../css/style.css">
+        <link rel="stylesheet" href="css/style.css">
 
         <!--jQuery, Poppers.js, Bootstrap JS, then custom scripts -->
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
@@ -48,7 +48,7 @@
 
             <nav class="navbar navbar-expand-lg navbar-light bg-info">
                 <a class="navbar-brand text-white" href="index.php">
-                    <img alt="Billet simple pour l'Alaska" src="../img/logo.png" width="200"/>
+                    <img alt="Billet simple pour l'Alaska" src="img/logo.png" width="200"/>
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -67,7 +67,7 @@
                             }
                             ?>
                             <a class="nav-link text-white" href="index.php?route=profile">Profil</a>
-                            <a class="nav-link text-white" href=".index.php?route=logout">Déconnexion</a>
+                            <a class="nav-link text-white" href="index.php?route=logout">Déconnexion</a>
                             <?php
                         }
                         else
