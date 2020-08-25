@@ -3,7 +3,7 @@
 <a type="button" class="btn btn-light mb-5" href="index.php"><< Retour à l'accueil</a>
 
 <h1>
-    <?= $this->title; ?>
+    <?= filter_var($this->title); ?>
 </h1>
 
 <p>

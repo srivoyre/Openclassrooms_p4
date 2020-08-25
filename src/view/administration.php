@@ -56,7 +56,7 @@
             </td>
             <td class="text-justify">
                 <span class="d-none d-lg-block">
-                    <?= substr(strip_tags($article->getContent(),FILTER_SANITIZE_FULL_SPECIAL_CHARS), 0, 150); ?>
+                    <?= filter_var(substr($article->getContent(), 0, 150),FILTER_SANITIZE_STRING); ?>
                 </span>
                 <span class="font-italic d-block d-lg-none">
                     Aperçu du chapitre indisponible
@@ -138,7 +138,7 @@
                 <?= filter_var($comment->getPseudo()); ?>
             </th>
             <td class="text-break">
-                <?= substr(filter_var($comment->getContent(), FILTER_SANITIZE_FULL_SPECIAL_CHARS), 0, 150); ?>
+                <?= filter_var($comment->getContent(), FILTER_SANITIZE_FULL_SPECIAL_CHARS); ?>
             </td>
             <td>
                 <?= filter_var($comment->getCreatedAt()); ?>
