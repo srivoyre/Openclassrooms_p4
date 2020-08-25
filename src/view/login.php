@@ -10,7 +10,7 @@
         <div class="row">
             <div class="col-12">
 
-                <form method="post" action="../index.php?route=login">
+                <form method="post" action="index.php?route=login">
                     <div class="form-group">
                         <label for="pseudo">Pseudo ou e-mail</label>
                         <br />

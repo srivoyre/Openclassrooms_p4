@@ -13,8 +13,8 @@ class Request
      */
     public function __construct()
     {
-        $this->get = new Parameter($_GET);
-        $this->post = new Parameter($_POST);
+        $this->get = new Parameter(filter_input_array(INPUT_GET));
+        $this->post = new Parameter(filter_input_array(INPUT_POST));
         $this->session = new Session($_SESSION);
     }
 
