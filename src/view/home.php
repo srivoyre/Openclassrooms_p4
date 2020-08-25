@@ -17,7 +17,7 @@
                 <div class="card-body">
                     <h3 class="card-title"><?= filter_var($article->getTitle());?></h3>
                     <p class="card-text">
-                        <?= substr(strip_tags($article->getContent()), 0, 300); ?>...
+                        <?= substr(strip_tags($article->getContent(),FILTER_SANITIZE_FULL_SPECIAL_CHARS), 0, 300); ?>...
                         <span class="font-weight-bold font-italic">
                             Publié le <?= filter_var(date('d/m/Y', strtotime($article->getLastPublishedDate())));?>
                         </span>

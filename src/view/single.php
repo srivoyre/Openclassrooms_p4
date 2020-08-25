@@ -186,7 +186,7 @@
                     </div>
                     <div class="row">
                         <div class="col-11 border-bottom ml-3 mb-3 pb-3 text-break">
-                            <?= htmlspecialchars($comment->getContent());?>
+                            <?= filter_var($comment->getContent(), FILTER_SANITIZE_FULL_SPECIAL_CHARS);?>
                         </div>
                     </div>
                 </div>
