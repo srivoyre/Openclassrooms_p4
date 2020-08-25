@@ -1,4 +1,4 @@
-<?php $this->title = htmlspecialchars($article->getTitle()); ?>
+<?php $this->title = filter_var($article->getTitle()); ?>
 
 <div class="row my-2">
     <div class="col-6 mx-0 px-0">

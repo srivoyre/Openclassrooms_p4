@@ -34,8 +34,8 @@
                 <?= filter_var($article->getOrderNum()); ?>
             </th>
             <td>
-                <a href="index.php?route=article&articleId=<?= htmlspecialchars($article->getId()); ?>">
-                    <?= htmlspecialchars($article->getTitle()); ?>
+                <a href="index.php?route=article&articleId=<?= filter_var($article->getId()); ?>">
+                    <?= filter_ar($article->getTitle()); ?>
                 </a>
             </td>
             <td>
@@ -63,7 +63,7 @@
                 </span>
             </td>
             <td>
-                <?= htmlspecialchars($article->getAuthor()); ?>
+                <?= filter_var($article->getAuthor()); ?>
             </td>
             <td>
                 <?= filter_var($article->getCreatedAt()); ?>
@@ -73,7 +73,7 @@
                 // Avoid default '01/01/1970' display if date is null
                 if (!is_null($article->getLastPublishedDate())) {
                 ?>
-                    <?= htmlspecialchars(date('d/m/Y', strtotime($article->getLastPublishedDate()))); ?>
+                    <?= filter_var(date('d/m/Y', strtotime($article->getLastPublishedDate()))); ?>
                 <?php
                 }
                 ?>
@@ -135,13 +135,13 @@
         ?>
         <tr class="">
             <th scope="row">
-                <?= htmlspecialchars($comment->getPseudo()); ?>
+                <?= filter_var($comment->getPseudo()); ?>
             </th>
             <td class="text-break">
-                <?= substr(htmlspecialchars($comment->getContent()), 0, 150); ?>
+                <?= substr(filter_var($comment->getContent()), 0, 150); ?>
             </td>
             <td>
-                <?= htmlspecialchars($comment->getCreatedAt()); ?>
+                <?= filter_var($comment->getCreatedAt()); ?>
             </td>
             <td class="d-flex flex-wrap justify-content-end">
                 <a type="button" class="btn btn-outline-primary mb-1 mx-1" href="index.php?route=unflagComment&commentId=<?= $comment->getId(); ?>">
@@ -177,18 +177,18 @@
         ?>
         <tr>
             <th scope="row">
-                <?= htmlspecialchars($user->getPseudo()); ?>
+                <?= filter_var($user->getPseudo()); ?>
             </th>
             <td class="">
-                <a href="mailto:<?= htmlspecialchars($user->getEmail()); ?>">
-                    <?= htmlspecialchars($user->getEmail()); ?>
+                <a href="mailto:<?= filter_var($user->getEmail()); ?>">
+                    <?= filter_var($user->getEmail()); ?>
                 </a>
             </td>
             <td class="">
-                <?= htmlspecialchars($user->getCreatedAt()); ?>
+                <?= filter_var($user->getCreatedAt()); ?>
             </td>
             <td class="">
-                <?= htmlspecialchars($user->getRole()); ?>
+                <?= filter_var($user->getRole()); ?>
             </td>
             <td class="d-flex flex-wrap justify-content-end">
                 <?php

@@ -1,12 +1,8 @@
-/******************************
-Layout
-******************************/
+/********* Layout ************/
 #content {
   margin: 0 5%;
 }
-/******************************
-Navbar
-******************************/
+/********* Navbar ************/
 .navbar-brand {
   font-size: 1.2rem;
 }
@@ -15,18 +11,14 @@ Navbar
     font-size: 1.55rem;
   }
 }
-.navbar-light .navbar-toggler {
+.navbar-light.navbar-toggler {
   border: none;
 }
-/******************************
-Buttons
-******************************/
+/********* Buttons ************/
 .btn {
   font-size: smaller;
 }
-/******************************
-Cards
-******************************/
+/********* Cards ************/
 .card-header {
   background-color: #fff !important;
 }

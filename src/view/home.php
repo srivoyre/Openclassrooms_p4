@@ -12,17 +12,17 @@
             ?>
             <div class="card">
                 <h2 class="card-header">
-                    Chapitre <?= htmlspecialchars($article->getOrderNum());?>
+                    Chapitre <?= filter_var($article->getOrderNum());?>
                 </h2>
                 <div class="card-body">
-                    <h3 class="card-title"><?= htmlspecialchars($article->getTitle());?></h3>
+                    <h3 class="card-title"><?= filter_var($article->getTitle());?></h3>
                     <p class="card-text">
                         <?= substr(strip_tags($article->getContent()), 0, 300); ?>...
                         <span class="font-weight-bold font-italic">
-                            Publié le <?= htmlspecialchars(date('d/m/Y', strtotime($article->getLastPublishedDate())));?>
+                            Publié le <?= filter_var(date('d/m/Y', strtotime($article->getLastPublishedDate())));?>
                         </span>
                     </p>
-                    <a href="index.php?route=viewArticle&articleId=<?=htmlspecialchars($article->getId());?>" class="btn btn-info">
+                    <a href="index.php?route=viewArticle&articleId=<?= filter_var($article->getId());?>" class="btn btn-info">
                         Lire ce chapitre
                     </a>
                 </div>
