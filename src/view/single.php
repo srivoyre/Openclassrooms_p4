@@ -13,7 +13,7 @@
             && $this->session->get('user')->getIsAdmin()
         ) {
             ?>
-            <a  type="button" class="btn btn-outline-primary" href="index.php?route=editArticle&articleId=<?= $article->getId(); ?>">
+            <a  type="button" class="btn btn-outline-primary" href="index.php?route=editArticle&articleId=<?= filter_var($article->getId()); ?>">
                 <i class="fas fa-edit"></i>
             </a>
             <?php
@@ -56,7 +56,7 @@
         <?php
         if (empty($article->getPreviousArticle()) == false) {
             ?>
-            <a class="btn btn-info" href="index.php?route=viewArticle&articleId=<?= $article->getPreviousArticle()->getId(); ?>">
+            <a class="btn btn-info" href="index.php?route=viewArticle&articleId=<?= filter_var($article->getPreviousArticle()->getId()); ?>">
                 << Précédent
             </a>
             <?php
@@ -67,7 +67,7 @@
         <?php
         if (empty($article->getNextArticle()) == false) {
             ?>
-            <a class="btn btn-info" href="index.php?route=viewArticle&articleId=<?= $article->getNextArticle()->getId(); ?>">
+            <a class="btn btn-info" href="index.php?route=viewArticle&articleId=<?= filter_var($article->getNextArticle()->getId()); ?>">
                 Suivant >>
             </a>
 
@@ -155,7 +155,7 @@
                                 ) {
                                     ?>
                                     <div class="mx-1">
-                                        <a  type="button" class="btn btn-outline-danger" href="index.php?route=deleteComment&commentId=<?= $comment->getId(); ?>&articleId=<?= $comment->getArticleId(); ?>&pseudo=<?= $comment->getPseudo(); ?>">
+                                        <a  type="button" class="btn btn-outline-danger" href="index.php?route=deleteComment&commentId=<?= filter_var($comment->getId()); ?>&articleId=<?= filter_var($comment->getArticleId()); ?>&pseudo=<?= filter_var($comment->getPseudo()); ?>">
                                             <i class="fas fa-trash-alt"></i>
                                         </a>
                                     </div>
@@ -174,7 +174,7 @@
                                 } else {
                                     ?>
                                     <div class="mx-1">
-                                        <a type="button" class="btn btn-outline-danger" alt="Signaler le commentaire" href="index.php?route=flagComment&commentId=<?= $comment->getId(); ?>&articleId=<?= $comment->getArticleId(); ?>">
+                                        <a type="button" class="btn btn-outline-danger" alt="Signaler le commentaire" href="index.php?route=flagComment&commentId=<?= filter_var($comment->getId()); ?>&articleId=<?= filter_var($comment->getArticleId()); ?>">
                                             <i class="fas fa-exclamation-circle"></i>
                                         </a>
                                     </div>
@@ -186,7 +186,7 @@
                     </div>
                     <div class="row">
                         <div class="col-11 border-bottom ml-3 mb-3 pb-3 text-break">
-                            <?= filter_var($comment->getContent());?>
+                            <?= htmlspecialchars($comment->getContent());?>
                         </div>
                     </div>
                 </div>

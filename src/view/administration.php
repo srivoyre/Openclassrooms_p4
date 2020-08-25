@@ -35,7 +35,7 @@
             </th>
             <td>
                 <a href="index.php?route=article&articleId=<?= filter_var($article->getId()); ?>">
-                    <?= filter_ar($article->getTitle()); ?>
+                    <?= filter_var($article->getTitle()); ?>
                 </a>
             </td>
             <td>
@@ -81,10 +81,10 @@
             </td>
             <td class="d-flex flex-wrap justify-content-end">
                 <div class="d-flex flex-row justify-content-end">
-                    <a type="button" class="btn btn-outline-primary mb-1 mx-1" href="index.php?route=editArticle&articleId=<?= $article->getId(); ?>">
+                    <a type="button" class="btn btn-outline-primary mb-1 mx-1" href="index.php?route=editArticle&articleId=<?= filter_var($article->getId()); ?>">
                         <i class="fas fa-edit"></i>
                     </a>
-                    <a type="button" class="btn btn-outline-danger mb-1 mx-1" href="index.php?route=deleteArticle&articleId=<?= $article->getId(); ?>">
+                    <a type="button" class="btn btn-outline-danger mb-1 mx-1" href="index.php?route=deleteArticle&articleId=<?= filter_var($article->getId()); ?>">
                         <i class="fas fa-trash-alt"></i>
                     </a>
                 </div>
@@ -92,7 +92,7 @@
                 if($article->getIsPublished() == 0)
                 {
                     ?>
-                    <a type="button" class="btn btn-outline-success btn-block mb-1 mx-1" href="index.php?route=publishArticle&articleId=<?= $article->getId(); ?>">
+                    <a type="button" class="btn btn-outline-success btn-block mb-1 mx-1" href="index.php?route=publishArticle&articleId=<?= filter_var($article->getId()); ?>">
                         Publier
                     </a>
                     <?php
@@ -100,7 +100,7 @@
                 elseif ($article->getIsPublished() == 1)
                 {
                     ?>
-                    <a type="button" class="btn btn-outline-warning btn-block mb-1 mx-1" href="index.php?route=unpublishArticle&articleId=<?= $article->getId(); ?>">
+                    <a type="button" class="btn btn-outline-warning btn-block mb-1 mx-1" href="index.php?route=unpublishArticle&articleId=<?= filter_var($article->getId()); ?>">
                         Dépublier
                     </a>
                     <?php
@@ -120,8 +120,8 @@
 <h2>Commentaires signalés</h2>
 
 <table class="table table-hover table-responsive-lg">
-    <thead class="">
-        <tr class="">
+    <thead>
+        <tr>
             <th class="text-center" scope="col">Pseudo</th>
             <th scope="col">Message</th>
             <th scope="col">Date de création</th>
@@ -133,7 +133,7 @@
     foreach($comments as $comment)
     {
         ?>
-        <tr class="">
+        <tr>
             <th scope="row">
                 <?= filter_var($comment->getPseudo()); ?>
             </th>
@@ -144,10 +144,10 @@
                 <?= filter_var($comment->getCreatedAt()); ?>
             </td>
             <td class="d-flex flex-wrap justify-content-end">
-                <a type="button" class="btn btn-outline-primary mb-1 mx-1" href="index.php?route=unflagComment&commentId=<?= $comment->getId(); ?>">
+                <a type="button" class="btn btn-outline-primary mb-1 mx-1" href="index.php?route=unflagComment&commentId=<?= filter_var($comment->getId()); ?>">
                     Désignaler
                 </a>
-                <a type="button" class="btn btn-outline-danger mb-1 mx-1" href="index.php?route=deleteComment&commentId=<?= $comment->getId(); ?>">
+                <a type="button" class="btn btn-outline-danger mb-1 mx-1" href="index.php?route=deleteComment&commentId=<?= filter_var($comment->getId()); ?>">
                     <i class="fas fa-trash-alt"></i>
                 </a>
             </td>
@@ -179,15 +179,15 @@
             <th scope="row">
                 <?= filter_var($user->getPseudo()); ?>
             </th>
-            <td class="">
+            <td>
                 <a href="mailto:<?= filter_var($user->getEmail()); ?>">
                     <?= filter_var($user->getEmail()); ?>
                 </a>
             </td>
-            <td class="">
+            <td>
                 <?= filter_var($user->getCreatedAt()); ?>
             </td>
-            <td class="">
+            <td>
                 <?= filter_var($user->getRole()); ?>
             </td>
             <td class="d-flex flex-wrap justify-content-end">
@@ -195,7 +195,7 @@
                 if(!$user->getIsAdmin())
                 {
                     ?>
-                    <a type="button" class="btn btn-outline-danger" href="index.php?route=deleteUser&userId=<?= $user->getId(); ?>">
+                    <a type="button" class="btn btn-outline-danger" href="index.php?route=deleteUser&userId=<?= filter_var($user->getId()); ?>">
                         <i class="fas fa-trash-alt"></i>
                     </a>
                     <?php
