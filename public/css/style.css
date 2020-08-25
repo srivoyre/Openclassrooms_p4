@@ -2,35 +2,31 @@
 Layout
 ******************************/
 #content {
-    margin: 0 5%;
+  margin: 0 5%;
 }
-/******************************
-Bootstrap overrides
-******************************/
 /******************************
 Navbar
 ******************************/
 .navbar-brand {
-    font-size: 1.2rem;
+  font-size: 1.2rem;
 }
 @media all and (min-width: 375px) {
-    .navbar-brand {
-        font-size: 1.55rem;
-    }
+  .navbar-brand {
+    font-size: 1.55rem;
+  }
 }
-
 .navbar-light .navbar-toggler {
-    border: none;
+  border: none;
 }
 /******************************
 Buttons
 ******************************/
 .btn {
-    font-size: smaller;
+  font-size: smaller;
 }
 /******************************
 Cards
 ******************************/
 .card-header {
-    background-color: #fff !important;
+  background-color: #fff !important;
 }
