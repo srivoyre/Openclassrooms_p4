@@ -35,7 +35,7 @@
             </th>
             <td>
                 <a href="index.php?route=article&articleId=<?= filter_var($article->getId()); ?>">
-                    <?= filter_var($article->getTitle()); ?>
+                    <?= filter_var($article->getTitle(), FILTER_SANITIZE_SPECIAL_CHARS); ?>
                 </a>
             </td>
             <td>
@@ -56,7 +56,7 @@
             </td>
             <td class="text-justify">
                 <span class="d-none d-lg-block">
-                    <?= filter_var(substr($article->getContent(), 0, 150),FILTER_SANITIZE_STRING); ?>
+                    <?= filter_var(substr($article->getContent(), 0, 150),FILTER_SANITIZE_SPECIAL_CHARS); ?>
                 </span>
                 <span class="font-italic d-block d-lg-none">
                     Aperçu du chapitre indisponible
