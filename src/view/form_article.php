@@ -2,26 +2,26 @@
 $route = isset($post) && $post->get('id') ? 'editArticle&articleId='.$post->get('id') : 'addArticle';
 $submit = $route === 'addArticle' ? 'Créer' : 'Enregistrer';
 ?>
-<form method="post" action="index.php?route=<?= $route; ?>">
+<form method="post" action="index.php?route=<?= filter_var($route); ?>">
     <div class="form-group">
         <label for="title">Titre du chapitre</label>
         <br />
-        <input class="form-control" type="text" id="title" name="title" value="<?= isset($post) ? htmlspecialchars($post->get('title')) : ''; ?>">
-        <?= isset($errors['title']) ? $errors['title'] : ''; ?>
+        <input class="form-control" type="text" id="title" name="title" value="<?= isset($post) ? filter_var($post->get('title')) : ''; ?>">
+        <?= isset($errors['title']) ? filter_var($errors['title']) : ''; ?>
     </div>
     <div class="form-group">
         <label for="order_num">Numéro du chapitre</label>
         <br />
-        <input class="form-control" type="number" id="order_num" name="order_num" value="<?= isset($post) ? $post->get('order_num') : ''; ?>">
-        <?= isset($errors['order_num']) ? $errors['order_num'] : ''; ?>
+        <input class="form-control" type="number" id="order_num" name="order_num" value="<?= isset($post) ? filter_var($post->get('order_num')) : ''; ?>">
+        <?= isset($errors['order_num']) ? filter_var($errors['order_num']) : ''; ?>
     </div>
     <div class="form-group">
         <label for="content">Contenu</label>
         <br />
         <textarea id="content" class="form-control" name="content">
-            <?= isset($post) ? htmlspecialchars($post->get('content')) : ''; ?>
+            <?= isset($post) ? filter_var($post->get('content')) : ''; ?>
         </textarea>
-        <?= isset($errors['content']) ? $errors['content'] : ''; ?>
+        <?= isset($errors['content']) ? filter_var($errors['content']) : ''; ?>
         <script>
             tinymce.init({
                 selector: 'textarea',
@@ -62,7 +62,7 @@ $submit = $route === 'addArticle' ? 'Créer' : 'Enregistrer';
         </script>
     </div>
 
-    <input class="btn btn-primary" type="submit" value="<?= $submit; ?>" id="submit" name="submit">
+    <input class="btn btn-primary" type="submit" value="<?= filter_var($submit); ?>" id="submit" name="submit">
     <?php
     if ($route !== 'addArticle') {
         ?>

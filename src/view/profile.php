@@ -3,9 +3,9 @@
 
 <div class="row">
     <div class="col-12">
-        <h1><?= $user->getPseudo(); ?></h1>
-        <p>Membre depuis le <?= $user->getCreatedAt(); ?></p>
-        <p>Nombre de commentaires en ligne : <?= $user->getNumberOfComments(); ?></p>
+        <h1><?= filter_var($user->getPseudo()); ?></h1>
+        <p>Membre depuis le <?= filter_var($user->getCreatedAt()); ?></p>
+        <p>Nombre de commentaires en ligne : <?= filter_var($user->getNumberOfComments()); ?></p>
 
         <form method="post" action="index.php?route=updateEmail">
             <div class="form-group">
@@ -16,9 +16,9 @@
                 </div>
                 <div class="row">
                     <div class="col-12 col-md-8 pb-2">
-                        <input class="form-control" type="email" id="email" name="email" aria-label="E-mail" value="<?= htmlspecialchars($user->getEmail()); ?>" required aria-required="true">
+                        <input class="form-control" type="email" id="email" name="email" aria-label="E-mail" value="<?= filter_var($user->getEmail()); ?>" required aria-required="true">
                         <br />
-                        <?= isset($errors['email']) ? $errors['email'] : ''; ?>
+                        <?= isset($errors['email']) ? filter_var($errors['email']) : ''; ?>
                     </div>
                     <div class="col-12 col-md-4 pb-2">
                         <input class="btn btn-primary" type="submit" value="Mettre à jour mon e-mail" id="submitEmail" name="submitEmail">

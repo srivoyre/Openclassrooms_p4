@@ -6,7 +6,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
         <title>
-            <?= $title ?>
+            <?= filter_var($title) ?>
         </title>
 
         <link rel="canonical" href="onlineprojects.fr">
@@ -38,7 +38,7 @@
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.1/js/bootstrap.min.js" integrity="sha384-XEerZL0cuoUbHE4nZReLT7nx9gQrQreJekYhJD9WNWhH8nEW+0c5qq7aIo2Wl30J" crossorigin="anonymous"></script>
         <!-- Font Awesome -->
         <script src="https://kit.fontawesome.com/65eb1404cc.js" crossorigin="anonymous"></script>
-        <script <?= $script ?> ></script>
+        <script <?= filter_var($script) ?> ></script>
 
     </head>
 
@@ -91,7 +91,7 @@
                     if ($this->session->get('info_message')) {
                         ?>
                         <div class="alert alert-info alert-dismissible fade show" role="alert">
-                            <?= $this->session->show('info_message') ; ?>
+                            <?= filter_var($this->session->show('info_message')) ; ?>
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
@@ -100,7 +100,7 @@
                     } elseif ($this->session->get('success_message')) {
                         ?>
                         <div class="alert alert-success alert-dismissible fade show" role="alert">
-                            <?= $this->session->show('success_message') ; ?>
+                            <?= filter_var($this->session->show('success_message')) ; ?>
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
@@ -109,7 +109,7 @@
                     } elseif ($this->session->get('warning_message')) {
                         ?>
                         <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                            <?= $this->session->show('warning_message') ; ?>
+                            <?= filter_var($this->session->show('warning_message')) ; ?>
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
@@ -118,7 +118,7 @@
                     } elseif ($this->session->get('error_message')) {
                         ?>
                         <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                            <?= $this->session->show('error_message') ; ?>
+                            <?= filter_var($this->session->show('error_message')) ; ?>
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
@@ -133,7 +133,7 @@
 
         <div id="content" class="row mt-4">
             <div class="col-12">
-                <?= $content ?>
+                <?= filter_var($content) ?>
             </div>
         </div>
 

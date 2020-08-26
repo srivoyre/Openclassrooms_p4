@@ -2,6 +2,7 @@
 
 namespace App\src\model\DAO;
 
+use App\src\controller\ErrorController;
 use PDO;
 use Exception;
 
@@ -26,7 +27,8 @@ abstract class DAO
 
             return $connection;
         } catch (Exception $errorConnection) {
-            die('Erreur de connexion :'.$errorConnection->getMessage());
+            $error = new ErrorController();
+            $error->errorServer();
         }
     }
 

@@ -5,7 +5,7 @@
             <h2>Chapitres</h2>
         </div>
         <div class="col-6 text-right">
-            <a type="button" class="btn btn-outline-info" href="../public/index.php?route=addArticle">
+            <a type="button" class="btn btn-outline-info" href="index.php?route=addArticle">
                 Nouveau chapitre
             </a>
         </div>
@@ -31,11 +31,11 @@
         ?>
         <tr>
             <th scope="row">
-                <?= htmlspecialchars($article->getOrderNum()); ?>
+                <?= filter_var($article->getOrderNum()); ?>
             </th>
             <td>
-                <a href="../public/index.php?route=article&articleId=<?= htmlspecialchars($article->getId()); ?>">
-                    <?= htmlspecialchars($article->getTitle()); ?>
+                <a href="index.php?route=article&articleId=<?= filter_var($article->getId()); ?>">
+                    <?= filter_var($article->getTitle(), FILTER_SANITIZE_SPECIAL_CHARS); ?>
                 </a>
             </td>
             <td>
@@ -56,24 +56,24 @@
             </td>
             <td class="text-justify">
                 <span class="d-none d-lg-block">
-                    <?= substr(strip_tags($article->getContent()), 0, 150); ?>
+                    <?= filter_var(substr($article->getContent(), 0, 150),FILTER_SANITIZE_SPECIAL_CHARS); ?>
                 </span>
                 <span class="font-italic d-block d-lg-none">
                     Aperçu du chapitre indisponible
                 </span>
             </td>
             <td>
-                <?= htmlspecialchars($article->getAuthor()); ?>
+                <?= filter_var($article->getAuthor()); ?>
             </td>
             <td>
-                <?= htmlspecialchars($article->getCreatedAt()); ?>
+                <?= filter_var($article->getCreatedAt()); ?>
             </td>
             <td>
                 <?php
                 // Avoid default '01/01/1970' display if date is null
                 if (!is_null($article->getLastPublishedDate())) {
                 ?>
-                    <?= htmlspecialchars(date('d/m/Y', strtotime($article->getLastPublishedDate()))); ?>
+                    <?= filter_var(date('d/m/Y', strtotime($article->getLastPublishedDate()))); ?>
                 <?php
                 }
                 ?>
@@ -81,10 +81,10 @@
             </td>
             <td class="d-flex flex-wrap justify-content-end">
                 <div class="d-flex flex-row justify-content-end">
-                    <a type="button" class="btn btn-outline-primary mb-1 mx-1" href="../public/index.php?route=editArticle&articleId=<?= $article->getId(); ?>">
+                    <a type="button" class="btn btn-outline-primary mb-1 mx-1" href="index.php?route=editArticle&articleId=<?= filter_var($article->getId()); ?>">
                         <i class="fas fa-edit"></i>
                     </a>
-                    <a type="button" class="btn btn-outline-danger mb-1 mx-1" href="../public/index.php?route=deleteArticle&articleId=<?= $article->getId(); ?>">
+                    <a type="button" class="btn btn-outline-danger mb-1 mx-1" href="index.php?route=deleteArticle&articleId=<?= filter_var($article->getId()); ?>">
                         <i class="fas fa-trash-alt"></i>
                     </a>
                 </div>
@@ -92,7 +92,7 @@
                 if($article->getIsPublished() == 0)
                 {
                     ?>
-                    <a type="button" class="btn btn-outline-success btn-block mb-1 mx-1" href="../public/index.php?route=publishArticle&articleId=<?= $article->getId(); ?>">
+                    <a type="button" class="btn btn-outline-success btn-block mb-1 mx-1" href="index.php?route=publishArticle&articleId=<?= filter_var($article->getId()); ?>">
                         Publier
                     </a>
                     <?php
@@ -100,7 +100,7 @@
                 elseif ($article->getIsPublished() == 1)
                 {
                     ?>
-                    <a type="button" class="btn btn-outline-warning btn-block mb-1 mx-1" href="../public/index.php?route=unpublishArticle&articleId=<?= $article->getId(); ?>">
+                    <a type="button" class="btn btn-outline-warning btn-block mb-1 mx-1" href="index.php?route=unpublishArticle&articleId=<?= filter_var($article->getId()); ?>">
                         Dépublier
                     </a>
                     <?php
@@ -120,8 +120,8 @@
 <h2>Commentaires signalés</h2>
 
 <table class="table table-hover table-responsive-lg">
-    <thead class="">
-        <tr class="">
+    <thead>
+        <tr>
             <th class="text-center" scope="col">Pseudo</th>
             <th scope="col">Message</th>
             <th scope="col">Date de création</th>
@@ -133,21 +133,21 @@
     foreach($comments as $comment)
     {
         ?>
-        <tr class="">
+        <tr>
             <th scope="row">
-                <?= htmlspecialchars($comment->getPseudo()); ?>
+                <?= filter_var($comment->getPseudo()); ?>
             </th>
             <td class="text-break">
-                <?= substr(htmlspecialchars($comment->getContent()), 0, 150); ?>
+                <?= filter_var($comment->getContent(), FILTER_SANITIZE_FULL_SPECIAL_CHARS); ?>
             </td>
             <td>
-                <?= htmlspecialchars($comment->getCreatedAt()); ?>
+                <?= filter_var($comment->getCreatedAt()); ?>
             </td>
             <td class="d-flex flex-wrap justify-content-end">
-                <a type="button" class="btn btn-outline-primary mb-1 mx-1" href="../public/index.php?route=unflagComment&commentId=<?= $comment->getId(); ?>">
+                <a type="button" class="btn btn-outline-primary mb-1 mx-1" href="index.php?route=unflagComment&commentId=<?= filter_var($comment->getId()); ?>">
                     Désignaler
                 </a>
-                <a type="button" class="btn btn-outline-danger mb-1 mx-1" href="../public/index.php?route=deleteComment&commentId=<?= $comment->getId(); ?>">
+                <a type="button" class="btn btn-outline-danger mb-1 mx-1" href="index.php?route=deleteComment&commentId=<?= filter_var($comment->getId()); ?>">
                     <i class="fas fa-trash-alt"></i>
                 </a>
             </td>
@@ -177,25 +177,25 @@
         ?>
         <tr>
             <th scope="row">
-                <?= htmlspecialchars($user->getPseudo()); ?>
+                <?= filter_var($user->getPseudo()); ?>
             </th>
-            <td class="">
-                <a href="mailto:<?= htmlspecialchars($user->getEmail()); ?>">
-                    <?= htmlspecialchars($user->getEmail()); ?>
+            <td>
+                <a href="mailto:<?= filter_var($user->getEmail()); ?>">
+                    <?= filter_var($user->getEmail()); ?>
                 </a>
             </td>
-            <td class="">
-                <?= htmlspecialchars($user->getCreatedAt()); ?>
+            <td>
+                <?= filter_var($user->getCreatedAt()); ?>
             </td>
-            <td class="">
-                <?= htmlspecialchars($user->getRole()); ?>
+            <td>
+                <?= filter_var($user->getRole()); ?>
             </td>
             <td class="d-flex flex-wrap justify-content-end">
                 <?php
                 if(!$user->getIsAdmin())
                 {
                     ?>
-                    <a type="button" class="btn btn-outline-danger" href="../public/index.php?route=deleteUser&userId=<?= $user->getId(); ?>">
+                    <a type="button" class="btn btn-outline-danger" href="index.php?route=deleteUser&userId=<?= filter_var($user->getId()); ?>">
                         <i class="fas fa-trash-alt"></i>
                     </a>
                     <?php

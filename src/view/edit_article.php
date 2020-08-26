@@ -3,53 +3,10 @@
 
 <div class="row my-2">
     <div class="col-12 mx-0 px-0">
-        <a class="btn btn-light" href="../public/index.php?route=administration">
+        <a class="btn btn-light" href="index.php?route=administration">
             << Retour à l'administration
         </a>
     </div>
-</div>
-
-<div class="message">
-    <?php
-
-    if ($this->session->get('info_message')) {
-        ?>
-        <div class="alert alert-info alert-dismissible fade show" role="alert">
-            <?= $this->session->show('info_message') ; ?>
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-        <?php
-    } elseif ($this->session->get('success_message')) {
-        ?>
-        <div class="alert alert-success alert-dismissible fade show" role="alert">
-            <?= $this->session->show('success_message') ; ?>
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-        <?php
-    } elseif ($this->session->get('warning_message')) {
-        ?>
-        <div class="alert alert-warning alert-dismissible fade show" role="alert">
-            <?= $this->session->show('warning_message') ; ?>
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-        <?php
-    } elseif ($this->session->get('error_message')) {
-        ?>
-        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-            <?= $this->session->show('error_message') ; ?>
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-        <?php
-    }
-    ?>
 </div>
 
 <div class="row container">
