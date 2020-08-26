@@ -44,8 +44,8 @@ $submit = $route === 'addArticle' ? 'Créer' : 'Enregistrer';
                 },
                 menubar: 'edit view insert tools help',
                 plugins: [
-                    'a11ychecker advlist autolink casechange link linkchecker image lists charmap print preview hr anchor pagebreak',
-                    'searchreplace wordcount visualblocks visualchars fullscreen insertdatetime media nonbreaking tinymcespellchecker',
+                    'advlist autolink link image lists charmap print preview hr anchor pagebreak',
+                    'searchreplace wordcount visualblocks visualchars fullscreen insertdatetime media nonbreaking',
                     'table emoticons template paste help',
                     'autosave'
                 ],
