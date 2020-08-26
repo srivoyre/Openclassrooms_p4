@@ -7,6 +7,10 @@ use App\src\controller\BackController;
 use App\src\controller\ErrorController;
 use Exception;
 
+/**
+ * Class Router
+ * @package App\src
+ */
 class Router
 {
     private $request;
@@ -14,6 +18,9 @@ class Router
     private $backController;
     private $errorController;
 
+    /**
+     * Router constructor.
+     */
     public function __construct()
     {
         $this->request = new Request();
@@ -21,6 +28,7 @@ class Router
         $this->backController = new BackController();
         $this->errorController = new ErrorController();
     }
+
     public function run()
     {
         $route = $this->request->getGet()->get('route');
@@ -35,6 +43,9 @@ class Router
         }
     }
 
+    /**
+     * @param $route
+     */
     public function route($route)
     {
         switch ($route) {

@@ -9,6 +9,10 @@ use App\src\controller\View;
 use App\src\constraint\Validation;
 use App\src\Request;
 
+/**
+ * Class Controller
+ * @package App\src\controller
+ */
 abstract class Controller
 {
     protected $articleDAO;

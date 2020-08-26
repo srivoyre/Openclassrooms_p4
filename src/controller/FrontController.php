@@ -4,8 +4,15 @@ namespace App\src\controller;
 
 use App\src\Parameter;
 
+/**
+ * Class FrontController
+ * @package App\src\controller
+ */
 class FrontController extends Controller
 {
+    /**
+     * @return View
+     */
     public function home()
     {
         $articles = $this->articleDAO->getArticles(true);
@@ -14,6 +21,10 @@ class FrontController extends Controller
         ]);
     }
 
+    /**
+     * @param string $articleId
+     * @return View
+     */
     public function getPublishedArticle(string $articleId)
     {
         $article = $this->articleDAO->getArticle($articleId, true);
@@ -28,6 +39,10 @@ class FrontController extends Controller
         //require '../templates/single.php';
     }
 
+    /**
+     * @param string $commentId
+     * @param string $articleId
+     */
     public function flagComment(string $commentId, string $articleId)
     {
         $this->commentDAO->flagComment($commentId);
@@ -38,6 +53,10 @@ class FrontController extends Controller
         header('Location: ../public/index.php?route=viewArticle&articleId='.$articleId);
     }
 
+    /**
+     * @param Parameter $post
+     * @return View
+     */
     public function register(Parameter $post)
     {
         if ($post->get('submit')) {
@@ -68,6 +87,10 @@ class FrontController extends Controller
         return $this->view->render('register');
     }
 
+    /**
+     * @param Parameter $post
+     * @return View
+     */
     public function login(Parameter $post)
     {
         if ($post->get('submit')) {

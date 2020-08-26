@@ -2,6 +2,10 @@
 
 namespace App\src;
 
+/**
+ * Class Request
+ * @package App\src
+ */
 class Request
 {
     private $get;

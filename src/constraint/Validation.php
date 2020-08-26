@@ -4,8 +4,17 @@ namespace App\src\constraint;
 
 use App\src\Parameter;
 
+/**
+ * Class Validation
+ * @package App\src\constraint
+ */
 class Validation
 {
+    /**
+     * @param Parameter $data
+     * @param string $name
+     * @return array
+     */
     public function validate(Parameter $data, string $name)
     {
         if ($name === 'Article') {

@@ -4,8 +4,15 @@ namespace App\src\controller;
 
 use App\src\Parameter;
 
+/**
+ * Class BackController
+ * @package App\src\controller
+ */
 class BackController extends Controller
 {
+    /**
+     * @return bool
+     */
     private function checkLoggedIn()
     {
         if (!$this->session->get('user')->getPseudo()) {
@@ -19,6 +26,9 @@ class BackController extends Controller
         }
     }
 
+    /**
+     * @return bool
+     */
     private function checkAdmin()
     {
         $this->checkLoggedIn();
@@ -33,6 +43,9 @@ class BackController extends Controller
         }
     }
 
+    /**
+     * @return View
+     */
     public function administration()
     {
         if ($this->checkAdmin()) {
@@ -48,6 +61,10 @@ class BackController extends Controller
         }
     }
 
+    /**
+     * @param string $articleId
+     * @return View
+     */
     public function getArticle(string $articleId)
     {
         if ($this->checkAdmin()) {
@@ -67,6 +84,10 @@ class BackController extends Controller
         }
     }
 
+    /**
+     * @param Parameter $post
+     * @return View
+     */
     public function addArticle(Parameter $post)
     {
         if ($this->checkAdmin()) {
@@ -89,6 +110,11 @@ class BackController extends Controller
         }
     }
 
+    /**
+     * @param Parameter $post
+     * @param string $articleId
+     * @return View
+     */
     public function editArticle(Parameter $post, string $articleId)
     {
         if ($this->checkAdmin()) {
@@ -136,6 +162,9 @@ class BackController extends Controller
         }
     }
 
+    /**
+     * @param string $articleId
+     */
     public function publishArticle(string $articleId)
     {
         if ($this->checkAdmin()) {
@@ -148,6 +177,9 @@ class BackController extends Controller
         }
     }
 
+    /**
+     * @param string $articleId
+     */
     public function unpublishArticle(string $articleId)
     {
         if ($this->checkAdmin()) {
@@ -160,6 +192,9 @@ class BackController extends Controller
         }
     }
 
+    /**
+     * @param string $articleId
+     */
     public function deleteArticle(string $articleId)
     {
         if ($this->checkAdmin()) {
@@ -172,6 +207,11 @@ class BackController extends Controller
         }
     }
 
+    /**
+     * @param Parameter $post
+     * @param string $articleId
+     * @return View
+     */
     public function addComment(Parameter $post, string $articleId)
     {
         if ($this->checkLoggedIn()) {
@@ -201,6 +241,9 @@ class BackController extends Controller
         }
     }
 
+    /**
+     * @param string $commentId
+     */
     public function unflagComment(string $commentId)
     {
         if ($this->checkAdmin()) {
@@ -213,6 +256,11 @@ class BackController extends Controller
         }
     }
 
+    /**
+     * @param string $commentId
+     * @param string $articleId
+     * @param string $pseudo
+     */
     public function deleteComment(string $commentId, string $articleId, string $pseudo)
     {
         if (
@@ -235,6 +283,9 @@ class BackController extends Controller
         }
     }
 
+    /**
+     * @return View
+     */
     public function profile()
     {
         if ($this->checkLoggedIn()) {
@@ -245,6 +296,10 @@ class BackController extends Controller
         }
     }
 
+    /**
+     * @param Parameter $post
+     * @return View
+     */
     public function updatePassword(Parameter $post)
     {
         if ($this->checkLoggedIn()) {
@@ -273,6 +328,10 @@ class BackController extends Controller
         }
     }
 
+    /**
+     * @param Parameter $post
+     * @return View
+     */
     public function updateEmail(Parameter $post)
     {
         if ($this->checkLoggedIn()) {
@@ -310,6 +369,9 @@ class BackController extends Controller
         }
     }
 
+    /**
+     * @param string $userId
+     */
     public function deleteUser(string $userId)
     {
         if ($this->checkAdmin()) {
@@ -323,6 +385,9 @@ class BackController extends Controller
         }
     }
 
+    /**
+     * @param string $param
+     */
     private function logoutOrDelete(string $param)
     {
         $this->session->stop();

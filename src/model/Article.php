@@ -4,6 +4,10 @@ namespace App\src\model;
 
 use Cassandra\Date;
 
+/**
+ * Class Article
+ * @package App\src\model
+ */
 class Article
 {
     private $id;
