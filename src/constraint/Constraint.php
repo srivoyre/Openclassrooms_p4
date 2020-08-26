@@ -2,8 +2,17 @@
 
 namespace App\src\constraint;
 
+/**
+ * Class Constraint
+ * @package App\src\constraint
+ */
 class Constraint
 {
+    /**
+     * @param string $name
+     * @param $value
+     * @return string
+     */
     public function notBlank(string $name, $value)
     {
         if (empty($value)) {
@@ -11,6 +20,12 @@ class Constraint
         }
     }
 
+    /**
+     * @param string $name
+     * @param $value
+     * @param int $minSize
+     * @return string
+     */
     public function minLength(string $name, $value, int $minSize)
     {
         if (strlen($value) < $minSize) {
@@ -18,6 +33,12 @@ class Constraint
         }
     }
 
+    /**
+     * @param string $name
+     * @param $value
+     * @param int $maxSize
+     * @return string
+     */
     public function maxLength(string $name, $value, int $maxSize)
     {
         if (strlen($value) > $maxSize) {
@@ -25,6 +46,10 @@ class Constraint
         }
     }
 
+    /**
+     * @param $value
+     * @return string
+     */
     public function isPositiveInteger($value)
     {
         if (!is_int($value + 0) || ($value +0) < 0) {
@@ -32,6 +57,10 @@ class Constraint
         }
     }
 
+    /**
+     * @param $value
+     * @return string
+     */
     public function isEmail($value)
     {
         if (!filter_var($value, FILTER_VALIDATE_EMAIL)) {

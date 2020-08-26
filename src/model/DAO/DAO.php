@@ -6,10 +6,17 @@ use App\src\controller\ErrorController;
 use PDO;
 use Exception;
 
+/**
+ * Class DAO
+ * @package App\src\model\DAO
+ */
 abstract class DAO
 {
     private $connection;
 
+    /**
+     * @return PDO
+     */
     private function checkConnection()
     {
         if ($this->connection === null) {
@@ -19,6 +26,9 @@ abstract class DAO
         return $this->connection;
     }
 
+    /**
+     * @return PDO
+     */
     private function getConnection()
     {
         try {
@@ -32,6 +42,11 @@ abstract class DAO
         }
     }
 
+    /**
+     * @param string $sql
+     * @param null $parameters
+     * @return bool|false|\PDOStatement
+     */
     protected function createQuery(string $sql, $parameters = null)
     {
         if ($parameters) {

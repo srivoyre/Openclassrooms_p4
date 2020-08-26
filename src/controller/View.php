@@ -4,6 +4,10 @@ namespace App\src\controller;
 
 use App\src\Request;
 
+/**
+ * Class View
+ * @package App\src\controller
+ */
 class View
 {
     private $file;
@@ -12,12 +16,19 @@ class View
     private $request;
     private $session;
 
+    /**
+     * View constructor.
+     */
     public function __construct()
     {
         $this->request = new Request();
         $this->session = $this->request->getSession();
     }
 
+    /**
+     * @param string $template
+     * @param array $data
+     */
     public function render(string $template, $data = [])
     {
         $this->file = '../src/view/'.$template.'.php';
@@ -32,6 +43,11 @@ class View
         echo filter_var($view);
     }
 
+    /**
+     * @param string $file
+     * @param array $data
+     * @return false|string
+     */
     private function renderFile(string $file, array $data)
     {
         if (file_exists($file)) {

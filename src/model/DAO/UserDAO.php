@@ -5,8 +5,16 @@ namespace App\src\model\DAO;
 use App\src\Parameter;
 use App\src\model\User;
 
+/**
+ * Class UserDAO
+ * @package App\src\model\DAO
+ */
 class UserDAO extends DAO
 {
+    /**
+     * @param array $row
+     * @return User
+     */
     public function buildObject(array $row)
     {
         $user = new User();
@@ -21,6 +29,9 @@ class UserDAO extends DAO
         return $user;
     }
 
+    /**
+     * @return array
+     */
     public function getUsers()
     {
         $sql = 'SELECT user.id, user.pseudo, user.createdAt, role.id AS roleId, role.name AS roleName, user.email 
@@ -39,6 +50,10 @@ class UserDAO extends DAO
         return $users;
     }
 
+    /**
+     * @param string $pseudo
+     * @return User
+     */
     public function getUser(string $pseudo)
     {
         $sql = 'SELECT user.id, user.pseudo, user.createdAt, role.id AS roleId, role.name AS roleName, user.email 
@@ -52,6 +67,9 @@ class UserDAO extends DAO
         return $this->buildObject($user);
     }
 
+    /**
+     * @param Parameter $post
+     */
     public function register(Parameter $post)
     {
         $sql = 'INSERT INTO user (pseudo, password, createdAt, role_id, email) 
@@ -64,6 +82,13 @@ class UserDAO extends DAO
         ]);
     }
 
+    /**
+     * @param Parameter $post
+     * @param string $valueToCheck
+     * @param string $fieldToCheck
+     * @param string $param
+     * @return mixed|string
+     */
     public function checkUser(Parameter $post, string $valueToCheck, string $fieldToCheck, string $param)
     {
         $sql = '';
@@ -93,6 +118,11 @@ class UserDAO extends DAO
         }
     }
 
+    /**
+     * @param Parameter $post
+     * @param string $field
+     * @return array
+     */
     public function checkPassword(Parameter $post, string $field)
     {
         if ($field === 'pseudo') {
@@ -120,6 +150,10 @@ class UserDAO extends DAO
         }
     }
 
+    /**
+     * @param Parameter $post
+     * @param string $pseudo
+     */
     public function updatePassword(Parameter $post, string $pseudo)
     {
         $sql = 'UPDATE user 
@@ -131,6 +165,10 @@ class UserDAO extends DAO
         ]);
     }
 
+    /**
+     * @param Parameter $post
+     * @param string $pseudo
+     */
     public function updateEmail(Parameter $post, string $pseudo)
     {
         $sql = 'UPDATE user 
@@ -142,6 +180,9 @@ class UserDAO extends DAO
         ]);
     }
 
+    /**
+     * @param string $userId
+     */
     public function deleteUser(string $userId)
     {
         $sql = 'DELETE 
@@ -150,6 +191,10 @@ class UserDAO extends DAO
         $this->createQuery($sql, [$userId]);
     }
 
+    /**
+     * @param string $pseudo
+     * @return mixed
+     */
     public function countComments(string $pseudo)
     {
         $sql = 'SELECT COUNT(id) 

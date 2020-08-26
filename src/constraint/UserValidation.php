@@ -4,16 +4,27 @@ namespace App\src\constraint;
 
 use App\src\Parameter;
 
+/**
+ * Class UserValidation
+ * @package App\src\constraint
+ */
 class UserValidation extends Validation
 {
     private $errors = [];
     private $constraint;
 
+    /**
+     * UserValidation constructor.
+     */
     public function __construct()
     {
         $this->constraint = new Constraint();
     }
 
+    /**
+     * @param Parameter $post
+     * @return array
+     */
     public function check(Parameter $post)
     {
         foreach ($post->all() as $key => $value) {
@@ -23,6 +34,10 @@ class UserValidation extends Validation
         return $this->errors;
     }
 
+    /**
+     * @param string $name
+     * @param $value
+     */
     public function checkField(string $name, $value)
     {
         if ($name === 'pseudo') {
@@ -37,6 +52,10 @@ class UserValidation extends Validation
         }
     }
 
+    /**
+     * @param string $name
+     * @param $error
+     */
     private function addError(string $name, $error)
     {
         if ($error) {
@@ -46,6 +65,11 @@ class UserValidation extends Validation
         }
     }
 
+    /**
+     * @param string $name
+     * @param $value
+     * @return string
+     */
     private function checkPseudo(string $name, $value)
     {
         if ($this->constraint->notBlank($name, $value)) {
@@ -61,6 +85,11 @@ class UserValidation extends Validation
         }
     }
 
+    /**
+     * @param string $name
+     * @param $value
+     * @return string
+     */
     private function checkPassword(string $name, $value)
     {
         if ($this->constraint->notBlank($name, $value)) {
@@ -73,6 +102,11 @@ class UserValidation extends Validation
             return $this->constraint->maxLength('mot de passe', $value, 20);
         }
     }
+
+    /**
+     * @param $value
+     * @return string
+     */
     private function checkEmail($value)
     {
         if ($this->constraint->isEmail($value)) {

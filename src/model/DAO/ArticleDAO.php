@@ -6,8 +6,17 @@ use App\src\Parameter;
 use App\src\model\Article;
 use function Sodium\add;
 
+/**
+ * Class ArticleDAO
+ * @package App\src\model\DAO
+ */
 class ArticleDAO extends DAO
 {
+    /**
+     * @param array $row
+     * @param bool $getSurroundingArticles
+     * @return Article
+     */
     private function buildObject(array $row, bool $getSurroundingArticles)
     {
         $article = new Article();
@@ -31,8 +40,12 @@ class ArticleDAO extends DAO
         $article->setLastPublishedDate($row['lastPublishedDate']);
 
         return $article;
-    } 
-    
+    }
+
+    /**
+     * @param bool $published
+     * @return array
+     */
     public function getArticles(bool $published)
     {
         $sql = '';
@@ -62,6 +75,11 @@ class ArticleDAO extends DAO
         return $articles;
     }
 
+    /**
+     * @param string $articleId
+     * @param bool $published
+     * @return Article
+     */
     public function getArticle(string $articleId, $published = false)
     {
         $sql = '';
@@ -86,6 +104,11 @@ class ArticleDAO extends DAO
         return $this->buildObject($article, true);
     }
 
+    /**
+     * @param int $articleOrderNum
+     * @param string $place
+     * @return mixed
+     */
     public function getSurroundingArticle(int $articleOrderNum, string $place)
     {
         $sql ='';
@@ -121,6 +144,10 @@ class ArticleDAO extends DAO
         return array_shift($articles);
     }
 
+    /**
+     * @param Parameter $post
+     * @param string $userId
+     */
     public function addArticle(Parameter $post, string $userId)
     {
         $sql = 'INSERT INTO article (title, content, order_num, published, createdAt, user_id) 
@@ -134,6 +161,11 @@ class ArticleDAO extends DAO
         ]);
     }
 
+    /**
+     * @param Parameter $post
+     * @param $articleId
+     * @param $userId
+     */
     public function editArticle(Parameter $post, $articleId, $userId)
     {
         $sql = 'UPDATE article 
@@ -148,6 +180,10 @@ class ArticleDAO extends DAO
         ]);
     }
 
+    /**
+     * @param int $status
+     * @param string $articleId
+     */
     public function editPublicationStatus(int $status, string $articleId)
     {
         $sql = '';
@@ -169,6 +205,9 @@ class ArticleDAO extends DAO
         ]);
     }
 
+    /**
+     * @param string $articleId
+     */
     public function deleteArticle(string $articleId)
     {
         $sql = 'DELETE 

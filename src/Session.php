@@ -2,6 +2,10 @@
 
 namespace App\src;
 
+/**
+ * Class Session
+ * @package App\src
+ */
 class Session
 {
     private $session;
@@ -15,11 +19,19 @@ class Session
         $this->session = $session;
     }
 
+    /**
+     * @param string $name
+     * @param $value
+     */
     public function set(string $name, $value)
     {
         $_SESSION[$name] = $value;
     }
 
+    /**
+     * @param string $name
+     * @return mixed
+     */
     public function get(string $name)
     {
         if(isset($_SESSION[$name]))
@@ -28,6 +40,10 @@ class Session
         }
     }
 
+    /**
+     * @param string $name
+     * @return mixed
+     */
     public function show(string $name)
     {
         if (isset($_SESSION[$name])) {
@@ -37,6 +53,9 @@ class Session
         }
     }
 
+    /**
+     * @param string $name
+     */
     public function remove(string $name)
     {
         unset($_SESSION[$name]);

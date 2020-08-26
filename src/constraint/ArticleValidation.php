@@ -4,16 +4,27 @@ namespace App\src\constraint;
 
 use App\src\Parameter;
 
+/**
+ * Class ArticleValidation
+ * @package App\src\constraint
+ */
 class ArticleValidation extends Validation
 {
     private $errors = [];
     private $constraint;
 
+    /**
+     * ArticleValidation constructor.
+     */
     public function __construct()
     {
         $this->constraint = new Constraint();
     }
 
+    /**
+     * @param Parameter $post
+     * @return array
+     */
     public function check(Parameter $post)
     {
         foreach ($post->all() as $key => $value) {
@@ -23,6 +34,10 @@ class ArticleValidation extends Validation
         return $this->errors;
     }
 
+    /**
+     * @param string $name
+     * @param $value
+     */
     private function checkField(string $name, $value)
     {
         if ($name === 'title') {
@@ -41,6 +56,10 @@ class ArticleValidation extends Validation
         }
     }
 
+    /**
+     * @param string $name
+     * @param $error
+     */
     private function addError(string $name, $error)
     {
         if ($error) {
@@ -50,6 +69,12 @@ class ArticleValidation extends Validation
         }
     }
 
+
+    /**
+     * @param string $name
+     * @param $value
+     * @return string
+     */
     private function checkTitle(string $name, $value)
     {
         if ($this->constraint->notBlank($name, $value)) {
@@ -65,6 +90,12 @@ class ArticleValidation extends Validation
         }
     }
 
+
+    /**
+     * @param string $name
+     * @param $value
+     * @return string
+     */
     private function checkContent(string $name, $value)
     {
         if ($this->constraint->notBlank($name, $value)) {
@@ -76,6 +107,12 @@ class ArticleValidation extends Validation
         }
     }
 
+
+    /**
+     * @param string $name
+     * @param $value
+     * @return string
+     */
     private function checkOrderNum(string $name, $value)
     {
         if ($this->constraint->notBlank($name, $value)) {

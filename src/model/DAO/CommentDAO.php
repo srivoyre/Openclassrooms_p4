@@ -5,8 +5,16 @@ namespace App\src\model\DAO;
 use App\src\Parameter;
 use App\src\model\Comment;
 
+/**
+ * Class CommentDAO
+ * @package App\src\model\DAO
+ */
 class CommentDAO extends DAO
 {
+    /**
+     * @param array $row
+     * @return Comment
+     */
     private function buildObject(array $row)
     {
         $comment = new Comment();
@@ -20,6 +28,11 @@ class CommentDAO extends DAO
 
         return $comment;
     }
+
+    /**
+     * @param string $articleId
+     * @return array
+     */
     public function getCommentsFromArticle(string $articleId)
     {
         $sql = 'SELECT id, user_id AS userId, pseudo, content, createdAt, flag, article_id 
@@ -36,6 +49,12 @@ class CommentDAO extends DAO
         return $comments;
     }
 
+    /**
+     * @param Parameter $post
+     * @param string $userId
+     * @param string $pseudo
+     * @param string $articleId
+     */
     public function addComment(Parameter $post, string $userId, string $pseudo, string $articleId)
     {
         $sql = 'INSERT INTO comment (user_id, pseudo, content, createdAt, flag, article_id) 
@@ -49,6 +68,9 @@ class CommentDAO extends DAO
         ]);
     }
 
+    /**
+     * @param string $commentId
+     */
     public function flagComment(string $commentId)
     {
         $sql = 'UPDATE comment 
@@ -60,6 +82,9 @@ class CommentDAO extends DAO
         ]);
     }
 
+    /**
+     * @param string $commentId
+     */
     public function unflagComment(string $commentId)
     {
         $sql = 'UPDATE comment 
@@ -71,6 +96,9 @@ class CommentDAO extends DAO
         ]);
     }
 
+    /**
+     * @param string $commentId
+     */
     public function deleteComment(string $commentId)
     {
         $sql = 'DELETE 
@@ -79,6 +107,9 @@ class CommentDAO extends DAO
         $this->createQuery($sql, [$commentId]);
     }
 
+    /**
+     * @param string $userId
+     */
     public function deleteUserComments(string $userId)
     {
         $sql = 'DELETE 
@@ -87,6 +118,9 @@ class CommentDAO extends DAO
         $this->createQuery($sql, [$userId]);
     }
 
+    /**
+     * @return array
+     */
     public function getFlaggedComments()
     {
         $sql = 'SELECT id, user_id AS userId, pseudo, content, createdAt, flag, article_id 
