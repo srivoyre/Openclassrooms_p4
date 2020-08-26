@@ -15,21 +15,27 @@
                 <br />
                 <input class="form-control" type="text" id="pseudo" name="pseudo" aria-label="Pseudo" required aria-required="true">
                 <br />
-                <?= isset($errors['pseudo']) ? filter_var($errors['pseudo']) : ''; ?>
+                <span class="alert-danger">
+                    <?= isset($errors['pseudo']) ? filter_var($errors['pseudo']) : ''; ?>
+                </span>
             </div>
             <div class="form-group">
                 <label for="email">Adresse e-mail</label>
                 <br />
                 <input class="form-control" type="email" id="email" name="email" aria-label="E-mail" aria-describedby="basic-addon1" required aria-required="true">
                 <br />
-                <?= isset($errors['email']) ? filter_var($errors['email']) : ''; ?>
+                <span class="alert-danger">
+                    <?= isset($errors['email']) ? filter_var($errors['email']) : ''; ?>
+                </span>
             </div>
             <div class="form-group">
                 <label for="password">Mot de passe</label>
                 <br />
                 <input class="form-control" type="password" id="password" name="password" aria-label="Mot de passe" required aria-required="true">
                 <br />
-                <?= isset($errors['password']) ? filter_var($errors['password']) : ''; ?>
+                <span class="alert-danger">
+                    <?= isset($errors['password']) ? filter_var($errors['password']) : ''; ?>
+                </span>
             </div>
             <input class="btn btn-primary" type="submit" value="Inscription" id="submit" name="submit">
         </form>

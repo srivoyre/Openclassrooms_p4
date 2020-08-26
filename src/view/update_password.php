@@ -33,7 +33,9 @@
                 <div class="row">
                     <div class="col-12 col-md-8 pb-2">
                         <input class="form-control" type="password" id="newPassword" name="newPassword" aria-label="Nouveau mot de passe" required aria-required="true">
-                        <?= isset($errors['password']) ? filter_var($errors['password']) : ''; ?>
+                        <span class="alert-danger">
+                            <?= isset($errors['password']) ? filter_var($errors['password']) : ''; ?>
+                        </span>
                     </div>
                 </div>
             </div>
