@@ -20,7 +20,7 @@ class BackController extends Controller
                 'warning_message',
                 'Vous devez vous connecter pour accéder à cette page'
             );
-            header('Location: ../public/index.php?route=login');
+            header('Location: index.php?route=login');
         } else {
             return true;
         }
@@ -37,7 +37,7 @@ class BackController extends Controller
                 'warning_message',
                 'Vous ne disposez pas des autorisations suffisantes pour accéder à cette page'
             );
-            header('Location: ../public/index.php?route=errorPermission');
+            header('Location: index.php?route=errorPermission');
         } else {
             return true;
         }
@@ -99,7 +99,7 @@ class BackController extends Controller
                         'success_message',
                         'Le nouvel article a bien été ajouté'
                     );
-                    header('Location: ../public/index.php?route=administration');
+                    header('Location: index.php?route=administration');
                 }
                 return $this->view->render('add_article', [
                     'post' => $post,
@@ -141,7 +141,7 @@ class BackController extends Controller
                         'success_message',
                         'L\'article a bien été modifié'
                     );
-                    header('Location: ../public/index.php?route=administration');
+                    header('Location: index.php?route=administration');
                 }
                 return $this->view->render('edit_article', [
                     'post' => $post,
@@ -173,7 +173,7 @@ class BackController extends Controller
                 'success_message',
                 'Le chapitre a bien été publié'
             );
-            header('Location: ../public/index.php?route=administration');
+            header('Location: index.php?route=administration');
         }
     }
 
@@ -188,7 +188,7 @@ class BackController extends Controller
                 'success_message',
                 'Le chapitre a bien été dépublié'
             );
-            header('Location: ../public/index.php?route=administration');
+            header('Location: index.php?route=administration');
         }
     }
 
@@ -207,7 +207,7 @@ class BackController extends Controller
                 'success_message',
                 'L\'article a bien été supprimé'
             );
-            header('Location: ../public/index.php?route=administration');
+            header('Location: index.php?route=administration');
         }
     }
 
@@ -256,7 +256,7 @@ class BackController extends Controller
                 'success_message',
                 'Le commentaire a bien été désignalé'
             );
-            header('Location: ../public/index.php?route=administration');
+            header('Location: index.php?route=administration');
         }
     }
 
@@ -276,14 +276,14 @@ class BackController extends Controller
                 'success_message',
                 'Votre commentaire a bien été supprimé'
             );
-            header('Location: ../public/index.php?route=viewArticle&articleId='.$articleId);
+            header('Location: index.php?route=viewArticle&articleId='.$articleId);
         } elseif ($this->checkAdmin()) {
             $this->commentDAO->deleteComment($commentId);
             $this->session->set(
                 'success_message',
                 'Le commentaire a bien été supprimé'
             );
-            header('Location: ../public/index.php?route=administration');
+            header('Location: index.php?route=administration');
         }
     }
 
@@ -347,8 +347,8 @@ class BackController extends Controller
                         'success_message',
                         'Votre adresse e-mail a été mise à jour'
                     );
+                    header('Location: index.php?route=profile');
                 }
-
                 return $this->view->render('profile', [
                     'user' => $this->session->get('user'),
                     'errors' => $errors
@@ -384,7 +384,7 @@ class BackController extends Controller
                 'success_message',
                 'L\'utilisateur a bien été supprimé'
             );
-            header('Location: ../public/index.php?route=administration');
+            header('Location: index.php?route=administration');
         }
     }
 
@@ -403,6 +403,6 @@ class BackController extends Controller
                 'Votre compte a bien été supprimé'
             );
         }
-        header('Location: ../public/index.php');
+        header('Location: index.php');
     }
 }

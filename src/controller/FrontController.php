@@ -36,7 +36,6 @@ class FrontController extends Controller
             'article' => $article,
             'comments' => $comments
         ]);
-        //require '../templates/single.php';
     }
 
     /**
@@ -50,7 +49,7 @@ class FrontController extends Controller
             'info_message',
             'Le commentaire a bien été signalé'
         );
-        header('Location: ../public/index.php?route=viewArticle&articleId='.$articleId);
+        header('Location: index.php?route=viewArticle&articleId='.$articleId);
     }
 
     /**
@@ -76,7 +75,7 @@ class FrontController extends Controller
                     'success_message',
                     'Votre inscription a bien été effectuée'
                 );
-                header('Location: ../public/index.php');
+                header('Location: index.php');
             }
 
             return $this->view->render('register', [
@@ -115,7 +114,7 @@ class FrontController extends Controller
                     'info_message',
                     'Content de vous revoir '.$this->session->get('user')->getPseudo(). ' !'
                 );
-                header('Location: ../public/index.php');
+                header('Location: index.php');
             } else {
                 $this->session->set(
                     'error_message',
@@ -128,7 +127,7 @@ class FrontController extends Controller
         }
 
         if ($this->session->get('loggedIn')) {
-            header('Location: ../public/index.php');
+            header('Location: index.php');
         } else {
             return $this->view->render('login');
         }
