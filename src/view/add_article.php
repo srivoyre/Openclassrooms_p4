@@ -3,7 +3,7 @@
 
 <div class="row my-2">
     <div class="col-12 mx-0 px-0">
-        <a class="btn btn-light" href="../public/index.php?route=administration">
+        <a class="btn btn-light" href="index.php?route=administration">
             << Retour à l'administration
         </a>
     </div>

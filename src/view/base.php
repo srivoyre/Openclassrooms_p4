@@ -48,7 +48,7 @@
 
             <nav class="navbar navbar-expand-lg navbar-light bg-info">
                 <a class="navbar-brand text-white" href="index.php">
-                    <img alt="Billet simple pour l'Alaska" src="img/logo.png" width="200"/>
+                    <img alt="Billet simple pour l'Alaska" src="img/logo.png" id="logo"/>
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>

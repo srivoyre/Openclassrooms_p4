@@ -11,30 +11,30 @@
 
         <form method="post" action="index.php?route=register">
             <div class="form-group">
-                <label for="pseudo">Pseudo</label>
+                <label for="pseudo">Pseudo*</label>
                 <br />
                 <input class="form-control" type="text" id="pseudo" name="pseudo" aria-label="Pseudo" required aria-required="true">
                 <br />
                 <span class="alert-danger">
-                    <?= isset($errors['pseudo']) ? filter_var($errors['pseudo'], FILTER_SANITIZE_FULL_SPECIAL_CHARS) : ''; ?>
+                    <?= isset($errors['pseudo']) ? filter_var($errors['pseudo'], FILTER_SANITIZE_STRING) : ''; ?>
                 </span>
             </div>
             <div class="form-group">
-                <label for="email">Adresse e-mail</label>
+                <label for="email">Adresse e-mail*</label>
                 <br />
                 <input class="form-control" type="email" id="email" name="email" aria-label="E-mail" aria-describedby="basic-addon1" required aria-required="true">
                 <br />
                 <span class="alert-danger">
-                    <?= isset($errors['email']) ? filter_var($errors['email'], FILTER_SANITIZE_FULL_SPECIAL_CHARS) : ''; ?>
+                    <?= isset($errors['email']) ? filter_var($errors['email'], FILTER_SANITIZE_STRING) : ''; ?>
                 </span>
             </div>
             <div class="form-group">
-                <label for="password">Mot de passe</label>
+                <label for="password">Mot de passe*</label><span class="small font-italic">(au moins 6 caractères)</span>
                 <br />
                 <input class="form-control" type="password" id="password" name="password" aria-label="Mot de passe" required aria-required="true">
                 <br />
                 <span class="alert-danger">
-                    <?= isset($errors['password']) ? filter_var($errors['password'], FILTER_SANITIZE_FULL_SPECIAL_CHARS) : ''; ?>
+                    <?= isset($errors['password']) ? filter_var($errors['password'], FILTER_SANITIZE_STRING) : ''; ?>
                 </span>
             </div>
             <input class="btn btn-primary" type="submit" value="Inscription" id="submit" name="submit">

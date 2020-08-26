@@ -8,7 +8,7 @@ $submit = $route === 'addArticle' ? 'Créer' : 'Enregistrer';
         <br />
         <input class="form-control" type="text" id="title" name="title" value="<?= isset($post) ? filter_var($post->get('title'), FILTER_SANITIZE_FULL_SPECIAL_CHARS) : ''; ?>">
         <span class="alert-danger">
-            <?= isset($errors['title']) ? filter_var($errors['title'], FILTER_SANITIZE_FULL_SPECIAL_CHARS) : ''; ?>
+            <?= isset($errors['title']) ? filter_var($errors['title'], FILTER_SANITIZE_STRING) : ''; ?>
         </span>
     </div>
     <div class="form-group">
@@ -16,17 +16,17 @@ $submit = $route === 'addArticle' ? 'Créer' : 'Enregistrer';
         <br />
         <input class="form-control" type="number" id="order_num" name="order_num" value="<?= isset($post) ? filter_var($post->get('order_num'), FILTER_SANITIZE_NUMBER_INT) : ''; ?>">
         <span class="alert-danger">
-            <?= isset($errors['order_num']) ? filter_var($errors['order_num'], FILTER_SANITIZE_FULL_SPECIAL_CHARS) : ''; ?>
+            <?= isset($errors['order_num']) ? filter_var($errors['order_num'], FILTER_SANITIZE_STRING) : ''; ?>
         </span>
     </div>
     <div class="form-group">
         <label for="content">Contenu</label>
         <br />
         <textarea id="content" class="form-control" name="content">
-            <?= isset($post) ? filter_var($post->get('content'), FILTER_SANITIZE_FULL_SPECIAL_CHARS) : ''; ?>
+            <?= isset($post) ? filter_var($post->get('content'), FILTER_SANITIZE_SPECIAL_CHARS) : ''; ?>
         </textarea>
         <span class="alert-danger">
-            <?= isset($errors['content']) ? filter_var($errors['content'], FILTER_SANITIZE_FULL_SPECIAL_CHARS) : ''; ?>
+            <?= isset($errors['content']) ? filter_var($errors['content'], FILTER_SANITIZE_STRING) : ''; ?>
         </span>
         <script>
             tinymce.init({
@@ -44,8 +44,8 @@ $submit = $route === 'addArticle' ? 'Créer' : 'Enregistrer';
                 },
                 menubar: 'edit view insert tools help',
                 plugins: [
-                    'a11ychecker advlist autolink casechange link linkchecker image lists charmap print preview hr anchor pagebreak',
-                    'searchreplace wordcount visualblocks visualchars fullscreen insertdatetime media nonbreaking tinymcespellchecker',
+                    'advlist autolink link image lists charmap print preview hr anchor pagebreak',
+                    'searchreplace wordcount visualblocks visualchars fullscreen insertdatetime media nonbreaking',
                     'table emoticons template paste help',
                     'autosave'
                 ],
