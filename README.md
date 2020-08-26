@@ -6,7 +6,7 @@ Billet simple pour l'Alaska - Créer un moteur de blog en PHP et MySql
 
 # Télécharger
 ```
-git clone https://github.com/srivoyre/Openclassrooms_p4
+git clone https://github.com/srivoyre/Openclassrooms_p4.git
 ```
 
 # Créateur
