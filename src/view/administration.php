@@ -180,8 +180,8 @@
                 <?= filter_var($user->getPseudo()); ?>
             </th>
             <td>
-                <a href="mailto:<?= filter_var($user->getEmail()); ?>">
-                    <?= filter_var($user->getEmail()); ?>
+                <a href="mailto:<?= filter_var($user->getEmail(),FILTER_SANITIZE_EMAIL); ?>">
+                    <?= filter_var($user->getEmail(),FILTER_SANITIZE_EMAIL); ?>
                 </a>
             </td>
             <td>
