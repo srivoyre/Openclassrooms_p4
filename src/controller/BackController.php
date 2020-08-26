@@ -347,7 +347,6 @@ class BackController extends Controller
                         'success_message',
                         'Votre adresse e-mail a été mise à jour'
                     );
-                    header('Location: ../public/index.php?route=profile');
                 }
 
                 return $this->view->render('profile', [
