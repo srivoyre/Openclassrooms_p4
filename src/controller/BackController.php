@@ -15,7 +15,7 @@ class BackController extends Controller
      */
     private function checkLoggedIn()
     {
-        if (!$this->session->get('user')->getPseudo()) {
+        if (!$this->session->get('user')) {
             $this->session->set(
                 'warning_message',
                 'Vous devez vous connecter pour accéder à cette page'
