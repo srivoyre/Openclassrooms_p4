@@ -15,7 +15,7 @@ class BackController extends Controller
      */
     private function checkLoggedIn()
     {
-        if (!$this->session->get('user')->getPseudo()) {
+        if (!$this->session->get('user')) {
             $this->session->set(
                 'warning_message',
                 'Vous devez vous connecter pour accéder à cette page'
@@ -198,6 +198,10 @@ class BackController extends Controller
     public function deleteArticle(string $articleId)
     {
         if ($this->checkAdmin()) {
+            $commentsToDelete = $this->commentDAO->getCommentsFromArticle($articleId);
+            foreach ($commentsToDelete as $comment) {
+                $this->deleteComment($comment->getId(), '', '');
+            }
             $this->articleDAO->deleteArticle($articleId);
             $this->session->set(
                 'success_message',
