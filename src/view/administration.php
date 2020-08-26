@@ -56,7 +56,7 @@
             </td>
             <td class="text-justify">
                 <span class="d-none d-lg-block">
-                    <?= filter_var(substr($article->getContent(), 0, 150),FILTER_SANITIZE_SPECIAL_CHARS); ?>
+                    <?= filter_var(substr($article->getContent(), 0, 150),FILTER_SANITIZE_STRING); ?>
                 </span>
                 <span class="font-italic d-block d-lg-none">
                     Aperçu du chapitre indisponible
