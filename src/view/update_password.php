@@ -34,7 +34,7 @@
                     <div class="col-12 col-md-8 pb-2">
                         <input class="form-control" type="password" id="newPassword" name="newPassword" aria-label="Nouveau mot de passe" required aria-required="true">
                         <span class="alert-danger">
-                            <?= isset($errors['password']) ? filter_var($errors['password'], FILTER_SANITIZE_FULL_SPECIAL_CHARS) : ''; ?>
+                            <?= isset($errors['password']) ? filter_var($errors['password'], FILTER_SANITIZE_STRING) : ''; ?>
                         </span>
                     </div>
                 </div>

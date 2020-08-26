@@ -19,7 +19,7 @@
                         <input class="form-control" type="email" id="email" name="email" aria-label="E-mail" value="<?= filter_var($user->getEmail(), FILTER_SANITIZE_EMAIL); ?>" required aria-required="true">
                         <br />
                         <span class="alert-danger">
-                            <?= isset($errors['email']) ? filter_var($errors['email'], FILTER_SANITIZE_FULL_SPECIAL_CHARS) : ''; ?>
+                            <?= isset($errors['email']) ? filter_var($errors['email'], FILTER_SANITIZE_STRING) : ''; ?>
                         </span>
                     </div>
                     <div class="col-12 col-md-4 pb-2">
