@@ -31,10 +31,10 @@
         ?>
         <tr>
             <th scope="row">
-                <?= filter_var($article->getOrderNum()); ?>
+                <?= filter_var($article->getOrderNum(), FILTER_SANITIZE_NUMBER_INT); ?>
             </th>
             <td>
-                <a href="index.php?route=article&articleId=<?= filter_var($article->getId()); ?>">
+                <a href="index.php?route=article&articleId=<?= filter_var($article->getId(), FILTER_SANITIZE_NUMBER_INT); ?>">
                     <?= filter_var($article->getTitle(), FILTER_SANITIZE_SPECIAL_CHARS); ?>
                 </a>
             </td>
@@ -63,17 +63,17 @@
                 </span>
             </td>
             <td>
-                <?= filter_var($article->getAuthor()); ?>
+                <?= filter_var($article->getAuthor(), FILTER_SANITIZE_FULL_SPECIAL_CHARS); ?>
             </td>
             <td>
-                <?= filter_var($article->getCreatedAt()); ?>
+                <?= filter_var($article->getCreatedAt(), FILTER_SANITIZE_FULL_SPECIAL_CHARS); ?>
             </td>
             <td>
                 <?php
                 // Avoid default '01/01/1970' display if date is null
                 if (!is_null($article->getLastPublishedDate())) {
                 ?>
-                    <?= filter_var(date('d/m/Y', strtotime($article->getLastPublishedDate()))); ?>
+                    <?= filter_var(date('d/m/Y', strtotime($article->getLastPublishedDate())), FILTER_SANITIZE_FULL_SPECIAL_CHARS); ?>
                 <?php
                 }
                 ?>
@@ -81,10 +81,10 @@
             </td>
             <td class="d-flex flex-wrap justify-content-end">
                 <div class="d-flex flex-row justify-content-end">
-                    <a type="button" class="btn btn-outline-primary mb-1 mx-1" href="index.php?route=editArticle&articleId=<?= filter_var($article->getId()); ?>">
+                    <a type="button" class="btn btn-outline-primary mb-1 mx-1" href="index.php?route=editArticle&articleId=<?= filter_var($article->getId(), FILTER_SANITIZE_NUMBER_INT); ?>">
                         <i class="fas fa-edit"></i>
                     </a>
-                    <a type="button" class="btn btn-outline-danger mb-1 mx-1" href="index.php?route=deleteArticle&articleId=<?= filter_var($article->getId()); ?>">
+                    <a type="button" class="btn btn-outline-danger mb-1 mx-1" href="index.php?route=deleteArticle&articleId=<?= filter_var($article->getId(), FILTER_SANITIZE_NUMBER_INT); ?>">
                         <i class="fas fa-trash-alt"></i>
                     </a>
                 </div>
@@ -92,7 +92,7 @@
                 if($article->getIsPublished() == 0)
                 {
                     ?>
-                    <a type="button" class="btn btn-outline-success btn-block mb-1 mx-1" href="index.php?route=publishArticle&articleId=<?= filter_var($article->getId()); ?>">
+                    <a type="button" class="btn btn-outline-success btn-block mb-1 mx-1" href="index.php?route=publishArticle&articleId=<?= filter_var($article->getId(), FILTER_SANITIZE_NUMBER_INT); ?>">
                         Publier
                     </a>
                     <?php
@@ -100,7 +100,7 @@
                 elseif ($article->getIsPublished() == 1)
                 {
                     ?>
-                    <a type="button" class="btn btn-outline-warning btn-block mb-1 mx-1" href="index.php?route=unpublishArticle&articleId=<?= filter_var($article->getId()); ?>">
+                    <a type="button" class="btn btn-outline-warning btn-block mb-1 mx-1" href="index.php?route=unpublishArticle&articleId=<?= filter_var($article->getId(), FILTER_SANITIZE_NUMBER_INT); ?>">
                         Dépublier
                     </a>
                     <?php
@@ -135,19 +135,19 @@
         ?>
         <tr>
             <th scope="row">
-                <?= filter_var($comment->getPseudo()); ?>
+                <?= filter_var($comment->getPseudo(), FILTER_SANITIZE_FULL_SPECIAL_CHARS); ?>
             </th>
             <td class="text-break">
                 <?= filter_var($comment->getContent(), FILTER_SANITIZE_FULL_SPECIAL_CHARS); ?>
             </td>
             <td>
-                <?= filter_var($comment->getCreatedAt()); ?>
+                <?= filter_var($comment->getCreatedAt(), FILTER_SANITIZE_FULL_SPECIAL_CHARS); ?>
             </td>
             <td class="d-flex flex-wrap justify-content-end">
-                <a type="button" class="btn btn-outline-primary mb-1 mx-1" href="index.php?route=unflagComment&commentId=<?= filter_var($comment->getId()); ?>">
+                <a type="button" class="btn btn-outline-primary mb-1 mx-1" href="index.php?route=unflagComment&commentId=<?= filter_var($comment->getId(), FILTER_SANITIZE_NUMBER_INT); ?>">
                     Désignaler
                 </a>
-                <a type="button" class="btn btn-outline-danger mb-1 mx-1" href="index.php?route=deleteComment&commentId=<?= filter_var($comment->getId()); ?>">
+                <a type="button" class="btn btn-outline-danger mb-1 mx-1" href="index.php?route=deleteComment&commentId=<?= filter_var($comment->getId(), FILTER_SANITIZE_NUMBER_INT); ?>">
                     <i class="fas fa-trash-alt"></i>
                 </a>
             </td>
@@ -177,7 +177,7 @@
         ?>
         <tr>
             <th scope="row">
-                <?= filter_var($user->getPseudo()); ?>
+                <?= filter_var($user->getPseudo(), FILTER_SANITIZE_FULL_SPECIAL_CHARS); ?>
             </th>
             <td>
                 <a href="mailto:<?= filter_var($user->getEmail(),FILTER_SANITIZE_EMAIL); ?>">
@@ -185,17 +185,17 @@
                 </a>
             </td>
             <td>
-                <?= filter_var($user->getCreatedAt()); ?>
+                <?= filter_var($user->getCreatedAt(), FILTER_SANITIZE_FULL_SPECIAL_CHARS); ?>
             </td>
             <td>
-                <?= filter_var($user->getRole()); ?>
+                <?= filter_var($user->getRole(), FILTER_SANITIZE_FULL_SPECIAL_CHARS); ?>
             </td>
             <td class="d-flex flex-wrap justify-content-end">
                 <?php
                 if(!$user->getIsAdmin())
                 {
                     ?>
-                    <a type="button" class="btn btn-outline-danger" href="index.php?route=deleteUser&userId=<?= filter_var($user->getId()); ?>">
+                    <a type="button" class="btn btn-outline-danger" href="index.php?route=deleteUser&userId=<?= filter_var($user->getId(), FILTER_SANITIZE_NUMBER_INT); ?>">
                         <i class="fas fa-trash-alt"></i>
                     </a>
                     <?php

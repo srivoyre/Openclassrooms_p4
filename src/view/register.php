@@ -16,7 +16,7 @@
                 <input class="form-control" type="text" id="pseudo" name="pseudo" aria-label="Pseudo" required aria-required="true">
                 <br />
                 <span class="alert-danger">
-                    <?= isset($errors['pseudo']) ? filter_var($errors['pseudo']) : ''; ?>
+                    <?= isset($errors['pseudo']) ? filter_var($errors['pseudo'], FILTER_SANITIZE_FULL_SPECIAL_CHARS) : ''; ?>
                 </span>
             </div>
             <div class="form-group">
@@ -25,7 +25,7 @@
                 <input class="form-control" type="email" id="email" name="email" aria-label="E-mail" aria-describedby="basic-addon1" required aria-required="true">
                 <br />
                 <span class="alert-danger">
-                    <?= isset($errors['email']) ? filter_var($errors['email']) : ''; ?>
+                    <?= isset($errors['email']) ? filter_var($errors['email'], FILTER_SANITIZE_FULL_SPECIAL_CHARS) : ''; ?>
                 </span>
             </div>
             <div class="form-group">
@@ -34,7 +34,7 @@
                 <input class="form-control" type="password" id="password" name="password" aria-label="Mot de passe" required aria-required="true">
                 <br />
                 <span class="alert-danger">
-                    <?= isset($errors['password']) ? filter_var($errors['password']) : ''; ?>
+                    <?= isset($errors['password']) ? filter_var($errors['password'], FILTER_SANITIZE_FULL_SPECIAL_CHARS) : ''; ?>
                 </span>
             </div>
             <input class="btn btn-primary" type="submit" value="Inscription" id="submit" name="submit">

@@ -1,4 +1,4 @@
-<?php $this->title = filter_var($article->getTitle()); ?>
+<?php $this->title = filter_var($article->getTitle(), FILTER_SANITIZE_FULL_SPECIAL_CHARS); ?>
 
 <div class="row my-2">
     <div class="col-6 mx-0 px-0">
@@ -13,7 +13,7 @@
             && $this->session->get('user')->getIsAdmin()
         ) {
             ?>
-            <a  type="button" class="btn btn-outline-primary" href="index.php?route=editArticle&articleId=<?= filter_var($article->getId()); ?>">
+            <a  type="button" class="btn btn-outline-primary" href="index.php?route=editArticle&articleId=<?= filter_var($article->getId(), FILTER_SANITIZE_NUMBER_INT); ?>">
                 <i class="fas fa-edit"></i>
             </a>
             <?php
@@ -25,7 +25,7 @@
 <div class="row mx-0">
     <div class="col-12 my-3">
         <h1>
-            <?= filter_var($article->getTitle()); ?>
+            <?= filter_var($article->getTitle(), FILTER_SANITIZE_FULL_SPECIAL_CHARS); ?>
         </h1>
     </div>
 </div>
@@ -43,7 +43,7 @@
             // Avoid default '01/01/1970' display if date is null
             if (!is_null($article->getLastPublishedDate())) {
                 ?>
-                publié le <?= filter_var(date('d/m/Y', strtotime($article->getLastPublishedDate()))); ?>
+                publié le <?= filter_var(date('d/m/Y', strtotime($article->getLastPublishedDate())), FILTER_SANITIZE_FULL_SPECIAL_CHARS); ?>
                 <?php
             }
             ?>
@@ -56,7 +56,7 @@
         <?php
         if (empty($article->getPreviousArticle()) == false) {
             ?>
-            <a class="btn btn-info" href="index.php?route=viewArticle&articleId=<?= filter_var($article->getPreviousArticle()->getId()); ?>">
+            <a class="btn btn-info" href="index.php?route=viewArticle&articleId=<?= filter_var($article->getPreviousArticle()->getId(), FILTER_SANITIZE_NUMBER_INT); ?>">
                 << Précédent
             </a>
             <?php
@@ -67,7 +67,7 @@
         <?php
         if (empty($article->getNextArticle()) == false) {
             ?>
-            <a class="btn btn-info" href="index.php?route=viewArticle&articleId=<?= filter_var($article->getNextArticle()->getId()); ?>">
+            <a class="btn btn-info" href="index.php?route=viewArticle&articleId=<?= filter_var($article->getNextArticle()->getId(), FILTER_SANITIZE_NUMBER_INT); ?>">
                 Suivant >>
             </a>
 
@@ -139,11 +139,11 @@
                     <div class="comment-header row">
                         <div class="col-7">
                     <span class="font-weight-bold">
-                        <?= filter_var($comment->getPseudo());?>
+                        <?= filter_var($comment->getPseudo(), FILTER_SANITIZE_FULL_SPECIAL_CHARS);?>
                     </span>
                             <br />
                             <span class="font-italic small">
-                        Posté le <?= filter_var($comment->getCreatedAt());?>
+                        Posté le <?= filter_var($comment->getCreatedAt(), FILTER_SANITIZE_FULL_SPECIAL_CHARS);?>
                     </span>
                         </div>
                         <div class="col-5 d-flex flex-wrap justify-content-end">
@@ -155,7 +155,7 @@
                                 ) {
                                     ?>
                                     <div class="mx-1">
-                                        <a  type="button" class="btn btn-outline-danger" href="index.php?route=deleteComment&commentId=<?= filter_var($comment->getId()); ?>&articleId=<?= filter_var($comment->getArticleId()); ?>&pseudo=<?= filter_var($comment->getPseudo()); ?>">
+                                        <a  type="button" class="btn btn-outline-danger" href="index.php?route=deleteComment&commentId=<?= filter_var($comment->getId(), FILTER_SANITIZE_NUMBER_INT); ?>&articleId=<?= filter_var($comment->getArticleId(), FILTER_SANITIZE_NUMBER_INT); ?>&pseudo=<?= filter_var($comment->getPseudo(),FILTER_SANITIZE_FULL_SPECIAL_CHARS); ?>">
                                             <i class="fas fa-trash-alt"></i>
                                         </a>
                                     </div>
@@ -174,7 +174,7 @@
                                 } else {
                                     ?>
                                     <div class="mx-1">
-                                        <a type="button" class="btn btn-outline-danger" alt="Signaler le commentaire" href="index.php?route=flagComment&commentId=<?= filter_var($comment->getId()); ?>&articleId=<?= filter_var($comment->getArticleId()); ?>">
+                                        <a type="button" class="btn btn-outline-danger" alt="Signaler le commentaire" href="index.php?route=flagComment&commentId=<?= filter_var($comment->getId(), FILTER_SANITIZE_NUMBER_INT); ?>&articleId=<?= filter_var($comment->getArticleId(), FILTER_SANITIZE_NUMBER_INT); ?>">
                                             <i class="fas fa-exclamation-circle"></i>
                                         </a>
                                     </div>

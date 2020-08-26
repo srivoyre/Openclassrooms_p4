@@ -2,31 +2,31 @@
 $route = isset($post) && $post->get('id') ? 'editArticle&articleId='.$post->get('id') : 'addArticle';
 $submit = $route === 'addArticle' ? 'Créer' : 'Enregistrer';
 ?>
-<form method="post" action="index.php?route=<?= filter_var($route); ?>">
+<form method="post" action="index.php?route=<?= filter_var($route, FILTER_SANITIZE_FULL_SPECIAL_CHARS); ?>">
     <div class="form-group">
         <label for="title">Titre du chapitre</label>
         <br />
-        <input class="form-control" type="text" id="title" name="title" value="<?= isset($post) ? filter_var($post->get('title')) : ''; ?>">
+        <input class="form-control" type="text" id="title" name="title" value="<?= isset($post) ? filter_var($post->get('title'), FILTER_SANITIZE_FULL_SPECIAL_CHARS) : ''; ?>">
         <span class="alert-danger">
-            <?= isset($errors['title']) ? filter_var($errors['title']) : ''; ?>
+            <?= isset($errors['title']) ? filter_var($errors['title'], FILTER_SANITIZE_FULL_SPECIAL_CHARS) : ''; ?>
         </span>
     </div>
     <div class="form-group">
         <label for="order_num">Numéro du chapitre</label>
         <br />
-        <input class="form-control" type="number" id="order_num" name="order_num" value="<?= isset($post) ? filter_var($post->get('order_num')) : ''; ?>">
+        <input class="form-control" type="number" id="order_num" name="order_num" value="<?= isset($post) ? filter_var($post->get('order_num'), FILTER_SANITIZE_NUMBER_INT) : ''; ?>">
         <span class="alert-danger">
-            <?= isset($errors['order_num']) ? filter_var($errors['order_num']) : ''; ?>
+            <?= isset($errors['order_num']) ? filter_var($errors['order_num'], FILTER_SANITIZE_FULL_SPECIAL_CHARS) : ''; ?>
         </span>
     </div>
     <div class="form-group">
         <label for="content">Contenu</label>
         <br />
         <textarea id="content" class="form-control" name="content">
-            <?= isset($post) ? filter_var($post->get('content')) : ''; ?>
+            <?= isset($post) ? filter_var($post->get('content'), FILTER_SANITIZE_FULL_SPECIAL_CHARS) : ''; ?>
         </textarea>
         <span class="alert-danger">
-            <?= isset($errors['content']) ? filter_var($errors['content']) : ''; ?>
+            <?= isset($errors['content']) ? filter_var($errors['content'], FILTER_SANITIZE_FULL_SPECIAL_CHARS) : ''; ?>
         </span>
         <script>
             tinymce.init({
@@ -68,7 +68,7 @@ $submit = $route === 'addArticle' ? 'Créer' : 'Enregistrer';
         </script>
     </div>
 
-    <input class="btn btn-primary" type="submit" value="<?= filter_var($submit); ?>" id="submit" name="submit">
+    <input class="btn btn-primary" type="submit" value="<?= filter_var($submit, FILTER_SANITIZE_FULL_SPECIAL_CHARS); ?>" id="submit" name="submit">
     <?php
     if ($route !== 'addArticle') {
         ?>
