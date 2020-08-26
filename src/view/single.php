@@ -22,62 +22,70 @@
     </div>
 </div>
 
-<div class="row mx-0">
-    <div class="col-12 my-3">
-        <h1>
-            <?= filter_var($article->getTitle()); ?>
-        </h1>
-    </div>
-</div>
+<section>
 
-<div class="row">
-    <div class="col-12">
-        <?= filter_var($article->getContent());?>
-    </div>
-</div>
+    <article>
 
-<div class="row">
-    <div class="col-12 mb-3">
-        <span class="font-weight-bold font-italic">
-            <?php
-            // Avoid default '01/01/1970' display if date is null
-            if (!is_null($article->getLastPublishedDate())) {
+        <div class="row mx-0">
+            <div class="col-12 my-3">
+                <h1>
+                    <?= filter_var($article->getTitle()); ?>
+                </h1>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12">
+                <?= filter_var($article->getContent());?>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12 mb-3">
+            <span class="font-weight-bold font-italic">
+                <?php
+                // Avoid default '01/01/1970' display if date is null
+                if (!is_null($article->getLastPublishedDate())) {
+                    ?>
+                    publié le <?= filter_var(date('d/m/Y', strtotime($article->getLastPublishedDate()))); ?>
+                    <?php
+                }
                 ?>
-                publié le <?= filter_var(date('d/m/Y', strtotime($article->getLastPublishedDate()))); ?>
+            </span>
+            </div>
+        </div>
+    </article>
+
+    <div id="chapters-nav" class="row mb-4">
+
+        <div id="previous-chapter" class="col-6">
+            <?php
+            if (empty($article->getPreviousArticle()) == false) {
+                ?>
+                <a class="btn btn-info" href="index.php?route=viewArticle&articleId=<?= filter_var($article->getPreviousArticle()->getId()); ?>">
+                    << Précédent
+                </a>
                 <?php
             }
             ?>
-        </span>
-    </div>
-</div>
-
-<div id="chapters-nav" class="row mb-4">
-    <div id="previous-chapter" class="col-6">
-        <?php
-        if (empty($article->getPreviousArticle()) == false) {
-            ?>
-            <a class="btn btn-info" href="index.php?route=viewArticle&articleId=<?= filter_var($article->getPreviousArticle()->getId()); ?>">
-                << Précédent
-            </a>
+        </div>
+        <div id="next-chapter" class="col-6 text-right">
             <?php
-        }
-        ?>
-    </div>
-    <div id="next-chapter" class="col-6 text-right">
-        <?php
-        if (empty($article->getNextArticle()) == false) {
+            if (empty($article->getNextArticle()) == false) {
+                ?>
+                <a class="btn btn-info" href="index.php?route=viewArticle&articleId=<?= filter_var($article->getNextArticle()->getId()); ?>">
+                    Suivant >>
+                </a>
+
+                <?php
+            }
             ?>
-            <a class="btn btn-info" href="index.php?route=viewArticle&articleId=<?= filter_var($article->getNextArticle()->getId()); ?>">
-                Suivant >>
-            </a>
-
-            <?php
-        }
-        ?>
+        </div>
     </div>
-</div>
 
-<div class="row">
+</section>
+
+<section class="row">
     <div class="col-md-1 col-lg-2"></div>
     <div id="comments-container" class="border col-md-10 col-lg-8 py-3 px-md-2 p-lg-5">
         <div class="row">
@@ -197,5 +205,5 @@
         ?>
     </div>
     <div class="col-md-1 col-lg-2"></div>
-</div>
+</section>
 
