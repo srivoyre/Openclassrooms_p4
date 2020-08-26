@@ -2,7 +2,9 @@
     <div class="form-group">
         <textarea class="form-control" id="comment-form-content" name="content" required aria-required="true"></textarea>
     </div>
-    <?= isset($errors['content']) ? filter_var($errors['content']) : ''; ?>
+    <span class="alert-danger">
+        <?= isset($errors['content']) ? filter_var($errors['content']) : ''; ?>
+    </span>
     <div class="text-right">
         <input class="btn btn-primary align-right" type="submit" value="Commenter" id="submit" name="submit">
     </div>

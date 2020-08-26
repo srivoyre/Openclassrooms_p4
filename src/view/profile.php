@@ -18,7 +18,9 @@
                     <div class="col-12 col-md-8 pb-2">
                         <input class="form-control" type="email" id="email" name="email" aria-label="E-mail" value="<?= filter_var($user->getEmail()); ?>" required aria-required="true">
                         <br />
-                        <?= isset($errors['email']) ? filter_var($errors['email']) : ''; ?>
+                        <span class="alert-danger">
+                            <?= isset($errors['email']) ? filter_var($errors['email']) : ''; ?>
+                        </span>
                     </div>
                     <div class="col-12 col-md-4 pb-2">
                         <input class="btn btn-primary" type="submit" value="Mettre à jour mon e-mail" id="submitEmail" name="submitEmail">

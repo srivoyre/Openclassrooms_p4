@@ -7,13 +7,17 @@ $submit = $route === 'addArticle' ? 'Créer' : 'Enregistrer';
         <label for="title">Titre du chapitre</label>
         <br />
         <input class="form-control" type="text" id="title" name="title" value="<?= isset($post) ? filter_var($post->get('title')) : ''; ?>">
-        <?= isset($errors['title']) ? filter_var($errors['title']) : ''; ?>
+        <span class="alert-danger">
+            <?= isset($errors['title']) ? filter_var($errors['title']) : ''; ?>
+        </span>
     </div>
     <div class="form-group">
         <label for="order_num">Numéro du chapitre</label>
         <br />
         <input class="form-control" type="number" id="order_num" name="order_num" value="<?= isset($post) ? filter_var($post->get('order_num')) : ''; ?>">
-        <?= isset($errors['order_num']) ? filter_var($errors['order_num']) : ''; ?>
+        <span class="alert-danger">
+            <?= isset($errors['order_num']) ? filter_var($errors['order_num']) : ''; ?>
+        </span>
     </div>
     <div class="form-group">
         <label for="content">Contenu</label>
@@ -21,7 +25,9 @@ $submit = $route === 'addArticle' ? 'Créer' : 'Enregistrer';
         <textarea id="content" class="form-control" name="content">
             <?= isset($post) ? filter_var($post->get('content')) : ''; ?>
         </textarea>
-        <?= isset($errors['content']) ? filter_var($errors['content']) : ''; ?>
+        <span class="alert-danger">
+            <?= isset($errors['content']) ? filter_var($errors['content']) : ''; ?>
+        </span>
         <script>
             tinymce.init({
                 selector: 'textarea',
