@@ -11,7 +11,7 @@ git clone https://github.com/srivoyre/Openclassrooms_p4.git
 
 # Créateur
 
-Sophie de Rivoyre
+[Sophie de Rivoyre](https://github.com/srivoyre)
 
 # Copyright
 
